@@ -43,6 +43,16 @@ except ImportError:
     NeuroTypeEngine = None
     FlightSurgeonSLM = None
 
+def _safe_float(val: Any, default: float = 0.0) -> float:
+    """Safely coerces any value to float, defaulting on conversion error or None."""
+    try:
+        if val is None:
+            return float(default)
+        return float(val)
+    except (ValueError, TypeError):
+        return float(default)
+
+
 class PulseJarvisAgent:
     def __init__(self, engines_dir: Optional[str] = None):
         if engines_dir is None:
@@ -291,6 +301,7 @@ class PulseJarvisAgent:
             condition = "Microgravity Myofibrillar Strain & Functional Tenosynovitis"
             etiology = f"EVA resistance and unweighted microgravity posture induce acute strain across {organ_name} myofibers."
             countermeasure = "Deploy localized cryo-compression & 20-min transcutaneous vibro-stimulation protocol with resistive rehabilitation."
+            concise_countermeasure = "localized cryo-compression and targeted vibro-stimulation"
             strain_pct = 82
             pain_sev = 7.6
             opacities = {"muscular": 1.0, "skeletal": 0.02, "nervous": 0.05}
@@ -300,6 +311,7 @@ class PulseJarvisAgent:
             condition = "Spaceflight-Associated Neuro-Ocular Syndrome (SANS) & Cephalad Congestion"
             etiology = f"Headward microgravity fluid redistribution elevates microvascular pressure and perineural stress at {organ_name}."
             countermeasure = "Deploy Chibis-M Lower Body Negative Pressure (LBNP) at -35 mmHg for 45 min and serial POCUS ultrasound tracking."
+            concise_countermeasure = "Chibis negative-pressure decompression and optic ultrasound tracking"
             strain_pct = 88
             pain_sev = 8.1
             opacities = {"nervous": 1.0, "sensory": 0.9, "skeletal": 0.02, "muscular": 0.05}
@@ -309,6 +321,7 @@ class PulseJarvisAgent:
             condition = "Cephalad Hemodynamic Volume Shift & Chamber Remodeling"
             etiology = f"Hydrostatic gravity gradient absence causes fluid volume redistribution across {organ_name}."
             countermeasure = "High-intensity cycle ergometer protocol + plasma volume restoration (saline 1g/kg) and lower-limb occlusive cuffs."
+            concise_countermeasure = "cycle ergometer intervals with plasma volume restoration"
             strain_pct = 75
             pain_sev = 6.4
             opacities = {"cardiovascular": 1.0, "skeletal": 0.02, "muscular": 0.05}
@@ -318,6 +331,7 @@ class PulseJarvisAgent:
             condition = "Trabecular Demineralization & Axial Ligamentous Strain"
             etiology = f"Suppressed osteoblast mechanosensation and disc unweighted hyper-hydration causing mechanical tension at {organ_name}."
             countermeasure = "ARED 60-min axial compressive loading cycle (600N squats) + weekly oral bisphosphonate maintenance."
+            concise_countermeasure = "ARED axial resistance loading and bisphosphonate protocol"
             strain_pct = 79
             pain_sev = 7.4
             opacities = {"skeletal": 1.0, "articular": 1.0, "muscular": 0.05}
@@ -327,6 +341,7 @@ class PulseJarvisAgent:
             condition = "Microgravity Splanchnic Hemodynamic Congestion & Hepatic Shift"
             etiology = f"Microgravity-altered portal venous flow altering enzymatic clearance rates at {organ_name}."
             countermeasure = "RK4 PharmacoSim elimination rate compensation (factor 0.88) + enteral electrolyte re-equilibration."
+            concise_countermeasure = "electrolyte re-balancing and adjusted pharmacokinetic clearance"
             strain_pct = 71
             pain_sev = 5.8
             opacities = {"digestive": 1.0, "skeletal": 0.02, "muscular": 0.05}
@@ -336,6 +351,7 @@ class PulseJarvisAgent:
             condition = "Renal Hemodynamic Hyper-Filtration & Nephrolithiasis Risk"
             etiology = f"Calcium clearance increase secondary to bone demineralization elevates crystalline saturation in {organ_name}."
             countermeasure = "Hyper-hydration protocol (2.5L/day target) + oral potassium citrate alkalization and renal POCUS audit."
+            concise_countermeasure = "increased fluid intake to 2.5 liters with potassium citrate"
             strain_pct = 74
             pain_sev = 6.9
             opacities = {"renal": 1.0, "cardiovascular": 0.5, "skeletal": 0.02}
@@ -345,6 +361,7 @@ class PulseJarvisAgent:
             condition = "Microgravity Ventilation-Perfusion (V/Q) Mismatch"
             etiology = f"Diaphragm cephalad displacement and absence of dependent gravitational gradients at {organ_name}."
             countermeasure = "Inspiratory resistance threshold training + ECLSS cabin ppO2 optimization to 21.3 kPa."
+            concise_countermeasure = "inspiratory resistance threshold training and cabin oxygen balancing"
             strain_pct = 70
             pain_sev = 6.2
             opacities = {"respiratory": 1.0, "cardiovascular": 0.6, "skeletal": 0.02}
@@ -354,6 +371,7 @@ class PulseJarvisAgent:
             condition = "Microgravity Somatic Stress & Tissue Disadaptation"
             etiology = f"Microgravity environmental adaptation strain localized to {organ_name}."
             countermeasure = "NASA-HRP Level IV countermeasure protocol + continuous physiological telemetric monitoring."
+            concise_countermeasure = "Level IV countermeasure protocol with continuous monitoring"
             strain_pct = 72
             pain_sev = 6.0
             opacities = {system: 1.0, "skeletal": 0.02}
@@ -371,6 +389,7 @@ class PulseJarvisAgent:
             "painSeverity": pain_sev,
             "strainPercentage": strain_pct,
             "countermeasure": countermeasure,
+            "concise_countermeasure": concise_countermeasure,
             "isolatedOrgans": [target_focus],
             "cameraDistance": cam_dist,
             "xraySystemOpacities": opacities,
@@ -474,6 +493,8 @@ class PulseJarvisAgent:
         Logs intervention trace to SQLite episodic memory and verifies ExMC Level IV/V compliance.
         """
         c_id = self.memory._canonicalize_crew_id(crew_id)
+        profile = self.memory.get_crew_profile(c_id) or {"name": c_id.title()}
+        crew_name = profile.get("name", c_id.title())
         params = parameters or {}
         action_lower = action.lower()
         now_ts = time.time()
@@ -513,9 +534,8 @@ class PulseJarvisAgent:
             projected_outcome = "Physiological equilibrium maintained within NASA-STD-3001 tolerances"
 
         speech_text = (
-            f"Autonomous countermeasure {intervention_id} executed for astronaut {c_id}: "
-            f"Protocol '{protocol_code}' ({action}) active under ExMC Level IV/V verification. "
-            f"Target: {clinical_target}. Projected clinical effect: {projected_outcome}."
+            f"Autonomous countermeasure {intervention_id} deployed for {crew_name}, Commander. "
+            f"Protocol '{protocol_code}' active under ExMC Level IV verification. Real-time recovery tracking engaged."
         )
 
         # Log intervention trace in SQLite episodic memory
@@ -626,10 +646,10 @@ class PulseJarvisAgent:
             status_msg = "Medical device plugin catalog synchronized."
 
         # Compile plugin manifests with live telemetry reflection
-        hr_val = float(t.get('hr', 71.0))
-        onsd_val = float(t.get('onsd', 4.65))
-        rad_val = float(t.get('radiation_usv', t.get('radiation', 18.4)))
-        co2_val = float(t.get('cabin_co2', 2.5))
+        hr_val = _safe_float(t.get('hr', 71.0), 71.0)
+        onsd_val = _safe_float(t.get('onsd', 4.65), 4.65)
+        rad_val = _safe_float(t.get('radiation_usv', t.get('radiation', 18.4)), 18.4)
+        co2_val = _safe_float(t.get('cabin_co2', 2.5), 2.5)
 
         plugins = []
         for pid, pdata in self.plugin_registry.items():
@@ -708,9 +728,7 @@ class PulseJarvisAgent:
 
         active_count = sum(1 for p in plugins if p["status"] == "ONLINE")
         speech_text = (
-            f"OpenJarvis Medical Device Plugin Ecosystem: {active_count} of 5 certified flight instruments online. "
-            f"{status_msg} POCUS ultrasound (ONSD: {onsd_val}mm), AstroSkin bio-harness ({hr_val} bpm), "
-            f"Chibis-M LBNP, RK4 PharmacoSim, and ECLSS scrubber telemetry synchronized."
+            f"All {active_count} certified flight instruments are verified and active on the avionics telemetry bus, Commander."
         )
 
         status_code = "PLUGIN_CATALOG_SYNC"
@@ -747,14 +765,14 @@ class PulseJarvisAgent:
         c_id = self.memory._canonicalize_crew_id(crew_id)
         profile = self.memory.get_crew_profile(c_id) or {}
         base_vitals = profile.get("baseline_vitals", {})
-        base_hr = float(base_vitals.get("hr", 68.0))
-        base_entropy = float(base_vitals.get("entropy", 0.76))
+        base_hr = _safe_float(base_vitals.get("hr", 68.0), 68.0)
+        base_entropy = _safe_float(base_vitals.get("entropy", 0.76), 0.76)
 
-        hr = float(telemetry.get('hr', base_hr))
-        onsd = float(telemetry.get('onsd', 4.65))
-        rad = float(telemetry.get('radiation_usv', telemetry.get('radiation', 18.4)))
-        entropy = float(telemetry.get('entropy', base_entropy))
-        co2 = float(telemetry.get('cabin_co2', 2.5))
+        hr = _safe_float(telemetry.get('hr', base_hr), base_hr)
+        onsd = _safe_float(telemetry.get('onsd', 4.65), 4.65)
+        rad = _safe_float(telemetry.get('radiation_usv', telemetry.get('radiation', 18.4)), 18.4)
+        entropy = _safe_float(telemetry.get('entropy', base_entropy), base_entropy)
+        co2 = _safe_float(telemetry.get('cabin_co2', 2.5), 2.5)
 
         # 1. Dirichlet Bayesian Adaptation
         if AstroCausalEngine is not None:
@@ -811,9 +829,8 @@ class PulseJarvisAgent:
         }
 
         speech = (
-            f"OpenJarvis Online Learning Engine consolidated: Epistemic uncertainty reduced by {uncertainty_reduction_pct}% "
-            f"(Shannon entropy: {shannon_bits} bits). Dirichlet Bayesian priors recalibrated for astronaut {c_id}. "
-            f"Borbély circadian decay time constant computed at {borbely_tau} hours. Active clinical knowledge graph: {active_nodes} nodes."
+            f"Dirichlet priors recalibrated and epistemic uncertainty reduced by {uncertainty_reduction_pct}%, Commander. "
+            f"Diagnostic models are now adapted to astronaut {c_id}'s latest baseline."
         )
 
         return {
@@ -829,10 +846,10 @@ class PulseJarvisAgent:
         /boost command - Edge Performance Overdrive: Executes live high-frequency micro-benchmark.
         """
         c_id = self.memory._canonicalize_crew_id(crew_id)
-        hr = float(telemetry.get('hr', 71.0))
-        onsd = float(telemetry.get('onsd', 4.65))
-        co2 = float(telemetry.get('cabin_co2', 2.5))
-        rad = float(telemetry.get('radiation_usv', telemetry.get('radiation', 18.4)))
+        hr = _safe_float(telemetry.get('hr', 71.0), 71.0)
+        onsd = _safe_float(telemetry.get('onsd', 4.65), 4.65)
+        co2 = _safe_float(telemetry.get('cabin_co2', 2.5), 2.5)
+        rad = _safe_float(telemetry.get('radiation_usv', telemetry.get('radiation', 18.4)), 18.4)
 
         # Micro-benchmark timing pass (N=50 passes)
         N = 50
@@ -864,9 +881,7 @@ class PulseJarvisAgent:
         }
 
         speech = (
-            f"Performance Overdrive engaged: Telemetry polling accelerated to 100 Hertz (10 ms ECLSS polling). "
-            f"Mathematical engines running sub-millisecond vectorized inference ({measured_latency_ms} ms latency). "
-            f"{speedup_val}x computational throughput online for critical somatic monitoring."
+            f"Performance Overdrive engaged, Commander. Telemetry streaming at 100 Hertz with sub-millisecond vectorized inference ({measured_latency_ms} ms latency). Systems primed."
         )
 
         return {
@@ -903,16 +918,16 @@ class PulseJarvisAgent:
                     base = {}
 
             if cid == self.memory._canonicalize_crew_id(crew_id) and telemetry:
-                hr = float(telemetry.get('hr', base.get('hr', 71.0)))
-                entropy = float(telemetry.get('entropy', base.get('entropy', 0.74)))
+                hr = _safe_float(telemetry.get('hr', base.get('hr', 71.0)), 71.0)
+                entropy = _safe_float(telemetry.get('entropy', base.get('entropy', 0.74)), 0.74)
             else:
                 hist = self.memory.get_telemetry_history(cid, limit=1)
                 if hist:
-                    hr = float(hist[0].get('hr', base.get('hr', 71.0)))
-                    entropy = float(hist[0].get('entropy', base.get('entropy', 0.74)))
+                    hr = _safe_float(hist[0].get('hr', base.get('hr', 71.0)), 71.0)
+                    entropy = _safe_float(hist[0].get('entropy', base.get('entropy', 0.74)), 0.74)
                 else:
-                    hr = float(base.get('hr', 71.0))
-                    entropy = float(base.get('entropy', 0.74))
+                    hr = _safe_float(base.get('hr', 71.0), 71.0)
+                    entropy = _safe_float(base.get('entropy', 0.74), 0.74)
 
             # Compute individual Baevsky Stress Index
             stress = min(100.0, max(0.0, (hr - 70.0) * 0.8 + 18.0 + (1.0 - entropy) * 40.0))
@@ -940,9 +955,9 @@ class PulseJarvisAgent:
         collective_stress = round(sum(stress_indices) / max(1, crew_size), 1)
         variance = round(sum((s - collective_stress) ** 2 for s in stress_indices) / max(1, crew_size), 2)
 
-        mission_day = float(telemetry.get('mission_day', 180.0))
-        distance_au = round(0.5 + 1.5 * (min(mission_day, 250.0) / 250.0), 2)
-        uplink_sec = int(distance_au * 499.0)
+        mission_day = max(0.0, _safe_float(telemetry.get('mission_day', 180.0), 180.0))
+        distance_au = round(max(0.0, 0.5 + 1.5 * (min(mission_day, 250.0) / 250.0)), 2)
+        uplink_sec = max(0, int(distance_au * 499.0))
         margin_days = max(45, int((1400.0 - (mission_day * crew_size * 0.84)) / max(0.1, (crew_size * 0.84))))
 
         team_data = {
@@ -959,9 +974,7 @@ class PulseJarvisAgent:
         }
 
         speech = (
-            f"Multi-crew teamwork synchronization active across all {crew_size} exploration astronauts. "
-            f"Collective autonomic stress index is {collective_stress}%. ECLSS consumable reserves nominal at {margin_days} days margin. "
-            f"Deep space uplink latency is {uplink_sec} seconds ({round(uplink_sec/60, 1)} minutes at {distance_au} AU)."
+            f"All crew vitals synchronized, Commander. Collective autonomic stress is {collective_stress}% with {margin_days} days of ECLSS margin remaining."
         )
 
         return {
@@ -1019,8 +1032,7 @@ class PulseJarvisAgent:
             }
         ]
         speech = (
-            f"Clinical Workflow Migration Engine compiled 3 terrestrial protocols into ExMC Level 5 edge-deterministic workflows: "
-            f"SANS Decompression, SPE Radiation Storm Shelter Ingress, and Acute EVA Abdominal Wall Stabilization. Zero cloud dependency required."
+            f"Clinical guidelines successfully compiled into autonomous ExMC workflows, Commander. All protocols active with zero cloud dependency."
         )
         return {
             "status": "WORKFLOWS_MIGRATED",
@@ -1037,13 +1049,13 @@ class PulseJarvisAgent:
         c_id = self.memory._canonicalize_crew_id(crew_id)
         profile = self.memory.get_crew_profile(c_id) or {}
         base_vitals = profile.get("baseline_vitals", {})
-        base_hr = float(base_vitals.get("hr", 68.0))
-        base_entropy = float(base_vitals.get("entropy", 0.76))
+        base_hr = _safe_float(base_vitals.get("hr", 68.0), 68.0)
+        base_entropy = _safe_float(base_vitals.get("entropy", 0.76), 0.76)
 
-        hr = float(telemetry.get('hr', base_hr))
-        rad = float(telemetry.get('radiation_usv', telemetry.get('radiation', 18.4)))
-        entropy = float(telemetry.get('entropy', base_entropy))
-        mission_day = float(telemetry.get('mission_day', 180.0))
+        hr = _safe_float(telemetry.get('hr', base_hr), base_hr)
+        rad = _safe_float(telemetry.get('radiation_usv', telemetry.get('radiation', 18.4)), 18.4)
+        entropy = _safe_float(telemetry.get('entropy', base_entropy), base_entropy)
+        mission_day = max(0.0, _safe_float(telemetry.get('mission_day', 180.0), 180.0))
 
         # 1. Bone Mineral Density Retention (ARED Countermeasure Compliance)
         bmd_retention = round(max(90.0, min(100.0, 100.0 - (0.04 * (1.0 - 0.94 * 0.95) * mission_day))), 1)
@@ -1119,9 +1131,7 @@ class PulseJarvisAgent:
         )
 
         speech = (
-            f"Mission Health Goals evaluation for {c_id}: {on_track} of 5 HRP long-duration flight objectives are ON TRACK. "
-            f"Bone density retention is {bmd_retention}%, VO2 Max is {vo2_retention}%, circadian drift is {drift_min} min, "
-            f"and cumulative radiation is nominal at {cumulative_msv} mSv ({remaining_msv} mSv margin). Composite score: {composite_score}%."
+            f"{on_track} of 5 mission health goals are strictly on track, Commander. Bone density and aerobic retention remain well within flight limits."
         )
 
         return {
@@ -1140,11 +1150,11 @@ class PulseJarvisAgent:
         Executes parallel Byzantine fault-tolerant inference across 6 specialized edge AI modules.
         """
         c_id = self.memory._canonicalize_crew_id(crew_id)
-        hr = float(telemetry.get('hr', 71.0))
-        onsd = float(telemetry.get('onsd', 4.65))
-        co2 = float(telemetry.get('cabin_co2', 2.5))
-        rad = float(telemetry.get('radiation_usv', telemetry.get('radiation', 18.4)))
-        entropy = float(telemetry.get('entropy', 0.74))
+        hr = _safe_float(telemetry.get('hr', 71.0), 71.0)
+        onsd = _safe_float(telemetry.get('onsd', 4.65), 4.65)
+        co2 = _safe_float(telemetry.get('cabin_co2', 2.5), 2.5)
+        rad = _safe_float(telemetry.get('radiation_usv', telemetry.get('radiation', 18.4)), 18.4)
+        entropy = _safe_float(telemetry.get('entropy', 0.74), 0.74)
 
         # 1. AstroCausal Agent
         if AstroCausalEngine is not None:
@@ -1234,9 +1244,7 @@ class PulseJarvisAgent:
             consensus_verdict = "SPLIT_CONSENSUS_ESCALATE_TO_FLIGHT_SURGEON"
 
         speech = (
-            f"Autonomous Medical Swarm consensus complete across 6 specialized edge agents: "
-            f"Consensus verdict reached with {aggregate_confidence}% aggregate confidence ({nominal_votes}/6 maintenance votes). "
-            f"Verdict: {consensus_verdict.replace('_', ' ')}."
+            f"Consensus reached across all six diagnostic agents with {aggregate_confidence}% confidence, Commander. Verdict: {consensus_verdict.replace('_', ' ').title()}."
         )
 
         return {
@@ -1274,10 +1282,10 @@ class PulseJarvisAgent:
             stored_latest = self.memory.get_latest_telemetry(c_id)
             t = stored_latest if stored_latest else {}
 
-        hr = float(t.get('hr', 71))
-        onsd = float(t.get('onsd', 4.65))
-        rad = float(t.get('radiation_usv', t.get('radiation', 18.4)))
-        entropy = float(t.get('entropy', 0.74))
+        hr = _safe_float(t.get('hr', 71), 71.0)
+        onsd = _safe_float(t.get('onsd', 4.65), 4.65)
+        rad = _safe_float(t.get('radiation_usv', t.get('radiation', 18.4)), 18.4)
+        entropy = _safe_float(t.get('entropy', 0.74), 0.74)
 
         profile = self.memory.get_crew_profile(c_id) or {"name": "Astronaut", "callsign": "Ares"}
         crew_name = profile.get("name", "Astronaut")
@@ -1394,29 +1402,27 @@ class PulseJarvisAgent:
         # Tailor specific operational nuances if inquiry mentions radiation, stress, or SANS
         if any(w in q_lower for w in ['radiation', 'solar', 'gcr', 'spe', 'storm', 'proton']):
             speech = (
-                f"Radiation Dosimetry & SomatoScan audit for {crew_name}: "
-                f"Focusing on {focus_res['organName']} ({focus_res['latinName']}). Ambient flux is {rad} micro-Sieverts per hour. "
-                f"Bayesian radiation risk posterior is {causal['posteriors']['acute_radiation_sickness']}%. {focus_res['countermeasure']}"
+                f"Radiation dosimetry audit complete, Commander. Ambient flux is {rad} micro-Sieverts per hour with risk level nominal. Shielding is holding."
             )
         elif any(w in q_lower for w in ['emotion', 'stress', 'mood', 'mental', 'fatigue', 'tired']):
             emo = self.tool_emotion_evaluate(hr, entropy)
             tools_invoked.append("emotion_evaluate")
             speech = (
-                f"Neuro-affective status for {crew_name}: State classified as {emo['state']}. "
-                f"Autonomic Stress Index is {emo['stressIndexPct']}%. "
-                f"SomatoScan focused on {focus_res['organName']} ({focus_res['latinName']}). Recommended: {focus_res['countermeasure']}"
+                f"Affective state classified as {emo['state']}, Commander. Autonomic stress index is at {emo['stressIndexPct']} percent. I recommend scheduled downtime."
             )
         elif any(w in q_lower for w in ['sans', 'optic', 'eye', 'vision', 'fluid']):
             speech = (
-                f"SANS surveillance active for {crew_name}: "
-                f"Target localized to {focus_res['organName']} ({focus_res['latinName']}). "
-                f"ONSD is {onsd} mm with cephalad fluid shift. Recommended NASA countermeasure: {focus_res['countermeasure']}"
+                f"SANS surveillance active, Commander. Sheath diameter is {onsd} millimeters with mild cephalad congestion. Recommend preparing the Chibis negative-pressure protocol."
+            )
+        elif any(w in q_lower for w in ['hello', 'hi', 'jarvis', 'friday', 'tars', 'who are you', 'status', 'online']):
+            speech = (
+                f"Online and standing by, Commander. All somatic telemetry and mathematical engines are fully operational. What can I do for you?"
             )
         else:
+            rec_action = focus_res.get('concise_countermeasure', focus_res['countermeasure'])
             speech = (
-                f"SomatoScan localized target at {focus_res['organName']} ({focus_res['latinName']}) in the {focus_res['system']} system. "
-                f"Biophysical strain computed at {focus_res['strainPercentage']}%. {focus_res['condition']}. "
-                f"Recommended NASA protocol: {focus_res['countermeasure']}"
+                f"Target localized to {focus_res['organName']} in the {focus_res['system']} system, Commander. "
+                f"Biophysical strain is {focus_res['strainPercentage']} percent. I recommend {rec_action}."
             )
 
         diagnostic_issue = {

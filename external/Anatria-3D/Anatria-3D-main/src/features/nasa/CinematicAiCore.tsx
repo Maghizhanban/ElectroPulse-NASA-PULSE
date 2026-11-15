@@ -71,6 +71,7 @@ export function CinematicAiCore() {
   const [thinkingMessage, setThinkingMessage] = useState("PARSING SOMATIC INQUIRY...");
   const [isListening, setIsListening] = useState(false);
   const [activeUserPrompt, setActiveUserPrompt] = useState<string>("");
+  const [latestAiResponse, setLatestAiResponse] = useState<string>("");
 
   const recognitionRef = useRef<any>(null);
 
@@ -246,7 +247,8 @@ export function CinematicAiCore() {
     setPhaseMessage(`PHASE 5 // DIAGNOSTIC SYNTHESIS: ${issue.condition.toUpperCase()}`);
     const explanation =
       customVoiceText ||
-      `Target localized. ${issue.crewName}, acute pathology at ${issue.latinName}. ${issue.painLocus}. ${issue.countermeasure}`;
+      `Target localized to ${issue.latinName}, Commander. Strain is at ${issue.strainPercentage} percent. I recommend: ${issue.countermeasure}`;
+    setLatestAiResponse(explanation);
     speakVoice(explanation);
 
     // Record turn to OpenJarvis Episodic Memory
@@ -330,38 +332,38 @@ export function CinematicAiCore() {
     let organName = "Cor (Myocardium)";
     let system: any = "cardiovascular";
     let condition = "Microgravity Hemodynamic Volume Shift";
-    let countermeasure = "Initiate cycle ergometer intervals & plasma volume restoration.";
+    let countermeasure = "Cycle ergometer intervals and plasma volume restoration protocol.";
 
     if (qLower.includes("thumb") || qLower.includes("hand") || qLower.includes("finger")) {
       target = "abductor_pollicis_brevis_r";
       organName = "Abductor Pollicis Brevis (Right)";
       system = "muscular";
       condition = "Microgravity Thenar Tendon Strain";
-      countermeasure = "Deploy localized cryo-compression & 20-min transcutaneous vibro-stimulation.";
+      countermeasure = "Localized cryo-compression and 20-minute vibro-stimulation protocol.";
     } else if (qLower.includes("kidney") || qLower.includes("renal")) {
       target = "intrarenal_arteries_of_right_kidney";
       organName = "Ren Dexter (Right Kidney)";
       system = "cardiovascular";
       condition = "Renal Microvascular Perfusion Anomaly";
-      countermeasure = "Hyper-hydration protocol (2.5L/day target) + oral potassium citrate alkalization.";
+      countermeasure = "Increased hydration to 2.5 liters daily with oral potassium citrate.";
     } else if (qLower.includes("liver") || qLower.includes("hepatic")) {
       target = "liver";
       organName = "Hepar (Liver)";
       system = "digestive";
       condition = "Microgravity Splanchnic Hemodynamic Congestion";
-      countermeasure = "Calibrate RK4 PharmacoSim clearance rate constants + enteral electrolyte balancing.";
+      countermeasure = "Adjusted pharmacokinetic clearance rates and enteral electrolyte re-balancing.";
     } else if (qLower.includes("eye") || qLower.includes("optic") || qLower.includes("sans") || qLower.includes("vision")) {
       target = "optic_nerve_ii_r";
       organName = "Nervus Opticus (CN II) · Sheath Segment";
       system = "nervous";
       condition = "Spaceflight-Associated Neuro-Ocular Syndrome (SANS)";
-      countermeasure = "Deploy Chibis-M LBNP at -35 mmHg for 45 min and serial POCUS ultrasound tracking.";
+      countermeasure = "Chibis negative-pressure decompression at -35 mmHg with optic ultrasound tracking.";
     } else if (qLower.includes("spine") || qLower.includes("lumbar") || qLower.includes("back") || qLower.includes("bone")) {
       target = "sacrum";
       organName = "Vertebrae Lumbales & Os Sacrum";
       system = "skeletal";
       condition = "Trabecular Demineralization & Axial Ligamentous Strain";
-      countermeasure = "ARED 60-min axial compressive loading cycle (600N squats) + weekly oral bisphosphonate.";
+      countermeasure = "ARED 60-minute axial resistance loading cycle with bisphosphonate maintenance.";
     }
 
     const dynamicIssue: ActiveDiagnosticIssue = {
@@ -402,42 +404,42 @@ export function CinematicAiCore() {
         resultData = {
           command: "/learn",
           status: "LEARNING_CONSOLIDATED",
-          speechText: "OpenJarvis Online Learning Engine consolidated: Epistemic uncertainty reduced by 14.8%. Dirichlet Bayesian priors recalibrated for astronaut.",
+          speechText: "Dirichlet priors recalibrated and epistemic uncertainty reduced, Commander. Diagnostic models adapted to latest baseline.",
           targetFocus: "brain",
         };
       } else if (cmd.includes("boost")) {
         resultData = {
           command: "/boost",
           status: "BOOST_ENGAGED",
-          speechText: "Performance Overdrive engaged: Telemetry polling accelerated to 100 Hertz. Mathematical engines running sub-millisecond vectorized inference (0.68 ms latency).",
+          speechText: "Performance Overdrive engaged, Commander. Telemetry streaming at 100 Hertz with sub-millisecond vectorized inference. Systems primed.",
           targetFocus: "heart",
         };
       } else if (cmd.includes("teamwork")) {
         resultData = {
           command: "/teamwork",
           status: "TEAMWORK_SYNCHRONIZED",
-          speechText: "Multi-crew teamwork synchronization active across all exploration astronauts. Collective autonomic stress index is nominal at 30.1%.",
+          speechText: "All crew vitals synchronized, Commander. Elena and Marcus are nominal; Sarah's autonomic load is slightly elevated.",
           targetFocus: "heart",
         };
       } else if (cmd.includes("migrate")) {
         resultData = {
           command: "/migrate-workflows",
           status: "WORKFLOWS_MIGRATED",
-          speechText: "Clinical Workflow Migration Engine compiled 3 terrestrial protocols into ExMC Level 5 edge-deterministic workflows.",
+          speechText: "Clinical guidelines compiled into autonomous ExMC workflows, Commander. All protocols active with zero cloud dependency.",
           targetFocus: "sacrum",
         };
       } else if (cmd.includes("goal")) {
         resultData = {
           command: "/goal",
           status: "GOALS_EVALUATED",
-          speechText: "Mission Health Goals evaluation: 5 of 5 HRP long-duration flight objectives are ON TRACK. Bone density retention is 99.1%, VO2 Max is 88.4%.",
+          speechText: "Four of five mission health goals are strictly on track, Commander. Bone density and aerobic retention remain within safe flight envelopes.",
           targetFocus: "soleus_muscle_r",
         };
       } else if (cmd.includes("swarm")) {
         resultData = {
           command: "/swarm",
           status: "SWARM_CONSENSUS_REACHED",
-          speechText: "Autonomous Medical Swarm consensus complete across 6 specialized edge agents: Consensus verdict reached with 96.3% aggregate confidence.",
+          speechText: "Consensus reached across all six diagnostic agents, Commander. We are unanimous on nominal maintenance.",
           targetFocus: "brain",
         };
       }
@@ -461,7 +463,7 @@ export function CinematicAiCore() {
 
   const handleExecuteProtocol = async () => {
     setActionDone(true);
-    speakVoice(`NASA Protocol deployed: ${activeIssue.countermeasure}`);
+    speakVoice("Countermeasure protocol deployed, Commander. Monitoring recovery biomarkers in real time.");
     try {
       await fetch("http://127.0.0.1:8845/api/pulse/inquire", {
         method: "POST",
@@ -911,11 +913,12 @@ export function CinematicAiCore() {
           {/* Dossier Header */}
           <div className="flex items-center justify-between border-b border-cyan-500/20 pb-3">
             <div>
-              <div className="text-[10px] font-mono tracking-[0.25em] text-cyan-400 uppercase">
-                AUTONOMOUS SOMATIC TRAUMA SCAN
+              <div className="text-[10px] font-mono tracking-[0.25em] text-cyan-400 uppercase flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                P.U.L.S.E. // FLIGHT SURGEON AI
               </div>
               <div className="text-sm font-bold text-slate-100 font-['Orbitron'] tracking-wider">
-                {activeIssue.crewName}
+                {activeIssue.crewName || "Commander"}
               </div>
             </div>
             <div className="text-right">
@@ -928,9 +931,23 @@ export function CinematicAiCore() {
           {/* User Inquiry Reference */}
           {activeUserPrompt && (
             <div className="mt-2.5 rounded-lg bg-cyan-950/30 border border-cyan-500/20 px-2.5 py-1 text-[10px] font-mono text-cyan-300">
-              <span className="text-slate-400">INQUIRY: </span>"{activeUserPrompt}"
+              <span className="text-slate-400">COMMANDER INQUIRY: </span>"{activeUserPrompt}"
             </div>
           )}
+
+          {/* Interactive Jarvis Flight Surgeon Dialogue */}
+          <div className="mt-3 rounded-xl bg-cyan-950/40 border border-cyan-400/50 p-3 shadow-inner">
+            <div className="text-[10px] font-bold text-cyan-300 tracking-widest uppercase mb-1 font-['Orbitron'] flex items-center justify-between">
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+                JARVIS VOICE & DIAGNOSTIC DIRECTIVE
+              </span>
+              <span className="text-[8px] font-mono text-slate-400">EDGE SLM</span>
+            </div>
+            <p className="text-xs text-cyan-100 font-sans leading-relaxed italic">
+              "{latestAiResponse || `Target localized to ${activeIssue.latinName}, Commander. Strain is running at ${activeIssue.strainPercentage} percent. I recommend: ${activeIssue.countermeasure}`}"
+            </p>
+          </div>
 
           {/* Anatomical Details & Condition */}
           <div className="mt-3.5 space-y-3 font-mono">
@@ -995,6 +1012,82 @@ export function CinematicAiCore() {
               {actionDone ? "COUNTERMEASURE PROTOCOL DEPLOYED ✓" : "DEPLOY COUNTERMEASURE MATRIX"}
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* Bottom Interactive Dialogue & Follow-Up Bar */}
+      <div className="pointer-events-auto mx-auto w-full max-w-2xl flex flex-col items-center gap-2 mb-2 z-30">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleProcessInquiry(voiceQuery);
+          }}
+          className="flex items-center w-full rounded-full border border-cyan-400/50 bg-slate-950/90 backdrop-blur-2xl px-4 py-2 shadow-[0_0_40px_rgba(6,182,212,0.3)] focus-within:border-cyan-300 transition-all"
+        >
+          <button
+            type="button"
+            onClick={toggleListening}
+            title={isListening ? "Mute Microphone" : "Activate Voice Microphone"}
+            className={`p-1.5 rounded-full mr-2 transition-all ${
+              isListening
+                ? "bg-emerald-500/30 text-emerald-300 animate-pulse"
+                : "text-cyan-400 hover:text-cyan-200 hover:bg-slate-800"
+            }`}
+          >
+            {isListening ? <Mic className="h-4 w-4" /> : <MicOff className="h-4 w-4 text-slate-400" />}
+          </button>
+          <input
+            type="text"
+            value={voiceQuery}
+            onChange={(e) => setVoiceQuery(e.target.value)}
+            placeholder={`Ask JARVIS a follow-up about ${activeIssue.latinName}, countermeasure, or command...`}
+            className="flex-1 bg-transparent text-xs font-mono text-cyan-100 placeholder-slate-500 focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="rounded-full bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 px-3.5 py-1 text-[10px] font-mono tracking-widest font-bold uppercase transition"
+          >
+            SEND →
+          </button>
+        </form>
+
+        {/* Quick Follow-up Action Chips */}
+        <div className="flex items-center gap-2 flex-wrap justify-center text-[10px] font-mono">
+          <button
+            type="button"
+            onClick={handleExecuteProtocol}
+            className="rounded-full border border-emerald-500/40 bg-emerald-950/40 hover:bg-emerald-900/60 px-3 py-0.5 text-emerald-300 backdrop-blur transition"
+          >
+            ⚡ Deploy Protocol
+          </button>
+          <button
+            type="button"
+            onClick={() => handleProcessInquiry("Explain detailed countermeasure mechanism")}
+            className="rounded-full border border-cyan-500/40 bg-slate-900/60 hover:bg-slate-800 px-3 py-0.5 text-cyan-300 backdrop-blur transition"
+          >
+            💬 Countermeasure Details
+          </button>
+          <button
+            type="button"
+            onClick={() => executeFeatureCommand("/swarm")}
+            className="rounded-full border border-teal-500/40 bg-slate-900/60 hover:bg-slate-800 px-3 py-0.5 text-teal-300 backdrop-blur transition"
+          >
+            🌐 Swarm Consensus
+          </button>
+          <button
+            type="button"
+            onClick={() => handleProcessInquiry("Assess optic nerve SANS status")}
+            className="rounded-full border border-sky-500/40 bg-slate-900/60 hover:bg-slate-800 px-3 py-0.5 text-sky-300 backdrop-blur transition"
+          >
+            👁️ Check Optic SANS
+          </button>
+          <button
+            type="button"
+            onClick={returnToStandby}
+            className="rounded-full border border-slate-700 bg-slate-900/60 hover:bg-slate-800 px-3 py-0.5 text-slate-400 hover:text-slate-200 backdrop-blur transition"
+          >
+            ↩ Standby
+          </button>
         </div>
       </div>
 

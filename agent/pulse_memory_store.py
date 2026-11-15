@@ -52,8 +52,14 @@ class PulseMemoryStore:
                 return canonical
         return clean
 
+    def _get_conn(self):
+        conn = sqlite3.connect(self.db_path, timeout=60.0)
+        conn.execute("PRAGMA journal_mode=WAL;")
+        conn.execute("PRAGMA busy_timeout=60000;")
+        return conn
+
     def _init_db(self):
-        conn = sqlite3.connect(self.db_path)
+        conn = self._get_conn()
         cur = conn.cursor()
         
         # Crew longitudinal profiles
@@ -153,7 +159,7 @@ class PulseMemoryStore:
             }
         ]
 
-        conn = sqlite3.connect(self.db_path)
+        conn = self._get_conn()
         cur = conn.cursor()
         for c in default_crew:
             cur.execute('''
@@ -165,7 +171,7 @@ class PulseMemoryStore:
 
     def _seed_default_telemetry(self):
         """Seeds realistic 24-hour longitudinal baseline telemetry if table is empty."""
-        conn = sqlite3.connect(self.db_path)
+        conn = self._get_conn()
         cur = conn.cursor()
         try:
             cur.execute("SELECT COUNT(*) FROM telemetry_snapshots")
@@ -235,7 +241,7 @@ class PulseMemoryStore:
 
     def log_interaction(self, crew_id: str, query: str, thought_chain: str, tools_used: List[str], response: str, vitals_context: Dict[str, Any]):
         c_id = self._canonicalize_crew_id(crew_id)
-        conn = sqlite3.connect(self.db_path)
+        conn = self._get_conn()
         cur = conn.cursor()
         cur.execute('''
             INSERT INTO interaction_traces (crew_id, query, thought_chain, tools_used, response, vitals_context, timestamp)
@@ -246,7 +252,7 @@ class PulseMemoryStore:
 
     def get_recent_traces(self, crew_id: str, limit: int = 5) -> List[Dict[str, Any]]:
         c_id = self._canonicalize_crew_id(crew_id)
-        conn = sqlite3.connect(self.db_path)
+        conn = self._get_conn()
         cur = conn.cursor()
         cur.execute('''
             SELECT query, response, tools_used, timestamp
@@ -261,7 +267,7 @@ class PulseMemoryStore:
 
     def get_crew_profile(self, crew_id: str) -> Optional[Dict[str, Any]]:
         c_id = self._canonicalize_crew_id(crew_id)
-        conn = sqlite3.connect(self.db_path)
+        conn = self._get_conn()
         cur = conn.cursor()
         cur.execute('SELECT crew_id, name, callsign, role, baseline_vitals, risk_factors FROM crew_profiles WHERE crew_id = ?', (c_id,))
         row = cur.fetchone()
@@ -279,7 +285,7 @@ class PulseMemoryStore:
 
     def get_all_crew_profiles(self) -> List[Dict[str, Any]]:
         """Returns all configured astronaut flight profiles."""
-        conn = sqlite3.connect(self.db_path)
+        conn = self._get_conn()
         cur = conn.cursor()
         cur.execute('SELECT crew_id, name, callsign, role, baseline_vitals, risk_factors FROM crew_profiles ORDER BY crew_id')
         rows = cur.fetchall()
@@ -412,7 +418,7 @@ class PulseMemoryStore:
             except (ValueError, TypeError):
                 anom = 0.05
 
-        conn = sqlite3.connect(self.db_path)
+        conn = self._get_conn()
         cur = conn.cursor()
         try:
             cur.execute('''
@@ -443,7 +449,7 @@ class PulseMemoryStore:
         c_id = self._canonicalize_crew_id(crew_id)
         raw_id = str(crew_id).strip().lower()
 
-        conn = sqlite3.connect(self.db_path)
+        conn = self._get_conn()
         cur = conn.cursor()
         try:
             query = '''

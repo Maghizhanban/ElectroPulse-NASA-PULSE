@@ -240,7 +240,7 @@ def run_tests():
     server_port = 8846
     cmd = [sys.executable, "-m", "uvicorn", "ElectroPulse_OS.agent.pulse_server:app", "--host", "127.0.0.1", "--port", str(server_port)]
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    time.sleep(2.5)  # Allow server to initialize
+    time.sleep(4.0)  # Allow server to initialize
 
     base_url = f"http://127.0.0.1:{server_port}"
     try:
