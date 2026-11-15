@@ -147,7 +147,7 @@ export class UniversalMedicalBrain {
     const rad = typeof t.radiation === 'number' ? t.radiation : (typeof t.radiation_usv === 'number' ? t.radiation_usv : 18.4);
     const entropy = typeof t.entropy === 'number' ? t.entropy : 0.76;
 
-    const borbelyTau = +(18.2 / (1.0 + Math.exp(-0.05 * Math.max(-38.0, Math.min(112.0, hr - 68.0))))).toFixed(2);
+    const borbelyTau = +Math.max(14.0, Math.min(24.0, +(18.2 * (1.0 + 0.35 * ((75.0 - Math.min(100.0, hr)) / 75.0) + 0.25 * (0.76 - entropy))).toFixed(2))).toFixed(2);
     const causal = this.causalEngine.evaluate({ onsd, heartRate: hr, entropy, radiationDoseRate: rad });
 
     let shannonEntropy = 0.0;
@@ -240,6 +240,7 @@ export class UniversalMedicalBrain {
       speechText: `Multi-crew teamwork synchronization active across all 3 exploration astronauts. Collective autonomic stress index is ${meanStress}% (variance: ${stressVariance}). ECLSS consumable reserves nominal at 420 days margin. Deep-space telemetry latency: 1248s.`,
       teamMetrics: {
         collectiveAutonomicStressIndex: meanStress,
+        collectiveBaevskyStress: meanStress,
         stressVariance,
         eclssConsumablesMarginDays: 420,
         interplanetaryDistanceAU: 1.42,
@@ -353,8 +354,10 @@ export class UniversalMedicalBrain {
     const isNeuroNominal = entropy >= 0.55;
     const isEclssNominal = co2 <= 3.0 && rad <= 50.0;
 
+    const causalConfidence = +(Math.max(60, Math.min(99.9, causal.topProbability || 94.5))).toFixed(1);
+
     const agents = [
-      { agent: 'AstroCausal-Agent', vote: isAstroNominal ? 'MAINTAIN_NOMINAL' : 'INTERVENE', confidence: +(100 - causal.epistemicUncertaintyBits * 10).toFixed(1) },
+      { agent: 'AstroCausal-Agent', vote: isAstroNominal ? 'MAINTAIN_NOMINAL' : 'INTERVENE', confidence: causalConfidence },
       { agent: 'ChronoPulse-Agent', vote: isChronoNominal ? 'MAINTAIN_NOMINAL' : 'INTERVENE', confidence: +(Math.max(60, 100 - chrono.loss * 200)).toFixed(1) },
       { agent: 'Emotion-Agent', vote: isEmoNominal ? 'MAINTAIN_NOMINAL' : 'INTERVENE', confidence: +(100 - emo.metrics.stressIndexPct * 0.3).toFixed(1) },
       { agent: 'BioVision-Agent', vote: isBioNominal ? 'MAINTAIN_NOMINAL' : 'INTERVENE', confidence: isBioNominal ? 98.2 : 91.5 },
