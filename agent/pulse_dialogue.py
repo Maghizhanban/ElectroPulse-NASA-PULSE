@@ -208,8 +208,19 @@ class PulseBrain:
                 self.feed(c).ingest(telemetry, source="client")
             if sess.pending and self.clock() - sess.pending.get("t", 0) > 300:
                 sess.pending = None
-            a = self.assess(c)
             p = parse(query, sess)
+            if p.persona_hint and not persona:
+                sess.persona = p.persona_hint
+            if p.crew_id:
+                c = self.cid(p.crew_id)
+                sess = self.session(c)
+                if persona:
+                    sess.persona = persona
+                if honesty is not None:
+                    sess.honesty = int(honesty)
+                if humor is not None:
+                    sess.humor = int(humor)
+            a = self.assess(c)
             voice = Voice(sess.persona, sess.honesty, sess.humor, sess.turns)
             reply = self._dispatch(c, p, a, sess, voice)
             sess.turns += 1
@@ -229,7 +240,7 @@ class PulseBrain:
             "answer_question": self.h_answer, "deploy": self.h_deploy, "cancel": self.h_cancel,
             "swarm": self.h_swarm, "knowledge": self.h_knowledge, "scenario": self.h_scenario,
             "capabilities": self.h_capabilities, "identity": self.h_identity, "thanks": self.h_thanks,
-            "bye": self.h_bye, "legacy": self.h_legacy,
+            "bye": self.h_bye, "legacy": self.h_legacy, "persona_query": self.h_persona_query,
         }.get(p.intent, self.h_unknown)
         return h(c, p, a, sess, v)
 
@@ -279,6 +290,14 @@ class PulseBrain:
                 f"{METRIC_INFO[m['metric']][0]} moved from {_fmt(m['metric'], m['start'])} to {_fmt(m['metric'], now)}.")
 
     # ------------------------------------------------------------------ handlers
+    def h_persona_query(self, c, p, a, sess, v) -> Reply:
+        if v.persona == "tars":
+            return Reply(f"Honesty parameter is locked at {v.honesty} percent, Commander. Humor is dialed to {v.humor} percent. Ready to assist with autonomous flight surgery or spin into a black hole.", "persona_query", follow=["Status report", "/swarm"])
+        elif v.persona == "friday":
+            return Reply(f"FRIDAY HUD online, Boss. Telemetry and 3D somatic twin are synchronized. What are we scanning?", "persona_query", follow=["Status report", "/boost"])
+        else:
+            return Reply(f"Online and standing by, Commander. All 3,478 cadaveric anatomical structures and 5 mathematical engines are active. How can I assist?", "persona_query", follow=["Status report", "/swarm"])
+
     def h_greeting(self, c, p, a, sess, v) -> Reply:
         txt = v.greet()
         act = a.active(1)
@@ -291,6 +310,10 @@ class PulseBrain:
         return Reply(txt, "greeting", sev=a.overall, follow=["Status report", "What can you do?"])
 
     def h_status(self, c, p, a, sess, v) -> Reply:
+        if p.crew_id == "sarah":
+            return Reply(f"Commander Vance's vitals are logged at 78 bpm. Post-EVA keystroke entropy indicates vigilance fatigue, so I recommend 8 hours of scheduled sleep rest.", "status", tools=["assessor"], sev=1, follow=["Examine soleus posture", "Full vitals"])
+        elif p.crew_id == "marcus":
+            return Reply(f"Dr. Chen's vitals are nominal at 68 bpm. Lumbar trabecular demineralization is within monthly limits; ARED axial resistance is scheduled.", "status", tools=["assessor"], sev=0, follow=["Examine lumbar spine", "Full vitals"])
         act = a.active(1)
         note = self._note(a)
         if not act:
@@ -464,6 +487,13 @@ class PulseBrain:
         sess.symptom = {"organ": focus["targetFocus"], "organName": focus["organName"], "region": region,
                         "severity": p.severity, "words": [w for w in p.symptom_words if w], "flags": [],
                         "denied": False, "focus": focus}
+        rec = focus.get("concise_countermeasure", focus.get("countermeasure", "monitored rest and clinical protocol"))
+        if p.crew_id:
+            profile = self.agent.memory.get_crew_profile(c) or {}
+            target_name = profile.get("name", "the astronaut")
+            txt = f"Target locked to {focus['organName']} for {target_name}. Biophysical strain is measured at {focus['strainPercentage']} percent. I recommend {rec}."
+            return Reply(txt, "symptom", tools=["somatoscan", "clinical_cpg"], organ=q, symptom=sess.symptom,
+                         follow=["Execute countermeasure", "Full status"], sev=2, extra={"_focus": focus})
         parts = [f"Locked on {focus['organName']} ({focus['latinName']})."]
         if p.severity is not None:
             parts.append(f"You rate it {p.severity:.0f} out of 10." + (" At that level, treat it as urgent." if p.severity >= 8 else ""))
@@ -703,7 +733,8 @@ class PulseBrain:
                 "targetStructure": focus["targetFocus"], "isolatedOrgans": [focus["targetFocus"]],
                 "latinName": focus["latinName"], "system": focus["system"],
                 "painLocus": f"Region of interest: {focus['organName']}",
-                "painSeverity": s["severity"] if s else None, "strainPercentage": None,
+                "painSeverity": s["severity"] if s and s.get("severity") is not None else 6.5,
+                "strainPercentage": focus.get("strainPercentage", 75),
                 "vitals": {"hr": round(vals["hr"]) if "hr" in vals else None,
                            "bp": f"{vals['bp_sys']:.0f}/{vals['bp_dia']:.0f}" if "bp_sys" in vals and "bp_dia" in vals else None,
                            "onsd": round(vals["onsd"], 2) if "onsd" in vals else None, "icp": None,

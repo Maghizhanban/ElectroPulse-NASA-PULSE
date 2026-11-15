@@ -37,26 +37,36 @@ BODY_WORDS = {
     "thumb", "thumbs", "finger", "fingers", "hand", "hands", "wrist", "forearm", "elbow", "arm", "arms",
     "shoulder", "shoulders", "bicep", "biceps", "tricep", "triceps", "chest", "rib", "ribs", "back", "spine",
     "neck", "head", "face", "jaw", "ear", "ears", "eye", "eyes", "brain", "throat", "heart", "lung", "lungs",
-    "stomach", "belly", "tummy", "abs", "abdomen", "liver", "kidney", "kidneys", "spleen", "bladder",
+    "stomach", "belly", "tummy", "abs", "abdomen", "abdominal", "liver", "kidney", "kidneys", "spleen", "bladder",
     "hip", "buttock", "thigh", "knee", "knees", "calf", "ankle", "foot", "feet", "toe", "toes", "heel", "leg",
-    "legs", "skin", "bone", "bones",
+    "legs", "skin", "bone", "bones", "muscle", "muscles", "pelvis", "pelvic", "groin", "gut", "flank", "lumbar",
+    "thoracic", "cervical", "cranial", "ocular", "optic", "cardiac", "pulmonary", "hepatic", "renal", "gastric",
+    "rectus", "core", "cramp", "cramps"
 }
-_BODY_CANON = {"thumbs": "thumb", "fingers": "finger", "hands": "hand", "arms": "arm", "shoulders": "shoulder",
-               "biceps": "bicep", "triceps": "tricep", "ribs": "rib", "ears": "ear", "eyes": "eye",
-               "lungs": "lung", "tummy": "belly", "kidneys": "kidney", "knees": "knee", "feet": "foot",
-               "toes": "toe", "legs": "leg", "bones": "bone", "abdomen": "stomach"}
+_BODY_CANON = {
+    "thumbs": "thumb", "fingers": "finger", "hands": "hand", "arms": "arm", "shoulders": "shoulder",
+    "biceps": "bicep", "triceps": "tricep", "ribs": "rib", "ears": "ear", "eyes": "eye",
+    "lungs": "lung", "tummy": "belly", "kidneys": "kidney", "knees": "knee", "feet": "foot",
+    "toes": "toe", "legs": "leg", "bones": "bone", "muscles": "muscle",
+    "abdominal": "rectus abdominis", "abdomen": "rectus abdominis", "abs": "rectus abdominis",
+    "rectus": "rectus abdominis", "gut": "stomach", "pelvic": "pelvis", "lumbar": "spine",
+    "cervical": "neck", "thoracic": "chest", "ocular": "eye", "optic": "eye", "cardiac": "heart",
+    "pulmonary": "lung", "hepatic": "liver", "renal": "kidney", "gastric": "stomach",
+    "cramp": "rectus abdominis", "cramps": "rectus abdominis"
+}
 
 REGIONS = {
-    "head": {"head", "brain", "eye", "ear", "face", "jaw"},
-    "chest": {"chest", "heart", "lung", "rib", "throat"},
-    "abdomen": {"stomach", "belly", "abs", "liver", "kidney", "spleen", "bladder"},
-    "spine": {"back", "spine", "neck"},
+    "head": {"head", "brain", "eye", "ear", "face", "jaw", "cranial", "ocular", "optic"},
+    "chest": {"chest", "heart", "lung", "rib", "throat", "thoracic", "cardiac", "pulmonary"},
+    "abdomen": {"stomach", "belly", "abs", "abdomen", "abdominal", "rectus abdominis", "liver", "kidney", "spleen", "bladder", "gut", "flank", "pelvis", "pelvic", "hepatic", "renal", "gastric"},
+    "spine": {"back", "spine", "neck", "lumbar", "cervical"},
     "limb": {"hand", "finger", "thumb", "wrist", "forearm", "elbow", "arm", "shoulder", "bicep", "tricep", "hip",
-             "thigh", "knee", "calf", "ankle", "foot", "toe", "heel", "leg", "buttock", "skin", "bone"},
+             "thigh", "knee", "calf", "ankle", "foot", "toe", "heel", "leg", "buttock", "skin", "bone", "muscle"},
 }
 
 # symptom phrases that imply an organ even when no body part is named
 SYMPTOM_ORGANS: List[Tuple[str, str, str]] = [
+    (r"\b(abdominal cramps?|cramps? in (the |her |his )?abdomen|stomach cramps?|core cramps?|severe cramps?)\b", "rectus abdominis", "abdominal cramps"),
     (r"\b(headache\w*|migraine)\b", "brain", "headache"),
     (r"\b(dizz\w*|light ?headed|vertigo)\b", "brain", "dizziness"),
     (r"\b(short(ness)? of breath|can'?t breathe|breathless|hard to breathe|difficulty breathing)\b", "lung", "breathing"),
@@ -119,6 +129,8 @@ class Parsed:
     flag_hits: List[str] = field(default_factory=list)
     yes_no: Optional[str] = None
     scenario: Optional[str] = None
+    crew_id: Optional[str] = None
+    persona_hint: Optional[str] = None
     corrected: bool = False
     confidence: float = 0.0
     used_context: bool = False
@@ -170,6 +182,12 @@ def parse(raw: str, session: Any = None) -> Parsed:
     stripped = _WAKE.sub("", text0).strip()
     text, corrected = fuzzy_fix(stripped)
     p = Parsed(raw=raw, text=text, corrected=corrected)
+    if re.search(r"\btars\b", raw, re.I):
+        p.persona_hint = "tars"
+    elif re.search(r"\bfriday\b", raw, re.I):
+        p.persona_hint = "friday"
+    elif re.search(r"\bjarvis\b", raw, re.I):
+        p.persona_hint = "jarvis"
     pending = getattr(session, "pending", None)
 
     # ---- entities -------------------------------------------------------------------
@@ -189,6 +207,17 @@ def parse(raw: str, session: Any = None) -> Parsed:
             p.severity = float(m.group(1))
     sm = re.search(r"\b(left|right)\b", text)
     p.side = sm.group(1) if sm else None
+    crew_matches = [
+        (r"\b(sarah|vance)\b", "sarah"),
+        (r"\b(marcus|chen)\b", "marcus"),
+        (r"\b(elena|rostova)\b", "elena"),
+        (r"\b(david|thorne)\b", "david"),
+    ]
+    for pat, cid in crew_matches:
+        if re.search(pat, text):
+            p.crew_id = cid
+            break
+
     for tok in re.findall(r"[a-z]+", work):
         if tok in BODY_WORDS:
             p.body = _BODY_CANON.get(tok, tok)
@@ -267,6 +296,13 @@ def parse(raw: str, session: Any = None) -> Parsed:
         return done("thanks", 0.9)
     if re.search(r"\b(goodbye|bye|that'?s all|signing off|dismissed|stand down)\b", text):
         return done("bye", 0.8)
+
+    if re.search(r"\b(humor|honesty|sarcasm|parameter|settings?)\b", text) or \
+       re.search(r"\b(what is your|what'?s your)\b.{0,25}\b(humor|honesty|setting|parameter)\b", text):
+        return done("persona_query", 0.95)
+
+    if re.search(r"\b(how is|how'?s|check on|status on|what about|update on|vitals (for|of)|inspect)\b.{0,25}\b(sarah|marcus|elena|david|vance|chen|rostova|thorne|crew|everyone)\b", text):
+        return done("status", 0.95)
 
     know_frame = re.search(r"\b(what (is|are|does|causes)|explain|tell me about|define|how does|how do|why do(es)?|"
                            r"what happens)\b", text)
