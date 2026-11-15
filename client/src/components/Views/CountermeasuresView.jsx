@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FiActivity, FiRotateCw, FiShield, FiCheck } from 'react-icons/fi';
 
 const CountermeasuresView = () => {
   const [activeTab, setActiveTab] = useState('lbnp');
@@ -21,7 +22,7 @@ const CountermeasuresView = () => {
         <div style={{ background: '#0b1120', borderRadius: '24px', padding: '24px', border: '1px solid rgba(0, 242, 254, 0.2)', boxShadow: '0 8px 32px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '24px' }}>🏋️‍♂️</span>
+              <FiActivity size={24} color="#00f2fe" />
               <span style={{ fontSize: '10px', fontWeight: 800, color: '#10b981', background: 'rgba(16, 185, 129, 0.2)', padding: '4px 8px', borderRadius: '8px' }}>COMPLETED</span>
             </div>
             <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#ffffff', margin: '14px 0 6px 0' }}>ARED Heavy Resistance</h3>
@@ -52,7 +53,7 @@ const CountermeasuresView = () => {
         <div style={{ background: '#0b1120', borderRadius: '24px', padding: '24px', border: '1px solid rgba(0, 242, 254, 0.2)', boxShadow: '0 8px 32px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '24px' }}>🏃‍♀️</span>
+              <FiRotateCw size={24} color="#00f2fe" />
               <span style={{ fontSize: '10px', fontWeight: 800, color: '#00f2fe', background: 'rgba(0, 242, 254, 0.2)', padding: '4px 8px', borderRadius: '8px' }}>NEXT: 14:00 UTC</span>
             </div>
             <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#ffffff', margin: '14px 0 6px 0' }}>T2 COLBERT Treadmill</h3>
@@ -83,7 +84,7 @@ const CountermeasuresView = () => {
         <div style={{ background: '#0b1120', borderRadius: '24px', padding: '24px', border: '1px solid rgba(0, 242, 254, 0.2)', boxShadow: '0 8px 32px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '24px' }}>🦿</span>
+              <FiShield size={24} color="#00f2fe" />
               <span style={{ fontSize: '10px', fontWeight: 800, color: '#f59e0b', background: 'rgba(245, 158, 11, 0.2)', padding: '4px 8px', borderRadius: '8px' }}>PRESCRIPTION: SANS</span>
             </div>
             <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#ffffff', margin: '14px 0 6px 0' }}>Chibis-M LBNP Suit</h3>
@@ -109,7 +110,11 @@ const CountermeasuresView = () => {
             onClick={() => setActiveSession(!activeSession)}
             style={{ marginTop: '20px', background: activeSession ? 'rgba(16, 185, 129, 0.2)' : 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)', color: activeSession ? '#10b981' : '#070a12', border: activeSession ? '1px solid #10b981' : 'none', padding: '10px', borderRadius: '12px', fontSize: '12px', fontWeight: 800, cursor: 'pointer' }}
           >
-            {activeSession ? 'LBNP Cycle Active (-35 mmHg) ✓' : 'Initiate 40m LBNP Protocol'}
+            {activeSession ? (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                LBNP Cycle Active (-35 mmHg) <FiCheck />
+              </span>
+            ) : 'Initiate 40m LBNP Protocol'}
           </button>
         </div>
       </div>

@@ -45,7 +45,7 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
   const PRESETS = [
     {
       id: 'sans',
-      name: '👁️ SANS Ocular Edema',
+      name: 'SANS Ocular Edema',
       system: 'sensory',
       query: 'optic nerve',
       title: 'Spaceflight-Associated Neuro-ocular Syndrome (SANS)',
@@ -56,7 +56,7 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
     },
     {
       id: 'fluid',
-      name: '🫀 Cephalad Venous Shift',
+      name: 'Cephalad Venous Shift',
       system: 'cardiac',
       query: 'heart',
       title: 'Cephalad Thoracic Fluid Engorgement',
@@ -67,7 +67,7 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
     },
     {
       id: 'spine',
-      name: '🦴 Lumbar Bone Loss',
+      name: 'Lumbar Bone Loss',
       system: 'skeletal',
       query: 'lumbar',
       title: 'Trabecular Microgravity Demineralization',
@@ -78,7 +78,7 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
     },
     {
       id: 'soleus',
-      name: '🦿 Soleus Atrophy',
+      name: 'Soleus Atrophy',
       system: 'muscular',
       query: 'soleus',
       title: 'Antigravity Postural Muscle Degradation',

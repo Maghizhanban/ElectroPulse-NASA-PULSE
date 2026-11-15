@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiRadio } from 'react-icons/fi';
+import { FiRadio, FiZap } from 'react-icons/fi';
 import avatar from '../../assets/avatar.png';
 import './Header.css';
 
@@ -8,7 +8,7 @@ const Header = ({ activeTab, setActiveTab }) => {
     <header className="header">
       <div className="header-left">
         <div className="logo-section cursor-pointer" onClick={() => setActiveTab('dashboard')}>
-          <div className="logo-mark">⚡</div>
+          <div className="logo-mark"><FiZap className="pulse-icon" /></div>
           <div className="logo-text">
             <span className="brand-name">Electro<strong>Pulse</strong></span>
             <span className="brand-sub">NASA ExMC Station</span>

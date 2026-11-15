@@ -51,7 +51,8 @@ export class SomatoScanEngine {
    */
   resolveSpatialFocus(query) {
     if (!this.atlas) return null;
-    let q = (query || '').toLowerCase().trim();
+    if (!query || typeof query !== 'string' || !query.trim()) return null;
+    let q = query.toLowerCase().trim();
 
     // Adaptive mapping: if query is radiation/cosmic ray hazard, redirect to learned CNS/cardiac structures
     if (q.includes('radiation') || q.includes('solar') || q.includes('gcr') || q.includes('spe')) {

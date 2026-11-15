@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FiAlertTriangle, FiCheck } from 'react-icons/fi';
 
 const UltrasoundView = () => {
   const [caliperVal, setCaliperVal] = useState(4.62);
@@ -80,15 +81,20 @@ const UltrasoundView = () => {
 
           <div style={{ marginTop: '20px' }}>
             {caliperVal > 5.8 && (
-              <div style={{ background: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)', borderRadius: '12px', padding: '12px', color: '#ef4444', fontSize: '12px', marginBottom: '14px', fontWeight: 600 }}>
-                ⚠️ High risk of permanent optic disk edema. Initiating emergency 50 mmHg Chibis Lower Body Negative Pressure (LBNP) protocol.
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)', borderRadius: '12px', padding: '12px', color: '#ef4444', fontSize: '12px', marginBottom: '14px', fontWeight: 600 }}>
+                <FiAlertTriangle size={16} style={{ flexShrink: 0 }} />
+                <span>High risk of permanent optic disk edema. Initiating emergency 50 mmHg Chibis Lower Body Negative Pressure (LBNP) protocol.</span>
               </div>
             )}
             <button 
               onClick={() => setSaved(true)} 
               style={{ width: '100%', background: saved ? 'rgba(16, 185, 129, 0.2)' : 'linear-gradient(135deg, #00f2fe 0%, #0284c7 100%)', color: saved ? '#10b981' : '#070a12', border: saved ? '1px solid #10b981' : 'none', padding: '12px', borderRadius: '12px', fontWeight: 800, fontSize: '13px', cursor: 'pointer' }}
             >
-              {saved ? 'Scan Exported to Flight Record ✓' : 'Save Scan to Mission Health Record'}
+              {saved ? (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  Scan Exported to Flight Record <FiCheck />
+                </span>
+              ) : 'Save Scan to Mission Health Record'}
             </button>
           </div>
         </div>

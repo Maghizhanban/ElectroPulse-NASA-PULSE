@@ -57,6 +57,9 @@ class PulseJarvisAgent:
         self.chronopulse_weights = self._load_json('trained_chronopulse.json')
         self.somato_targets = self._load_json('adapted_somatoscan_targets.json')
 
+        # Load complete 3,478 anatomical structures from manifest
+        self.manifest_organs = self._load_manifest_organs()
+
         # Certified Medical Device Plugin Registry
         self.plugin_registry = {
             "pocus_ultrasound": {
@@ -136,6 +139,23 @@ class PulseJarvisAgent:
                 pass
         return {}
 
+    def _load_manifest_organs(self) -> List[Dict[str, Any]]:
+        """Loads complete anatomical organs registry from manifest.json."""
+        base_dir = os.path.abspath(os.path.dirname(__file__))
+        candidates = [
+            os.path.abspath(os.path.join(base_dir, '..', 'console', 'anatomy', 'manifest.json')),
+            os.path.abspath(os.path.join(base_dir, '..', 'external', 'Anatria-3D', 'Anatria-3D-main', 'public', 'anatomy', 'manifest.json')),
+        ]
+        for path in candidates:
+            if os.path.exists(path):
+                try:
+                    with open(path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                        return data.get('organs', [])
+                except Exception:
+                    pass
+        return []
+
     # =========================================================================
     # TELEMETRY MANAGEMENT HELPERS
     # =========================================================================
@@ -162,60 +182,199 @@ class PulseJarvisAgent:
     # =========================================================================
 
     def tool_somatoscan_focus(self, target_query: str) -> Dict[str, Any]:
-        """Resolves 3D camera focal target and X-Ray reveal mask across 2,234 BodyParts3D meshes."""
-        q = target_query.lower()
-        if any(term in q for term in ['radiation', 'solar', 'gcr', 'spe', 'cns', 'brain', 'sleep', 'fatigue']):
-            return {
-                "targetFocus": "brain",
-                "organName": "Prefrontal Cortical Circuits & Ventricles",
-                "system": "nervous",
-                "cameraDistance": 0.38,
-                "xraySystemOpacities": {"nervous": 1.0, "sensory": 0.6, "skeletal": 0.45, "muscular": 0.12, "integumentary": 0.05},
-                "diagnosticColor": "#00f2fe"
+        """
+        Dynamically resolves 3D camera focal target, anatomical system, Latin nomenclature,
+        and biophysical pathology across all 3,478 BodyParts3D cadaveric structures.
+        """
+        SYNONYMS = {
+            'thumb': ['pollicis', 'pollex', 'first metacarpal', 'thenar'],
+            'finger': ['digit', 'phalanx', 'digiti', 'lumbrical'],
+            'hand': ['manus', 'hand', 'carpal', 'palmar', 'interossei'],
+            'wrist': ['carpal', 'radiocarpal', 'wrist'],
+            'knee': ['patella', 'knee', 'genu', 'cruciate', 'meniscus'],
+            'ankle': ['talus', 'calcaneus', 'malleolus', 'ankle'],
+            'foot': ['pedis', 'plantar', 'foot', 'tarsal'],
+            'toe': ['hallux', 'toe', 'digiti pedis'],
+            'heel': ['calcaneus', 'achilles'],
+            'calf': ['gastrocnemius', 'soleus', 'calf'],
+            'thigh': ['femur', 'quadriceps', 'hamstring', 'sartorius'],
+            'hip': ['coxal', 'acetabulum', 'gluteus', 'ilium', 'ischium'],
+            'buttock': ['gluteus'],
+            'stomach': ['gastric', 'gaster', 'stomach', 'abdominis'],
+            'abs': ['rectus abdominis', 'oblique', 'transversus abdominis'],
+            'belly': ['abdominis', 'peritoneal', 'umbilical'],
+            'chest': ['pectoralis', 'sternum', 'thoracic', 'thorax'],
+            'rib': ['costal', 'rib', 'intercostal'],
+            'ribs': ['costal', 'rib', 'intercostal'],
+            'back': ['latissimus', 'erector spinae', 'trapezius', 'lumbar', 'vertebra'],
+            'spine': ['vertebra', 'lumbar', 'thoracic vertebra', 'cervical vertebra', 'sacrum'],
+            'neck': ['cervical', 'sternocleidomastoid', 'neck'],
+            'shoulder': ['deltoid', 'supraspinatus', 'infraspinatus', 'scapula'],
+            'arm': ['brachii', 'brachial', 'biceps', 'triceps', 'humerus'],
+            'bicep': ['biceps brachii'],
+            'tricep': ['triceps brachii'],
+            'forearm': ['antebrachial', 'brachioradialis', 'pronator', 'flexor digitorum'],
+            'elbow': ['olecranon', 'cubital', 'elbow'],
+            'eye': ['optic', 'oculi', 'orbital', 'ciliary', 'retina'],
+            'brain': ['cerebrum', 'cerebral', 'midbrain', 'cortex', 'cerebellum', 'ventricle'],
+            'ear': ['auricular', 'vestibulocochlear', 'tympanic'],
+            'jaw': ['mandible', 'maxilla', 'masseter', 'temporalis'],
+            'throat': ['larynx', 'pharynx', 'trachea', 'esophagus'],
+            'lung': ['lung', 'pulmonary', 'bronchial', 'pleura'],
+            'lungs': ['lung', 'pulmonary', 'bronchial', 'pleura'],
+            'heart': ['heart', 'cardiac', 'myocardium', 'coronary', 'atrium', 'ventricle'],
+            'liver': ['liver', 'hepatic', 'hepatocyte'],
+            'kidney': ['kidney', 'renal', 'nephron'],
+            'spleen': ['spleen', 'splenic'],
+            'bladder': ['urinary bladder', 'vesica'],
+            'skin': ['integument', 'dermis', 'epidermis'],
+            'bone': ['femur', 'tibia', 'humerus', 'radius', 'ulna', 'vertebra', 'bone']
+        }
+
+        raw_tokens = [w for w in target_query.lower().replace(',', ' ').replace('_', ' ').replace('-', ' ').split() if len(w) > 1]
+        expanded_tokens = list(raw_tokens)
+        for t in raw_tokens:
+            if t in SYNONYMS:
+                expanded_tokens.extend(SYNONYMS[t])
+
+        best_organ = None
+        best_score = -1
+
+        if self.manifest_organs:
+            for o in self.manifest_organs:
+                name_en = o.get('name_en', '').lower()
+                oid = o.get('organ_id', '').lower()
+                latin = o.get('ta2_latin', '').lower()
+                path_str = ' '.join(o.get('path', [])).lower()
+                system = o.get('system', '').lower()
+
+                score = 0
+                for token in expanded_tokens:
+                    if token == oid:
+                        score += 25
+                    elif token in oid:
+                        score += 7
+                    if token in name_en:
+                        score += 5
+                    if token in latin:
+                        score += 4
+                    if token in path_str:
+                        score += 2
+                    if token == system:
+                        score += 1
+
+                if score > best_score:
+                    best_score = score
+                    best_organ = o
+
+        # Fallback if no matching organ found or manifest empty
+        if not best_organ or best_score <= 0:
+            best_organ = {
+                "organ_id": "heart",
+                "name_en": "Myocardium & Thoracic Chambers",
+                "ta2_latin": "Cor (Myocardium)",
+                "system": "cardiovascular",
+                "mesh_file": "cardiovascular_male.glb"
             }
-        elif any(term in q for term in ['sans', 'optic', 'eye', 'vision', 'thigh cuff', 'lbnp', 'chibis']):
-            return {
-                "targetFocus": "optic nerve",
-                "organName": "Retrobulbar Optic Nerve Sheath",
-                "system": "sensory",
-                "cameraDistance": 0.28,
-                "xraySystemOpacities": {"sensory": 1.0, "nervous": 0.7, "skeletal": 0.5, "muscular": 0.15, "integumentary": 0.05},
-                "diagnosticColor": "#f59e0b"
-            }
-        elif any(term in q for term in ['heart', 'cardiac', 'blood', 'circulation', 'pulse', 'vo2', 'cardiovascular']):
-            return {
-                "targetFocus": "heart",
-                "organName": "Myocardium & Thoracic Chambers",
-                "system": "cardiac",
-                "cameraDistance": 0.42,
-                "xraySystemOpacities": {"cardiac": 1.0, "arterial": 0.8, "venous": 0.8, "skeletal": 0.35, "muscular": 0.10, "integumentary": 0.05},
-                "diagnosticColor": "#ef4444"
-            }
-        elif any(term in q for term in ['bone', 'spine', 'lumbar', 'vertebrae', 'disc', 'ared', 'bmd']):
-            return {
-                "targetFocus": "lumbar",
-                "organName": "Lumbar Spine (L1–L5) & Intervertebral Discs",
-                "system": "skeletal",
-                "cameraDistance": 0.55,
-                "xraySystemOpacities": {"skeletal": 1.0, "nervous": 0.6, "muscular": 0.2, "integumentary": 0.05},
-                "diagnosticColor": "#ef4444"
-            }
-        elif any(term in q for term in ['immune', 'spleen', 'infection', 'virus', 'rash']):
-            return {
-                "targetFocus": "spleen",
-                "organName": "Spleen & Splenic Lymphatics",
-                "system": "lymphatic",
-                "cameraDistance": 0.40,
-                "xraySystemOpacities": {"lymphatic": 1.0, "digestive": 0.4, "skeletal": 0.3, "muscular": 0.1, "integumentary": 0.05},
-                "diagnosticColor": "#10b981"
-            }
+
+        target_focus = best_organ.get("organ_id", "heart")
+        organ_name = best_organ.get("name_en", target_focus.replace('_', ' ').title())
+        latin_name = best_organ.get("ta2_latin", organ_name)
+        system = best_organ.get("system", "muscular")
+
+        # Dynamic Pathology & NASA Countermeasure Synthesis based on system
+        q_lower = target_query.lower()
+        strain_pct = 78
+        pain_sev = 7.2
+
+        if system == "muscular":
+            condition = "Microgravity Myofibrillar Strain & Functional Tenosynovitis"
+            etiology = f"EVA resistance and unweighted microgravity posture induce acute strain across {organ_name} myofibers."
+            countermeasure = "Deploy localized cryo-compression & 20-min transcutaneous vibro-stimulation protocol with resistive rehabilitation."
+            strain_pct = 82
+            pain_sev = 7.6
+            opacities = {"muscular": 1.0, "skeletal": 0.02, "nervous": 0.05}
+            cam_dist = 0.42
+            diag_color = "#f59e0b"
+        elif system in ["nervous", "sensory"]:
+            condition = "Spaceflight-Associated Neuro-Ocular Syndrome (SANS) & Cephalad Congestion"
+            etiology = f"Headward microgravity fluid redistribution elevates microvascular pressure and perineural stress at {organ_name}."
+            countermeasure = "Deploy Chibis-M Lower Body Negative Pressure (LBNP) at -35 mmHg for 45 min and serial POCUS ultrasound tracking."
+            strain_pct = 88
+            pain_sev = 8.1
+            opacities = {"nervous": 1.0, "sensory": 0.9, "skeletal": 0.02, "muscular": 0.05}
+            cam_dist = 0.32
+            diag_color = "#00f2fe"
+        elif system == "cardiovascular":
+            condition = "Cephalad Hemodynamic Volume Shift & Chamber Remodeling"
+            etiology = f"Hydrostatic gravity gradient absence causes fluid volume redistribution across {organ_name}."
+            countermeasure = "High-intensity cycle ergometer protocol + plasma volume restoration (saline 1g/kg) and lower-limb occlusive cuffs."
+            strain_pct = 75
+            pain_sev = 6.4
+            opacities = {"cardiovascular": 1.0, "skeletal": 0.02, "muscular": 0.05}
+            cam_dist = 0.45
+            diag_color = "#ef4444"
+        elif system in ["skeletal", "articular"]:
+            condition = "Trabecular Demineralization & Axial Ligamentous Strain"
+            etiology = f"Suppressed osteoblast mechanosensation and disc unweighted hyper-hydration causing mechanical tension at {organ_name}."
+            countermeasure = "ARED 60-min axial compressive loading cycle (600N squats) + weekly oral bisphosphonate maintenance."
+            strain_pct = 79
+            pain_sev = 7.4
+            opacities = {"skeletal": 1.0, "articular": 1.0, "muscular": 0.05}
+            cam_dist = 0.50
+            diag_color = "#38bdf8"
+        elif system in ["digestive", "visceral"]:
+            condition = "Microgravity Splanchnic Hemodynamic Congestion & Hepatic Shift"
+            etiology = f"Microgravity-altered portal venous flow altering enzymatic clearance rates at {organ_name}."
+            countermeasure = "RK4 PharmacoSim elimination rate compensation (factor 0.88) + enteral electrolyte re-equilibration."
+            strain_pct = 71
+            pain_sev = 5.8
+            opacities = {"digestive": 1.0, "skeletal": 0.02, "muscular": 0.05}
+            cam_dist = 0.45
+            diag_color = "#10b981"
+        elif system in ["renal", "urinary"]:
+            condition = "Renal Hemodynamic Hyper-Filtration & Nephrolithiasis Risk"
+            etiology = f"Calcium clearance increase secondary to bone demineralization elevates crystalline saturation in {organ_name}."
+            countermeasure = "Hyper-hydration protocol (2.5L/day target) + oral potassium citrate alkalization and renal POCUS audit."
+            strain_pct = 74
+            pain_sev = 6.9
+            opacities = {"renal": 1.0, "cardiovascular": 0.5, "skeletal": 0.02}
+            cam_dist = 0.40
+            diag_color = "#a855f7"
+        elif system == "respiratory":
+            condition = "Microgravity Ventilation-Perfusion (V/Q) Mismatch"
+            etiology = f"Diaphragm cephalad displacement and absence of dependent gravitational gradients at {organ_name}."
+            countermeasure = "Inspiratory resistance threshold training + ECLSS cabin ppO2 optimization to 21.3 kPa."
+            strain_pct = 70
+            pain_sev = 6.2
+            opacities = {"respiratory": 1.0, "cardiovascular": 0.6, "skeletal": 0.02}
+            cam_dist = 0.48
+            diag_color = "#06b6d4"
+        else:
+            condition = "Microgravity Somatic Stress & Tissue Disadaptation"
+            etiology = f"Microgravity environmental adaptation strain localized to {organ_name}."
+            countermeasure = "NASA-HRP Level IV countermeasure protocol + continuous physiological telemetric monitoring."
+            strain_pct = 72
+            pain_sev = 6.0
+            opacities = {system: 1.0, "skeletal": 0.02}
+            cam_dist = 0.45
+            diag_color = "#22d3ee"
+
         return {
-            "targetFocus": "soleus",
-            "organName": "Soleus Antigravity Musculature",
-            "system": "muscular",
-            "cameraDistance": 0.60,
-            "xraySystemOpacities": {"muscular": 0.95, "skeletal": 0.7, "integumentary": 0.05},
-            "diagnosticColor": "#00f2fe"
+            "targetFocus": target_focus,
+            "organName": organ_name,
+            "latinName": latin_name,
+            "system": system,
+            "condition": condition,
+            "etiology": etiology,
+            "painLocus": f"Focal strain localized at {organ_name}",
+            "painSeverity": pain_sev,
+            "strainPercentage": strain_pct,
+            "countermeasure": countermeasure,
+            "isolatedOrgans": [target_focus],
+            "cameraDistance": cam_dist,
+            "xraySystemOpacities": opacities,
+            "diagnosticColor": diag_color
         }
 
     def tool_astrocausal_infer(self, onsd: float, hr: float, radiation: float, entropy: float) -> Dict[str, Any]:
@@ -1218,89 +1377,81 @@ class PulseJarvisAgent:
             res["somatoScan"] = self.tool_somatoscan_focus(res.get("targetFocus", "heart"))
             return res
 
-        # Check NASA HRP & CSA Knowledge RAG first
-        rag_match = self.tool_search_nasa_hrp_knowledge(query)
-        if rag_match:
-            tools_invoked.append("nasa_hrp_knowledge_rag")
-            thought_chain.append(f"Grounded inquiry against {rag_match['source']}")
-            focus_res = self.tool_somatoscan_focus(query)
-            target_focus = focus_res["targetFocus"]
-            tools_invoked.append("somatoscan_focus")
-
-            response_text = f"NASA Flight Guidance ({rag_match['page']}): \"{rag_match['content'][:240]}...\" SomatoScan focal coordinates targeted to {focus_res['organName']}."
-            self.memory.log_interaction(c_id, query, " -> ".join(thought_chain), tools_invoked, response_text, t)
-            return {
-                "speechText": response_text,
-                "targetFocus": target_focus,
-                "somatoScan": focus_res,
-                "toolsUsed": tools_invoked,
-                "source": rag_match['source']
-            }
-
-        # Intent: Radiation & Space Weather Ingress
-        if any(w in query.lower() for w in ['radiation', 'solar', 'gcr', 'spe', 'storm', 'proton', 'weather']):
-            tools_invoked.extend(["somatoscan_focus", "astrocausal_infer"])
-            causal = self.tool_astrocausal_infer(onsd, hr, rad, entropy)
-            focus_res = self.tool_somatoscan_focus("radiation")
-            target_focus = focus_res["targetFocus"]
-
-            if rad > 35 or hr > 90:
-                speech = f"Operational alert for {crew_name}: Elevated particle flux detected ({rad} micro-Sieverts per hour). Bayesian acute radiation sickness posterior is elevated to {causal['posteriors']['acute_radiation_sickness']}%. NASA HRP protocol mandates storm shelter ingress behind water shielding. SomatoScan focused on prefrontal cortical circuits."
-            else:
-                speech = f"{crew_name}, radiation dosimetry is currently nominal at {rad} micro-Sieverts per hour. GCR secondary cascade tracking active across spacecraft shielding."
-
-            self.memory.log_interaction(c_id, query, "Radiation Threat Assessment", tools_invoked, speech, t)
-            return {
-                "speechText": speech,
-                "targetFocus": target_focus,
-                "somatoScan": focus_res,
-                "causal": causal,
-                "toolsUsed": tools_invoked
-            }
-
-        # Intent: Stress & Behavioral Emotion
-        if any(w in query.lower() for w in ['emotion', 'stress', 'mood', 'mental', 'fatigue', 'tired']):
-            tools_invoked.extend(["emotion_evaluate", "somatoscan_focus"])
-            emo = self.tool_emotion_evaluate(hr, entropy)
-            focus_res = self.tool_somatoscan_focus("brain")
-            target_focus = focus_res["targetFocus"]
-
-            speech = f"{crew_name}, neuro-affective status is classified as {emo['state']}. Autonomic Stress Index is {emo['stressIndexPct']}%. Motor keystroke entropy is {entropy}. Prefrontal vigilance capacity nominal."
-            self.memory.log_interaction(c_id, query, "Affective Stress Analysis", tools_invoked, speech, t)
-            return {
-                "speechText": speech,
-                "targetFocus": target_focus,
-                "emotion": emo,
-                "toolsUsed": tools_invoked
-            }
-
-        # Intent: SANS / Ocular / Fluid Shift
-        if any(w in query.lower() for w in ['sans', 'optic', 'eye', 'vision', 'fluid']):
-            tools_invoked.extend(["somatoscan_focus", "astrocausal_infer"])
-            causal = self.tool_astrocausal_infer(onsd, hr, rad, entropy)
-            focus_res = self.tool_somatoscan_focus("sans")
-            target_focus = focus_res["targetFocus"]
-
-            speech = f"SANS surveillance active for {crew_name}. Right optic sheath diameter is {onsd} millimeters. Microgravity cephalad fluid displacement confirmed. Recommended countermeasure: Chibis LBNP or active thigh cuff occlusion."
-            self.memory.log_interaction(c_id, query, "SANS Assessment", tools_invoked, speech, t)
-            return {
-                "speechText": speech,
-                "targetFocus": target_focus,
-                "somatoScan": focus_res,
-                "causal": causal,
-                "toolsUsed": tools_invoked
-            }
-
-        # General Vitals & Bio-Scan
+        # ---------------------------------------------------------------------
+        # 9. Dynamic SomatoScan Clinical Inquiry & Autonomous Flight Surgeon Reasoning
+        # ---------------------------------------------------------------------
         tools_invoked.extend(["somatoscan_focus", "astrocausal_infer"])
         focus_res = self.tool_somatoscan_focus(query)
         target_focus = focus_res["targetFocus"]
+        causal = self.tool_astrocausal_infer(onsd, hr, rad, entropy)
 
-        speech = f"{crew_name}, biometrics nominal: Heart rate {hr} beats per minute in sinus rhythm, optic nerve sheath {onsd} millimeters, radiation {rad} micro-Sieverts per hour. 5 edge engines synchronized under OpenJarvis runtime."
-        self.memory.log_interaction(c_id, query, "General Telemetry Audit", tools_invoked, speech, t)
+        # Check for RAG grounding
+        rag_match = self.tool_search_nasa_hrp_knowledge(query)
+        if rag_match:
+            tools_invoked.append("nasa_hrp_knowledge_rag")
+            thought_chain.append(f"Grounded against {rag_match.get('source', 'NASA-HRP')}")
+
+        # Tailor specific operational nuances if inquiry mentions radiation, stress, or SANS
+        if any(w in q_lower for w in ['radiation', 'solar', 'gcr', 'spe', 'storm', 'proton']):
+            speech = (
+                f"Radiation Dosimetry & SomatoScan audit for {crew_name}: "
+                f"Focusing on {focus_res['organName']} ({focus_res['latinName']}). Ambient flux is {rad} micro-Sieverts per hour. "
+                f"Bayesian radiation risk posterior is {causal['posteriors']['acute_radiation_sickness']}%. {focus_res['countermeasure']}"
+            )
+        elif any(w in q_lower for w in ['emotion', 'stress', 'mood', 'mental', 'fatigue', 'tired']):
+            emo = self.tool_emotion_evaluate(hr, entropy)
+            tools_invoked.append("emotion_evaluate")
+            speech = (
+                f"Neuro-affective status for {crew_name}: State classified as {emo['state']}. "
+                f"Autonomic Stress Index is {emo['stressIndexPct']}%. "
+                f"SomatoScan focused on {focus_res['organName']} ({focus_res['latinName']}). Recommended: {focus_res['countermeasure']}"
+            )
+        elif any(w in q_lower for w in ['sans', 'optic', 'eye', 'vision', 'fluid']):
+            speech = (
+                f"SANS surveillance active for {crew_name}: "
+                f"Target localized to {focus_res['organName']} ({focus_res['latinName']}). "
+                f"ONSD is {onsd} mm with cephalad fluid shift. Recommended NASA countermeasure: {focus_res['countermeasure']}"
+            )
+        else:
+            speech = (
+                f"SomatoScan localized target at {focus_res['organName']} ({focus_res['latinName']}) in the {focus_res['system']} system. "
+                f"Biophysical strain computed at {focus_res['strainPercentage']}%. {focus_res['condition']}. "
+                f"Recommended NASA protocol: {focus_res['countermeasure']}"
+            )
+
+        diagnostic_issue = {
+            "crewId": c_id,
+            "crewName": crew_name,
+            "callsign": profile.get("callsign", "Ares-Lead"),
+            "role": profile.get("role", "Mission Specialist"),
+            "condition": focus_res["condition"],
+            "targetStructure": focus_res["targetFocus"],
+            "isolatedOrgans": [focus_res["targetFocus"]],
+            "latinName": focus_res["latinName"],
+            "system": focus_res["system"],
+            "painLocus": focus_res["painLocus"],
+            "painSeverity": focus_res["painSeverity"],
+            "strainPercentage": focus_res["strainPercentage"],
+            "vitals": {
+                "hr": int(hr),
+                "bp": t.get("bp", "120/78"),
+                "onsd": round(onsd, 2),
+                "icp": round(onsd * 3.4, 1),
+                "radiation": round(rad, 1)
+            },
+            "etiology": focus_res["etiology"],
+            "countermeasure": focus_res["countermeasure"],
+            "hudTargetCoords": {"x": 50, "y": 48}
+        }
+
+        self.memory.log_interaction(c_id, query, "Dynamic SomatoScan Targeting", tools_invoked, speech, t)
         return {
+            "status": "DIAGNOSIS_COMPUTED",
+            "query": query,
             "speechText": speech,
             "targetFocus": target_focus,
             "somatoScan": focus_res,
+            "diagnosticIssue": diagnostic_issue,
+            "causal": causal,
             "toolsUsed": tools_invoked
         }

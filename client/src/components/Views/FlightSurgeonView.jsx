@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FiEye, FiActivity, FiAlertTriangle, FiCpu } from 'react-icons/fi';
 
 const FlightSurgeonView = () => {
   const [messages, setMessages] = useState([
@@ -150,27 +151,27 @@ const FlightSurgeonView = () => {
           <div style={{ display: 'flex', gap: '8px', padding: '8px 0', overflowX: 'auto' }}>
             <button
               onClick={() => handleSend('Evaluate SANS optic disc elevation & visual acuity')}
-              style={{ background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '10px', padding: '6px 12px', fontSize: '11px', color: '#e2e8f0', cursor: 'pointer', whiteSpace: 'nowrap', fontWeight: 700 }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '10px', padding: '6px 12px', fontSize: '11px', color: '#e2e8f0', cursor: 'pointer', whiteSpace: 'nowrap', fontWeight: 700 }}
             >
-              👁️ SANS Protocol
+              <FiEye size={12} color="#00f2fe" /> SANS Protocol
             </button>
             <button
               onClick={() => handleSend('Orthostatic intolerance post-EVA recovery protocol')}
-              style={{ background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '10px', padding: '6px 12px', fontSize: '11px', color: '#e2e8f0', cursor: 'pointer', whiteSpace: 'nowrap', fontWeight: 700 }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '10px', padding: '6px 12px', fontSize: '11px', color: '#e2e8f0', cursor: 'pointer', whiteSpace: 'nowrap', fontWeight: 700 }}
             >
-              🩺 Orthostatic Protocol
+              <FiActivity size={12} color="#00f2fe" /> Orthostatic Protocol
             </button>
             <button
               onClick={() => handleSend('Analyze Space Radiation Dosimetry vs. GCR limit')}
-              style={{ background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '10px', padding: '6px 12px', fontSize: '11px', color: '#e2e8f0', cursor: 'pointer', whiteSpace: 'nowrap', fontWeight: 700 }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '10px', padding: '6px 12px', fontSize: '11px', color: '#e2e8f0', cursor: 'pointer', whiteSpace: 'nowrap', fontWeight: 700 }}
             >
-              ☢️ Radiation Dosimetry
+              <FiAlertTriangle size={12} color="#f59e0b" /> Radiation Dosimetry
             </button>
             <button
               onClick={() => handleSend('Evaluate psychomotor vigilance & cognitive fatigue')}
-              style={{ background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '10px', padding: '6px 12px', fontSize: '11px', color: '#e2e8f0', cursor: 'pointer', whiteSpace: 'nowrap', fontWeight: 700 }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '10px', padding: '6px 12px', fontSize: '11px', color: '#e2e8f0', cursor: 'pointer', whiteSpace: 'nowrap', fontWeight: 700 }}
             >
-              🧠 Cognitive Lapses
+              <FiCpu size={12} color="#a855f7" /> Cognitive Lapses
             </button>
           </div>
 
