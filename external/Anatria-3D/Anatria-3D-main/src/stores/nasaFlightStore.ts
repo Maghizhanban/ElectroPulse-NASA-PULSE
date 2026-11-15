@@ -178,13 +178,13 @@ interface NasaFlightState {
 }
 
 export const useNasaFlightStore = create<NasaFlightState>((set) => ({
-  activeIssue: DIAGNOSTIC_PRESETS.rostova!,
+  activeIssue: DIAGNOSTIC_PRESETS.nominal_scan!,
   hudVisible: true,
   voiceActive: true,
   activeTab: "diagnosis",
   setActiveIssue: (issue) => set({ activeIssue: issue }),
   setCrewById: (id) => {
-    const preset = DIAGNOSTIC_PRESETS[id] ?? DIAGNOSTIC_PRESETS.rostova!;
+    const preset = DIAGNOSTIC_PRESETS[id] ?? DIAGNOSTIC_PRESETS.nominal_scan!;
     set({ activeIssue: preset });
   },
   setHudVisible: (visible) => set({ hudVisible: visible }),

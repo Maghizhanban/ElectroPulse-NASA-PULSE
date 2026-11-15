@@ -206,7 +206,7 @@ export function simulatePharmacokinetics(drugKey, doseMg, totalHours = 72, stepS
     targetConceptQuery: drug.targetConceptQuery,
     targetParam: drug.targetPhysiologicalParam,
     baselineValue: drug.baselineValue,
-    cMax: +maxConc.toFixed(2),
+    cMax: maxConc < 0.01 ? +maxConc.toFixed(4) : +maxConc.toFixed(2),
     tMaxHours: +tMax.toFixed(1),
     maxEffectPct: +maxEffect.toFixed(1),
     projectedFinalValue: organRecoverySeries[organRecoverySeries.length - 1],

@@ -45,14 +45,12 @@ export class EmotionEngine {
    */
   evaluate(input = {}) {
     input = (input && typeof input === 'object') ? input : {};
-    const {
-      heartRate = 72,
-      hrvSdnn = 55,
-      hrvLfHfRatio = 1.2,
-      keystrokeEntropy = 0.74,
-      respiratoryRate = 14,
-      speechJitterPct = 0.65
-    } = input;
+    const heartRate = (input.heartRate != null) ? Number(input.heartRate) : 72;
+    const hrvSdnn = (input.hrvSdnn != null) ? Number(input.hrvSdnn) : 55;
+    const hrvLfHfRatio = (input.hrvLfHfRatio != null) ? Number(input.hrvLfHfRatio) : 1.2;
+    const keystrokeEntropy = (input.keystrokeEntropy != null) ? Number(input.keystrokeEntropy) : 0.74;
+    const respiratoryRate = (input.respiratoryRate != null) ? Number(input.respiratoryRate) : 14;
+    const speechJitterPct = (input.speechJitterPct != null) ? Number(input.speechJitterPct) : 0.65;
 
     // 1. Calculate Arousal (A) in [-1.0, +1.0]
     // Arousal increases with elevated HR, higher respiratory rate, elevated LF/HF sympathetic ratio, and pitch jitter
@@ -111,8 +109,8 @@ export class EmotionEngine {
       metrics: {
         stressIndexPct,
         vigilanceCapacityPct,
-        autonomicLfHf: +hrvLfHfRatio.toFixed(2),
-        motorEntropy: +keystrokeEntropy.toFixed(3)
+        autonomicLfHf: (typeof hrvLfHfRatio === 'number' && !isNaN(hrvLfHfRatio)) ? +hrvLfHfRatio.toFixed(2) : 1.2,
+        motorEntropy: (typeof keystrokeEntropy === 'number' && !isNaN(keystrokeEntropy)) ? +keystrokeEntropy.toFixed(3) : 0.74
       },
       state,
       recommendation,

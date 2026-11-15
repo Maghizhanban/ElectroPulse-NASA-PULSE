@@ -61,6 +61,10 @@ export class SomatoScanEngine {
     // Adaptive mapping: if query is radiation/cosmic ray hazard, redirect to learned CNS/cardiac structures
     if (q.includes('radiation') || q.includes('solar') || q.includes('gcr') || q.includes('spe')) {
       q = 'brain';
+    } else if (q.includes('optic sheath')) {
+      q = 'optic nerve';
+    } else if (q.includes('lumbar spine')) {
+      q = 'lumbar';
     }
 
     // 1. Search concepts first

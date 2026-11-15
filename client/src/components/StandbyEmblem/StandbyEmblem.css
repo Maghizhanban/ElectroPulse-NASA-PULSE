@@ -1,0 +1,525 @@
+/* StandbyEmblem.css - Quantum Arc Core Standby Cockpit */
+
+.standby-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #070a12;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e2e8f0;
+  box-sizing: border-box;
+}
+
+.standby-ambient-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.standby-stars {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.08) 0%, rgba(7, 10, 18, 0) 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Topbar */
+.standby-topbar {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 24px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.standby-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00f2fe;
+  box-shadow: 0 0 12px #00f2fe;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(0, 242, 254, 0.6);
+}
+
+.brand-subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #64748b;
+  border-left: 1px solid #1e293b;
+  padding-left: 12px;
+}
+
+.standby-telemetry {
+  display: flex;
+  gap: 14px;
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  backdrop-filter: blur(8px);
+}
+
+.icon-pulse {
+  animation: spin-slow 12s linear infinite;
+}
+
+/* Center Quantum Arc Core */
+.standby-center {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  margin-top: -20px;
+}
+
+.quantum-arc-core {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.quantum-arc-core:hover {
+  transform: scale(1.03);
+}
+
+.quantum-arc-core:active {
+  transform: scale(0.98);
+}
+
+/* Photonic SVG Rings */
+.arc-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  will-change: transform;
+}
+
+.ring-outer {
+  animation: arc-rotate-clockwise 24s linear infinite;
+  transform: rotate(0deg) scale(1);
+}
+
+.ring-mid {
+  animation: arc-rotate-counter 18s linear infinite;
+  transform: rotate(0deg) scale(1);
+}
+
+.ring-inner {
+  animation: arc-rotate-clockwise 12s linear infinite;
+  transform: rotate(0deg) scale(1);
+}
+
+.ring-base, .ring-base-mid, .ring-base-inner {
+  fill: none;
+  stroke: rgba(0, 242, 254, 0.12);
+  stroke-width: 1;
+}
+
+.ring-ticks-outer {
+  fill: none;
+  stroke: rgba(0, 242, 254, 0.35);
+  stroke-width: 6;
+}
+
+.ring-accent-outer {
+  fill: none;
+  stroke: #00f2fe;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.8));
+}
+
+.ring-ticks-mid {
+  fill: none;
+  stroke: rgba(56, 189, 248, 0.4);
+  stroke-width: 8;
+}
+
+.ring-accent-mid {
+  fill: none;
+  stroke: #38bdf8;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.7));
+}
+
+.ring-ticks-inner {
+  fill: none;
+  stroke: rgba(0, 119, 255, 0.45);
+  stroke-width: 5;
+}
+
+.ring-accent-inner {
+  fill: none;
+  stroke: #0077ff;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px rgba(0, 119, 255, 0.9));
+}
+
+/* Pulsating Plasma Core */
+.plasma-core {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.plasma-glow-outer {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.35) 0%, rgba(0, 119, 255, 0.15) 50%, transparent 75%);
+  animation: plasma-pulse 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.plasma-glow-inner {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.8) 0%, rgba(0, 119, 255, 0.4) 60%, transparent 100%);
+  filter: blur(4px);
+  animation: plasma-pulse 2s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.plasma-nucleus {
+  position: relative;
+  z-index: 5;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00f2fe 0%, #0077ff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 
+    0 0 25px rgba(0, 242, 254, 0.9),
+    inset 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.plasma-symbol {
+  font-size: 1.6rem;
+  color: #070a12;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+}
+
+.plasma-flare {
+  position: absolute;
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00f2fe, #ffffff, #00f2fe, transparent);
+  animation: flare-sweep 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.core-click-prompt {
+  position: absolute;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.prompt-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: rgba(0, 242, 254, 0.7);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.quantum-arc-core:hover .prompt-text {
+  color: #00f2fe;
+  text-shadow: 0 0 8px #00f2fe;
+}
+
+/* Command Box */
+.standby-command-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 680px;
+}
+
+.standby-input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  border-radius: 9999px;
+  padding: 6px 8px 6px 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    0 0 20px rgba(0, 242, 254, 0.15);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+}
+
+.standby-input-wrapper:focus-within {
+  border-color: #00f2fe;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(0, 242, 254, 0.35);
+}
+
+.search-icon {
+  font-size: 1.15rem;
+  color: #00f2fe;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.standby-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.standby-input::placeholder {
+  color: #64748b;
+  font-size: 0.88rem;
+}
+
+.standby-submit-btn {
+  background: linear-gradient(135deg, #00f2fe 0%, #0077ff 100%);
+  color: #070a12;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-shadow: 0 0 14px rgba(0, 242, 254, 0.4);
+}
+
+.standby-submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.standby-submit-btn:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.8);
+}
+
+/* Quick Select Chips */
+.standby-crew-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.chips-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #64748b;
+  margin-right: 4px;
+}
+
+.crew-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 5px 12px;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.crew-chip:hover {
+  background: rgba(0, 242, 254, 0.12);
+  border-color: rgba(0, 242, 254, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.crew-avatar {
+  font-size: 0.95rem;
+}
+
+.crew-name {
+  font-weight: 500;
+}
+
+.crew-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.crew-status-dot.nominal {
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.crew-status-dot.alert {
+  background: #f59e0b;
+  box-shadow: 0 0 6px #f59e0b;
+  animation: pulse-dot 1.5s infinite;
+}
+
+/* Footer */
+.standby-footer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 20px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: #475569;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Keyframe Animations */
+@keyframes arc-rotate-clockwise {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.01);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes arc-rotate-counter {
+  0% {
+    transform: rotate(360deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.99);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes plasma-pulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+}
+
+@keyframes flare-sweep {
+  0% {
+    transform: rotate(0deg) scaleX(0.7);
+    opacity: 0.4;
+  }
+  50% {
+    transform: rotate(180deg) scaleX(1.1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: rotate(360deg) scaleX(0.7);
+    opacity: 0.4;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

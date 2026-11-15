@@ -24,7 +24,7 @@ export class UniversalMedicalBrain {
     // Initialize the pure specialized flight engines
     this.emotionEngine = new EmotionEngine();
     this.causalEngine = new AstroCausalEngine();
-    this.somatoEngine = new SomatoScanEngine();
+    this.somatoEngine = new SomatoScanEngine(options.atlas);
     this.chronoEngine = new ChronoPulseEngine(6);
     this.pdfKnowledge = pdfKnowledge;
   }
@@ -555,7 +555,34 @@ export class UniversalMedicalBrain {
     // 2. SomatoScan Autonomous 3D Somatic Anomaly Localization
     if (text.includes('scan') || text.includes('detect') || text.includes('body') || text.includes('issue') || text.includes('somatic') || text.includes('trauma')) {
       const targetOrgan = (telemetry.onsd && telemetry.onsd > 5.0) ? 'optic sheath' : (telemetry.hr && telemetry.hr > 85) ? 'heart' : 'lumbar spine';
-      const scan = this.somatoEngine.resolveSpatialFocus(targetOrgan);
+      let scan = this.somatoEngine.resolveSpatialFocus(targetOrgan);
+
+      // Robust fallback if somatoEngine atlas is uninitialized or structure not resolved
+      if (!scan) {
+        const isOptic = targetOrgan.includes('optic');
+        const isLumbar = targetOrgan.includes('lumbar');
+        const system = isOptic ? 'sensory' : isLumbar ? 'skeletal' : 'cardiac';
+        scan = {
+          query: targetOrgan,
+          structureName: targetOrgan,
+          system,
+          elementsCount: 1,
+          elements: [],
+          center: isOptic ? [0.035, 1.62, 0.08] : isLumbar ? [0.0, 1.05, -0.05] : [0.02, 1.35, 0.05],
+          dimensions: [0.08, 0.08, 0.08],
+          cameraDistance: 0.45,
+          optimalCameraPosition: isOptic ? [0.18, 1.68, 0.53] : isLumbar ? [0.15, 1.13, 0.40] : [0.17, 1.43, 0.50],
+          systemOpacities: {
+            integumentary: 0.08,
+            muscular: 0.25,
+            skeletal: system === 'skeletal' ? 1.0 : 0.45,
+            sensory: system === 'sensory' ? 1.0 : 0.6,
+            cardiac: system === 'cardiac' ? 1.0 : 0.5,
+            nervous: 0.8
+          },
+          diagnosticColor: system === 'sensory' ? '#f59e0b' : system === 'skeletal' ? '#ef4444' : '#00f2fe'
+        };
+      }
 
       return {
         type: 'somatoscan_detection',

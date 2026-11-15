@@ -290,3 +290,26 @@
 .confirm-prescription-btn:hover {
   transform: scale(1.02);
 }
+
+/* Responsive adjustments for narrow / mobile viewports */
+@media (max-width: 768px) {
+  .pharmacosim-drawer-card {
+    width: 100vw;
+    max-width: 100vw;
+    padding: 18px;
+    border-left: none;
+    border-top: 1.5px solid rgba(0, 242, 254, 0.35);
+  }
+
+  .drug-tabs-row {
+    grid-template-columns: 1fr;
+  }
+
+  .recovery-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas-container {
+    height: 160px;
+  }
+}

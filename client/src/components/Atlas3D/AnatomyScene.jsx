@@ -20,7 +20,8 @@ export default function AnatomyScene({
   onSelect,
   onProgress,
   onError,
-  onCrossingUpdate
+  onCrossingUpdate,
+  onCameraReady
 }) {
   const host = useRef(null);
   const latest = useRef({ state, xray, ghost, scannerSweep, scannerHeight, targetFocus, onCrossingUpdate });
@@ -72,6 +73,8 @@ export default function AnatomyScene({
     controls.maxPolarAngle = Math.PI * 0.96;
     controls.addEventListener('change', () => { dirty = true; });
 
+    if (onCameraReady) onCameraReady(camera, renderer.domElement);
+
     const pmrem = new T.PMREMGenerator(renderer);
     const room = new RoomEnvironment();
     const env = pmrem.fromScene(room, 0.04);
@@ -91,75 +94,8 @@ export default function AnatomyScene({
     underGlow.position.set(0, -3.0, 1.5);
     scene.add(underGlow);
 
-    // Holographic Flight Deck Pedestal
-    const ground = new T.Mesh(new T.CircleGeometry(15, 64), new T.MeshBasicMaterial({ color: 0x070c18, transparent: true, opacity: 0.8 }));
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -0.019;
-    scene.add(ground);
-
-    const platform = new T.Mesh(
-      new T.CylinderGeometry(0.68, 0.72, 0.025, 64),
-      new T.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.6, roughness: 0.3 })
-    );
-    platform.position.y = -0.016;
-    scene.add(platform);
-
-    const ring = new T.Mesh(
-      new T.RingGeometry(0.64, 0.646, 96),
-      new T.MeshBasicMaterial({ color: 0x00f2fe, transparent: true, opacity: 0.75, side: T.DoubleSide })
-    );
-    ring.rotation.x = -Math.PI / 2;
-    ring.position.y = 0.001;
-    scene.add(ring);
-
-    // SomatoScan Holographic Scanner Gantry Ring
-    const scannerGroup = new T.Group();
-    scannerGroup.position.y = 1.25;
-
-    // 1. Outer Torus Ring Casing
-    const gantryRing = new T.Mesh(
-      new T.TorusGeometry(0.72, 0.012, 16, 64),
-      new T.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.85, roughness: 0.25 })
-    );
-    gantryRing.rotation.x = Math.PI / 2;
-    scannerGroup.add(gantryRing);
-
-    // 2. Inner Glowing Laser Band
-    const laserRing = new T.Mesh(
-      new T.TorusGeometry(0.70, 0.005, 16, 64),
-      new T.MeshBasicMaterial({ color: 0x00f2fe, transparent: true, opacity: 0.95 })
-    );
-    laserRing.rotation.x = Math.PI / 2;
-    scannerGroup.add(laserRing);
-
-    // 3. Emitter blocks around the gantry
-    for (let i = 0; i < 8; i++) {
-      const angle = (i / 8) * Math.PI * 2;
-      const block = new T.Mesh(
-        new T.BoxGeometry(0.024, 0.022, 0.05),
-        new T.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.9, roughness: 0.1 })
-      );
-      block.position.set(Math.cos(angle) * 0.71, 0, Math.sin(angle) * 0.71);
-      block.rotation.y = -angle;
-      scannerGroup.add(block);
-    }
-
-    // 4. Additive Reading Wash Plane across the anatomical slice
-    const planeWash = new T.Mesh(
-      new T.RingGeometry(0.04, 0.69, 64),
-      new T.MeshBasicMaterial({
-        color: 0x00f2fe,
-        transparent: true,
-        opacity: 0.16,
-        side: T.DoubleSide,
-        blending: T.AdditiveBlending,
-        depthWrite: false
-      })
-    );
-    planeWash.rotation.x = -Math.PI / 2;
-    scannerGroup.add(planeWash);
-
-    scene.add(scannerGroup);
+    // Pure Weightless Floating Hologram - All mechanical pedestals and gantry hoops eliminated
+    // Volumetric GPU shader scan line handles real-time biophysical tomography weightlessly
 
     const width = T.MathUtils.ceilPowerOfTwo(atlas.parts.length);
     const data = new Float32Array(width * 4);
@@ -341,7 +277,7 @@ export default function AnatomyScene({
       dirty = true;
     };
 
-    (async () => {
+    const loadAtlasData = async () => {
       try {
         let cursor = 0;
         await Promise.all(
@@ -359,7 +295,8 @@ export default function AnatomyScene({
       } catch (e) {
         if (!disposed) onError(e instanceof Error ? e.message : 'Could not load 3D geometry.');
       }
-    })();
+    };
+    loadAtlasData();
 
     const fit = (view, extent = 0) => {
       const mobile = el.clientWidth < 768;
@@ -466,8 +403,6 @@ export default function AnatomyScene({
       }
 
       customUniforms.uScanY.value = scanY;
-      scannerGroup.position.y = scanY;
-      scannerGroup.rotation.y += dt * 0.35;
       dirty = true;
 
       crossingCounter++;
@@ -571,10 +506,6 @@ export default function AnatomyScene({
       cancelAnimationFrame(frame);
       observer.disconnect();
       controls.dispose();
-      scannerGroup.traverse(obj => {
-        if (obj.geometry) obj.geometry.dispose();
-        if (obj.material) obj.material.dispose();
-      });
       geometries.forEach(g => g.dispose());
       materials.forEach(m => m.dispose());
       env.dispose();

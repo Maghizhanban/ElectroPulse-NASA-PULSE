@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import * as T from 'three';
 import AnatomyScene from './AnatomyScene';
+import LaserReticleOverlay from './LaserReticleOverlay';
+import PharmacoSimDrawer from '../PharmacoSim/PharmacoSimDrawer';
 import { SYSTEMS, DEFAULT_VISIBLE, explanation } from './anatomy';
 import { sceneBridge } from './sceneBridge';
 import { 
@@ -36,6 +38,11 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
   const [error, setError] = useState('');
   const [activePreset, setActivePreset] = useState('sans');
   const [targetFocus, setTargetFocus] = useState(null);
+  const [sceneCamera, setSceneCamera] = useState(null);
+  const [rendererDom, setRendererDom] = useState(null);
+  const [pharmacoOpen, setPharmacoOpen] = useState(false);
+  const [pharmacoDrug, setPharmacoDrug] = useState('acetazolamide');
+  const workstationRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [systemsOpen, setSystemsOpen] = useState(false);
@@ -248,7 +255,7 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
   };
 
   return (
-    <div className="somatic-atlas-container">
+    <div className="somatic-atlas-container" ref={workstationRef}>
       {/* 3D Scene Background */}
       {atlas && (
         <AnatomyScene
@@ -263,6 +270,38 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
           onProgress={setProgress}
           onError={setError}
           onCrossingUpdate={setCrossing}
+          onCameraReady={(cam, dom) => {
+            setSceneCamera(cam);
+            setRendererDom(dom);
+          }}
+        />
+      )}
+
+      {/* 3D Holographic Laser Crosshair & Macro Zoom Reticle */}
+      {targetFocus && (
+        <LaserReticleOverlay
+          targetFocus={targetFocus}
+          camera={sceneCamera}
+          rendererDomElement={rendererDom}
+          containerRef={workstationRef}
+        />
+      )}
+
+      {/* Pharmacokinetics ODE Simulation Drawer */}
+      {pharmacoOpen && (
+        <PharmacoSimDrawer
+          isOpen={pharmacoOpen}
+          initialDrug={pharmacoDrug}
+          onClose={() => setPharmacoOpen(false)}
+          onFocusOrgan={(organQuery) => {
+            if (atlas && organQuery) {
+              const matched = atlas.parts.find(p => p.name.toLowerCase().includes(organQuery.toLowerCase()));
+              if (matched) {
+                const box = new T.Box3(new T.Vector3().fromArray(matched.bounds[0]), new T.Vector3().fromArray(matched.bounds[1]));
+                setTargetFocus({ box, title: matched.name });
+              }
+            }
+          }}
         />
       )}
 
@@ -334,6 +373,15 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
           </button>
 
           <button
+            className={`hud-icon-btn ${pharmacoOpen ? 'active-neon' : ''}`}
+            onClick={() => setPharmacoOpen(!pharmacoOpen)}
+            title="Pharmacokinetics ODE Simulation Drawer"
+          >
+            <FiActivity />
+            <span>PHARMACOSIM</span>
+          </button>
+
+          <button
             className={`hud-icon-btn ${sceneState.rotate ? 'active-neon' : ''}`}
             onClick={() => setSceneState(s => ({ ...s, rotate: !s.rotate }))}
             title="Cinematic 360° Orbit"
@@ -348,7 +396,7 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
         <div className="scan-readout-header">
           <div className="scan-radar-indicator">
             <span className="scan-radar-dot"></span>
-            <span className="scan-title">SOMATOSCAN GANTRY</span>
+            <span className="scan-title">SOMATOSCAN TOMOGRAPHY</span>
           </div>
           <span className="scan-level-tag">{crossing.level}</span>
           <span className="scan-height-tag">{crossing.height.toFixed(2)}m</span>
@@ -386,7 +434,7 @@ export default function SomaticAtlasWorkstation({ onSelectPart, externalFocusTar
           </div>
         </div>
         <div className="scan-controls-mini">
-          <span className="mini-label">GANTRY SLICE:</span>
+          <span className="mini-label">SLICE HEIGHT:</span>
           <input 
             type="range"
             min="0.10"

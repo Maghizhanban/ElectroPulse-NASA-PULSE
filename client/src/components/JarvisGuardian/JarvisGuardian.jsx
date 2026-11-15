@@ -134,12 +134,9 @@ export default function JarvisGuardian({
     }
   };
 
-  // Simulating JARVIS background monitoring heartbeat: triggers proactive alert after initial mount
+  // JARVIS autonomous monitoring heartbeat: on-demand diagnostic alerts without unprompted popup interruptions
   useEffect(() => {
-    const timer = setTimeout(() => {
-      triggerAutonomousAlert(activeCrew);
-    }, 2800);
-    return () => clearTimeout(timer);
+    // Kept passive to ensure uninterrupted flight deck operation
   }, [activeCrew.id]);
 
   // Animated Holographic Voice Waveform
