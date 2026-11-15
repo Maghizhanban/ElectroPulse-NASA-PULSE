@@ -398,6 +398,7 @@ export class UniversalMedicalBrain {
    * @returns {Promise<Object>} Formulated response, CPG citations, and optional simulation data
    */
   async processInquiry(userQuery, currentTelemetry = {}) {
+    currentTelemetry = (currentTelemetry && typeof currentTelemetry === 'object') ? currentTelemetry : {};
     const query = (userQuery || '').trim();
     const lower = query.toLowerCase();
 
@@ -494,6 +495,7 @@ export class UniversalMedicalBrain {
   }
 
   async queryLocalOllama(prompt, telemetry) {
+    telemetry = (telemetry && typeof telemetry === 'object') ? telemetry : {};
     const systemPrompt = `You are P.U.L.S.E., the autonomous on-device NASA Flight Surgeon SLM aboard exploration spacecraft. You adhere strictly to NASA-STD-3001 medical standards. Telemetry context: HR=${telemetry.hr || 71}bpm, BP=${telemetry.bp || '120/80'}, ONSD=${telemetry.onsd || 4.65}mm. Answer with concise, authoritative aerospace clinical guidance.`;
 
     const controller = new AbortController();
@@ -519,6 +521,10 @@ export class UniversalMedicalBrain {
   }
 
   evaluateClinicalPracticeGuidelines(text, telemetry) {
+    telemetry = (telemetry && typeof telemetry === 'object')
+      ? (telemetry.vitals ? { ...telemetry.vitals, ...telemetry } : telemetry)
+      : {};
+    text = (text && typeof text === 'string') ? text.toLowerCase() : '';
     // 0. Check Trained PDF Knowledge RAG Vector Index
     const pdfMatch = this.searchTrainedPdfKnowledge(text);
     if (pdfMatch) {
