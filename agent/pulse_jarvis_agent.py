@@ -27,6 +27,11 @@ except ImportError:
     from ElectroPulse_OS.agent.pulse_memory_store import PulseMemoryStore
 
 try:
+    from pulse_dialogue import PulseBrain
+except ImportError:
+    from ElectroPulse_OS.agent.pulse_dialogue import PulseBrain
+
+try:
     import numpy as np
     from astrocausal_engine import AstroCausalEngine
     from chronopulse_engine import ChronoPulseEngine
@@ -139,6 +144,10 @@ class PulseJarvisAgent:
             }
         }
 
+        # Reactive dialogue + reasoning core (live telemetry, real engines, stateful conversation).
+        # simulate=True keeps the demo self-driving until real device data arrives via /telemetry or /plugin.
+        self.brain = PulseBrain(self, simulate=os.environ.get("PULSE_SIMULATE", "1") != "0")
+
     def _load_json(self, filename: str) -> Dict[str, Any]:
         p = os.path.join(self.engines_dir, filename)
         if os.path.exists(p):
@@ -171,7 +180,13 @@ class PulseJarvisAgent:
     # =========================================================================
 
     def record_telemetry(self, crew_id: str, telemetry: Dict[str, Any], timestamp: Optional[float] = None) -> Dict[str, Any]:
-        """Records an incoming vitals packet into SQLite persistent store."""
+        """Records an incoming vitals packet into SQLite persistent store and the live reactive feed.
+        Real device data ingested here pauses the simulator for this crew member (see TelemetryFeed)."""
+        c_id = self.memory._canonicalize_crew_id(crew_id)
+        try:
+            self.brain.feed(c_id).ingest(telemetry, source="device", t=timestamp)
+        except Exception:
+            pass
         rec_id = self.memory.log_telemetry_snapshot(crew_id, telemetry, timestamp=timestamp)
         latest = self.memory.get_latest_telemetry(crew_id)
         return {
@@ -210,17 +225,9 @@ class PulseJarvisAgent:
             'thigh': ['femur', 'quadriceps', 'hamstring', 'sartorius'],
             'hip': ['coxal', 'acetabulum', 'gluteus', 'ilium', 'ischium'],
             'buttock': ['gluteus'],
-            'stomach': ['gastric', 'gaster', 'stomach', 'abdominis', 'rectus abdominis'],
+            'stomach': ['gastric', 'gaster', 'stomach', 'abdominis'],
             'abs': ['rectus abdominis', 'oblique', 'transversus abdominis'],
-            'abdomen': ['rectus abdominis', 'external abdominal oblique', 'abdominis'],
-            'abdominal': ['rectus abdominis', 'oblique', 'abdominis', 'peritoneal'],
-            'cramp': ['rectus abdominis', 'soleus', 'gastrocnemius', 'muscle'],
-            'cramps': ['rectus abdominis', 'soleus', 'gastrocnemius'],
-            'belly': ['rectus abdominis', 'external abdominal oblique', 'abdominis'],
-            'headache': ['cerebrum', 'meninges', 'optic'],
-            'vision': ['optic', 'retina', 'oculi'],
-            'blur': ['optic', 'retina'],
-            'pelvis': ['pelvic', 'ilium', 'pubis'],
+            'belly': ['abdominis', 'peritoneal', 'umbilical'],
             'chest': ['pectoralis', 'sternum', 'thoracic', 'thorax'],
             'rib': ['costal', 'rib', 'intercostal'],
             'ribs': ['costal', 'rib', 'intercostal'],
@@ -520,6 +527,11 @@ class PulseJarvisAgent:
             target_focus = "brain"
             clinical_target = "Solar Particle Event aft shelter ingress behind polyethylene/water shielding"
             projected_outcome = "Crew dose rate attenuated by >78%; passive dosimetry stream active"
+        elif any(w in action_lower for w in ['co2', 'cdra', 'scrubber', 'hypercapnia', 'cabin air', 'eclss']):
+            protocol_code = "WF-NASA-ATMOS-06" if protocol == "NASA-HRP-2026-AUTONOMOUS" else protocol
+            target_focus = "lung"
+            clinical_target = "CDRA desiccant bed cycle and cabin atmosphere audit"
+            projected_outcome = "Cabin CO2 reduced toward nominal 2.0-2.5 mmHg; scrubber breakthrough cleared"
         elif any(w in action_lower for w in ['bone', 'ared', 'squat', 'bisphosphonate', 'spine']):
             protocol_code = "WF-NASA-BONE-03" if protocol == "NASA-HRP-2026-AUTONOMOUS" else protocol
             target_focus = "lumbar"
@@ -530,7 +542,13 @@ class PulseJarvisAgent:
             target_focus = "brain"
             clinical_target = "Mandatory 8-hour sleep period prescription & flight ops freeze"
             projected_outcome = "Prefrontal vigilance lapse recovery; keystroke entropy restoration"
-        elif any(w in action_lower for w in ['fluid', 'saline', 'compression', 'orthostatic']):
+        elif any(w in action_lower for w in ['cryo', 'vibro', 'myofibrillar', 'tenosynovitis']):
+            protocol_code = "WF-NASA-MUSC-07" if protocol == "NASA-HRP-2026-AUTONOMOUS" else protocol
+            target_focus = "muscle"
+            clinical_target = "Localized cryo-compression and vibro-stimulation for soft-tissue strain"
+            projected_outcome = "Localized inflammation reduced; myofibrillar strain relieved"
+        elif any(w in action_lower for w in ['fluid', 'saline', 'orthostatic']) or \
+                ('compression' in action_lower and 'cryo' not in action_lower):
             protocol_code = "WF-NASA-ORTHO-05" if protocol == "NASA-HRP-2026-AUTONOMOUS" else protocol
             target_focus = "heart"
             clinical_target = "1.0 L oral electrolyte rehydration & lower extremity compression (35 mmHg)"
@@ -1271,15 +1289,38 @@ class PulseJarvisAgent:
     # OPENJARVIS AUTONOMOUS AGENT REASONING LOOP
     # =========================================================================
 
-    def process_inquiry(self, query: str, crew_id: str = "elena", telemetry: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def process_inquiry(
+        self,
+        query: str,
+        crew_id: str = "elena",
+        telemetry: Optional[Dict[str, Any]] = None,
+        persona: Optional[str] = None,
+        honesty: Optional[int] = None,
+        humor: Optional[int] = None,
+    ) -> Dict[str, Any]:
         """
-        Executes OpenJarvis cognitive cycle:
-          1. Auto-persist incoming telemetry or hydrate latest from SQLite
-          2. Parse intent & form clinical thought chain
-          3. Dispatch specialized spaceflight engines (Tools)
-          4. Adapt diagnosis based on learned NASA priors
-          5. Log interaction trace for local trace-learning loop
+        Reactive cognitive cycle, delegated to PulseBrain (pulse_dialogue.py):
+          1. Ingest/refresh live telemetry (device feed when present, else a ramped simulator)
+          2. Parse intent & entities with pulse_nlu (word-boundary matching, fuzzy correction,
+             dialogue-state aware follow-ups) - not substring keyword matching
+          3. Run the real engines (pulse_assess) to get evidence-backed findings, each traceable
+             to a number, a threshold and a trend
+          4. Compose a response strictly from those findings (or an honest "no data" statement),
+             propose protocols and require confirmation before "deploying" them
+          5. Log the interaction and the resulting telemetry snapshot to SQLite
+        Falls back to the legacy static responder only if the reactive core raises.
         """
+        try:
+            return self.brain.respond(query, crew_id=crew_id, telemetry=telemetry,
+                                      persona=persona, honesty=honesty, humor=humor)
+        except Exception as e:
+            return self._legacy_process_inquiry(query, crew_id=crew_id, telemetry=telemetry,
+                                                error=f"{type(e).__name__}: {e}")
+
+    def _legacy_process_inquiry(self, query: str, crew_id: str = "elena",
+                                telemetry: Optional[Dict[str, Any]] = None,
+                                error: Optional[str] = None) -> Dict[str, Any]:
+        """Static-template responder, kept only as a safety net if the reactive core errors."""
         c_id = self.memory._canonicalize_crew_id(crew_id)
 
         # 1. Ingest telemetry if provided; hydrate from latest SQLite record if omitted
@@ -1304,17 +1345,6 @@ class PulseJarvisAgent:
 
         q_clean = query.strip()
         q_lower = q_clean.lower()
-
-        # Intelligently resolve crew member if mentioned in query
-        if any(w in q_lower for w in ['sarah', 'vance']):
-            c_id = 'sarah'
-        elif any(w in q_lower for w in ['marcus', 'chen']):
-            c_id = 'marcus'
-        elif any(w in q_lower for w in ['elena', 'rostova']):
-            c_id = 'elena'
-
-        profile = self.memory.get_crew_profile(c_id) or {"name": "Astronaut", "callsign": "Ares"}
-        crew_name = profile.get("name", "Astronaut")
 
         # ---------------------------------------------------------------------
         # 1. /learn Feature
@@ -1418,32 +1448,8 @@ class PulseJarvisAgent:
             tools_invoked.append("nasa_hrp_knowledge_rag")
             thought_chain.append(f"Grounded against {rag_match.get('source', 'NASA-HRP')}")
 
-        # Tailor specific operational nuances & conversational intelligence (JARVIS/FRIDAY/TARS)
-        if any(w in q_lower for w in ['humor', 'tars', 'joke', 'honesty', 'sarcasm', 'parameter']):
-            speech = (
-                f"Humor parameter is set to 75%, Commander, though 100% honesty remains locked for autonomous flight surgery. What can I do for you?"
-            )
-        elif any(w in q_lower for w in ['hello', 'hi', 'hey', 'jarvis', 'friday', 'who are you', 'what are you', 'good morning', 'good afternoon']) and not any(w in q_lower for w in ['sarah', 'cramp', 'pain', 'ache', 'strain', 'injury', 'bleed', 'wound']):
-            speech = (
-                f"Online and standing by, Commander. All 3,478 cadaveric anatomical structures and 5 mathematical engines are synchronized. How can I assist you today?"
-            )
-        elif any(w in q_lower for w in ['thank', 'thanks', 'good job', 'copy', 'understood', 'roger']):
-            speech = (
-                f"Always at your service, Commander. Standing by on the flight medical deck."
-            )
-        elif ('how is' in q_lower or 'status on' in q_lower or 'check on' in q_lower) and any(w in q_lower for w in ['sarah', 'vance']):
-            speech = (
-                f"Commander Vance's vitals are logged at {int(hr)} bpm. Her keystroke entropy indicates post-EVA fatigue, so I recommend scheduled sleep rest."
-            )
-        elif ('how is' in q_lower or 'status on' in q_lower or 'check on' in q_lower) and any(w in q_lower for w in ['marcus', 'chen']):
-            speech = (
-                f"Dr. Chen's vitals are stable, though lumbar trabecular demineralization warrants today's scheduled ARED axial resistance session."
-            )
-        elif ('how is' in q_lower or 'status on' in q_lower or 'check on' in q_lower) and any(w in q_lower for w in ['elena', 'rostova']):
-            speech = (
-                f"Dr. Rostova's cardiovascular indicators are steady, with minor optic sheath expansion at {onsd:.2f} mm currently tracked under the SANS protocol."
-            )
-        elif any(w in q_lower for w in ['radiation', 'solar', 'gcr', 'spe', 'storm', 'proton', 'dosimetry']):
+        # Tailor specific operational nuances if inquiry mentions radiation, stress, or SANS
+        if any(w in q_lower for w in ['radiation', 'solar', 'gcr', 'spe', 'storm', 'proton']):
             speech = (
                 f"Radiation dosimetry audit complete, Commander. Ambient flux is {rad} micro-Sieverts per hour with risk level nominal. Shielding is holding."
             )
@@ -1457,14 +1463,9 @@ class PulseJarvisAgent:
             speech = (
                 f"SANS surveillance active, Commander. Sheath diameter is {onsd} millimeters with mild cephalad congestion. Recommend preparing the Chibis negative-pressure protocol."
             )
-        elif any(w in q_lower for w in ['status', 'readiness', 'crew status', 'vitals status']) and not any(w in q_lower for w in ['plugin', 'device']):
+        elif any(w in q_lower for w in ['hello', 'hi', 'jarvis', 'friday', 'tars', 'who are you', 'status', 'online']):
             speech = (
-                f"Status report for {crew_name}: heart rate is {int(hr)} bpm, optic sheath is {onsd:.2f} mm, and cabin radiation flux is {rad:.1f} micro-Sieverts per hour. All systems nominal."
-            )
-        elif any(w in q_lower for w in ['countermeasure', 'what should we do', 'treatment', 'next step', 'recommendation']):
-            rec_action = focus_res.get('concise_countermeasure', focus_res['countermeasure'])
-            speech = (
-                f"For {focus_res['condition']}, deploy {rec_action}, Commander. Monitoring real-time recovery biomarkers on the somatic twin."
+                f"Online and standing by, Commander. All somatic telemetry and mathematical engines are fully operational. What can I do for you?"
             )
         else:
             rec_action = focus_res.get('concise_countermeasure', focus_res['countermeasure'])
@@ -1499,7 +1500,7 @@ class PulseJarvisAgent:
         }
 
         self.memory.log_interaction(c_id, query, "Dynamic SomatoScan Targeting", tools_invoked, speech, t)
-        return {
+        result = {
             "status": "DIAGNOSIS_COMPUTED",
             "query": query,
             "speechText": speech,
@@ -1509,3 +1510,6 @@ class PulseJarvisAgent:
             "causal": causal,
             "toolsUsed": tools_invoked
         }
+        if error:
+            result["reactiveCoreError"] = error
+        return result

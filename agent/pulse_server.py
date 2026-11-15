@@ -44,6 +44,14 @@ class InquiryRequest(BaseModel):
     query: Optional[str] = ""
     crew_id: Optional[str] = "elena"
     telemetry: Optional[Dict[str, Any]] = None
+    persona: Optional[str] = None       # "jarvis" | "tars" | "friday"
+    honesty: Optional[int] = None       # TARS-style honesty 0-100 (delivery only, never hides caution/critical facts)
+    humor: Optional[int] = None         # 0-100
+
+class ScenarioRequest(BaseModel):
+    crew_id: Optional[str] = "elena"
+    scenario: Optional[str] = "NOMINAL"  # NOMINAL | SANS_FLUID_SHIFT | CABIN_HYPERCAPNIA | SOLAR_PARTICLE_EVENT | COGNITIVE_EXHAUSTION
+    ramp_s: Optional[float] = None
 
 class InterveneRequest(BaseModel):
     crew_id: Optional[str] = None
@@ -105,8 +113,53 @@ def inquire(req: InquiryRequest):
     if not q:
         raise HTTPException(status_code=400, detail="Query cannot be empty.")
     try:
-        response = agent.process_inquiry(q, crew_id=req.crew_id or "elena", telemetry=req.telemetry)
+        response = agent.process_inquiry(
+            q, crew_id=req.crew_id or "elena", telemetry=req.telemetry,
+            persona=req.persona, honesty=req.honesty, humor=req.humor,
+        )
         return response
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# -----------------------------------------------------------------------------
+# Live Reactive Core: snapshot, proactive alerts, scenario injection (Feature: reactive demo)
+# -----------------------------------------------------------------------------
+
+@app.get("/api/pulse/snapshot/{crew_id}")
+def snapshot_endpoint(crew_id: str):
+    """Current live telemetry + engine findings for a crew member, without going through dialogue."""
+    try:
+        return agent.brain.snapshot(crew_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/pulse/alerts/{crew_id}")
+def alerts_endpoint(crew_id: str):
+    """
+    Poll for proactive alerts (and recoveries) since the last check. Intended to be polled every
+    few seconds by the console so P.U.L.S.E. can speak up without being asked.
+    """
+    try:
+        return {"crew_id": agent.memory._canonicalize_crew_id(crew_id), "alerts": agent.brain.check_alerts(crew_id)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/pulse/scenario")
+def scenario_endpoint(req: ScenarioRequest):
+    """
+    Demo / training control: ramps the simulated telemetry into a scenario over time instead of
+    jumping instantly, so the reactive core can be shown catching a condition as it develops.
+    Has no effect once real device data is flowing for this crew member (see TelemetryFeed.device_active).
+    """
+    try:
+        c_id = agent.memory._canonicalize_crew_id(req.crew_id or "elena")
+        feed = agent.brain.feed(c_id)
+        if not feed.simulate or feed.device_active():
+            return {"status": "IGNORED_LIVE_DEVICE_DATA", "crew_id": c_id, "scenario": feed.scenario_state()}
+        state = feed.set_scenario(req.scenario or "NOMINAL", ramp_s=req.ramp_s)
+        return {"status": "SCENARIO_SET", "crew_id": c_id, "scenario": state}
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -288,5 +341,6 @@ def get_profile(crew_id: str):
 
 if __name__ == "__main__":
     import uvicorn
-    print("\n[P.U.L.S.E. OPENJARVIS SERVER] Initializing on http://127.0.0.1:8845...")
-    uvicorn.run(app, host="127.0.0.1", port=8845, log_level="info")
+    port = int(os.environ.get("PULSE_PORT", "8845"))
+    print(f"\n[P.U.L.S.E. OPENJARVIS SERVER] Initializing on http://127.0.0.1:{port}...")
+    uvicorn.run(app, host="127.0.0.1", port=port, log_level="info")

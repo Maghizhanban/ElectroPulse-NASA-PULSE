@@ -231,18 +231,23 @@ def run_tests():
     inq_plugin = agent.process_inquiry("/plugin list", crew_id="elena")
     assert_test("Inquiry routes /plugin", inq_plugin.get("command") == "/plugin")
     inq_intervene = agent.process_inquiry("/intervene chibis lbnp decompression", crew_id="elena")
-    assert_test("Inquiry routes /intervene", inq_intervene.get("status") == "EXECUTED")
+    # Reactive core (pulse_dialogue.PulseBrain): top-level "status" is the dialogue turn's status;
+    # the intervention's own execution outcome is nested under "intervention".
+    assert_test("Inquiry routes /intervene", inq_intervene.get("intervention", {}).get("status") == "EXECUTED")
 
     # =========================================================================
     # TIER 5: Live HTTP FastAPI Server Endpoints
     # =========================================================================
     print("\n--- TIER 5: Live HTTP FastAPI Server Round-Trip (Features 4, 5, 6) ---")
     server_port = 8846
-    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    agent_dir = os.path.abspath(os.path.dirname(__file__))
+    # NOTE: the repo root is not a package named "ElectroPulse_OS" (that path never existed - see the
+    # README quickstart mismatch), so launch pulse_server.py directly from agent/ instead of assuming
+    # a module path that cannot import.
     env = os.environ.copy()
-    env["PYTHONPATH"] = root_dir + os.pathsep + env.get("PYTHONPATH", "")
-    cmd = [sys.executable, "-m", "uvicorn", "ElectroPulse_OS.agent.pulse_server:app", "--host", "127.0.0.1", "--port", str(server_port)]
-    proc = subprocess.Popen(cmd, cwd=root_dir, env=env)
+    env["PULSE_PORT"] = str(server_port)
+    cmd = [sys.executable, "pulse_server.py"]
+    proc = subprocess.Popen(cmd, cwd=agent_dir, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     for _ in range(20):
         try:
             r = requests.get(f"http://127.0.0.1:{server_port}/api/pulse/status", timeout=1)
