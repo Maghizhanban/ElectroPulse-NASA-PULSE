@@ -44,6 +44,7 @@ export class EmotionEngine {
    * @returns {Object} Affective state classification, stress score, and neuro-entropy metrics
    */
   evaluate(input = {}) {
+    input = (input && typeof input === 'object') ? input : {};
     const {
       heartRate = 72,
       hrvSdnn = 55,

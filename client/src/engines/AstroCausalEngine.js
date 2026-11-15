@@ -40,7 +40,8 @@ export class AstroCausalEngine {
    * @param {Object} evidence - { onsd, heartRate, cabinCO2, radiationDoseRate, entropy }
    * @returns {Object} Normalized posterior probabilities for all 5 NASA conditions
    */
-  evaluate(evidence) {
+  evaluate(evidence = {}) {
+    evidence = (evidence && typeof evidence === 'object') ? evidence : {};
     const {
       onsd = 4.65,
       heartRate = 71,

@@ -15,16 +15,16 @@ export class SomatoScanEngine {
     this.conceptsMap = new Map();
     this.adaptedTargets = adaptedTargets || {};
 
-    if (atlas && atlas.parts) {
+    if (atlas && Array.isArray(atlas.parts)) {
       atlas.parts.forEach((p, idx) => {
         this.partsMap.set(p.id, { ...p, index: idx });
       });
     }
 
-    if (atlas && atlas.concepts) {
+    if (atlas && Array.isArray(atlas.concepts)) {
       atlas.concepts.forEach(c => {
         this.conceptsMap.set(c.id, c);
-        this.conceptsMap.set(c.name.toLowerCase(), c);
+        if (c.name) this.conceptsMap.set(c.name.toLowerCase(), c);
       });
     }
   }
@@ -34,14 +34,18 @@ export class SomatoScanEngine {
     this.partsMap.clear();
     this.conceptsMap.clear();
 
-    atlas.parts.forEach((p, idx) => {
-      this.partsMap.set(p.id, { ...p, index: idx });
-    });
+    if (atlas && Array.isArray(atlas.parts)) {
+      atlas.parts.forEach((p, idx) => {
+        this.partsMap.set(p.id, { ...p, index: idx });
+      });
+    }
 
-    atlas.concepts.forEach(c => {
-      this.conceptsMap.set(c.id, c);
-      this.conceptsMap.set(c.name.toLowerCase(), c);
-    });
+    if (atlas && Array.isArray(atlas.concepts)) {
+      atlas.concepts.forEach(c => {
+        this.conceptsMap.set(c.id, c);
+        if (c.name) this.conceptsMap.set(c.name.toLowerCase(), c);
+      });
+    }
   }
 
   /**
@@ -73,9 +77,10 @@ export class SomatoScanEngine {
     }
 
     // 2. Fallback to direct part name search
+    const parts = (this.atlas && Array.isArray(this.atlas.parts)) ? this.atlas.parts : [];
     if (matchedElements.length === 0) {
-      for (const p of this.atlas.parts) {
-        if (p.name.toLowerCase().includes(q)) {
+      for (const p of parts) {
+        if (p.name && p.name.toLowerCase().includes(q)) {
           matchedElements.push(p.id);
           matchedName = p.name;
           matchedSystem = p.system;
