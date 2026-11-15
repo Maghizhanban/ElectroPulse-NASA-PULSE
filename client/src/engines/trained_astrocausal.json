@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "adaptationLevel": "Active Deep-Space Autonomous Rewiring",
+    "evidenceSources": 11,
+    "hzePhysicsModel": true,
+    "waterShelterRule": true
+  },
+  "dirichletPriors": {
+    "sans_fluid_shift": 3.5,
+    "cardiovascular_deconditioning": 4.75,
+    "cabin_hypercapnia": 1.5,
+    "acute_radiation_sickness": 4.5,
+    "psychomotor_fatigue": 3.0
+  },
+  "priorProbabilities": {
+    "sans_fluid_shift": 0.2029,
+    "cardiovascular_deconditioning": 0.2754,
+    "cabin_hypercapnia": 0.087,
+    "acute_radiation_sickness": 0.2609,
+    "psychomotor_fatigue": 0.1739
+  },
+  "likelihoodModifiers": {
+    "radiation_nausea_threshold_uSv": 45.0,
+    "cns_entropy_vulnerability_factor": 1.45,
+    "cardiac_arrhythmia_radiation_factor": 1.3
+  }
+}

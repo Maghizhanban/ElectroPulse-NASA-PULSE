@@ -1,0 +1,1692 @@
+{
+  "metadata": {
+    "sourcePdf": "NASA-STD-3001 Base Flight Rules",
+    "totalPages": 0,
+    "totalChunks": 96,
+    "vocabularySize": 0,
+    "identifiedStandards": [
+      "NASA-STD-3001-VOL-1",
+      "NASA-STD-3001-VOL-2",
+      "NASA-CPG-2024-SANS-03"
+    ],
+    "identifiedThresholds": [
+      "> 5.0 mm",
+      "> 120/80 mmHg",
+      "> 18 uSv/h"
+    ],
+    "lastTrainedSource": "Canadian Space Agency Science (https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp)"
+  },
+  "vocabulary": [],
+  "knowledgeChunks": [
+    {
+      "id": 1,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [00:31]",
+      "content": "[00:09] just as early explorers had to endure [00:11] weather as they traveled to new lands [00:12] and explore new areas astronauts when [00:15] they go on space travel outside the [00:17] earth's magnetic field will have to [00:19] endure space weather the space weather [00:21] would include things like galactic [00:22] cosmic rays which are remnants from [00:24] supernova [00:25] and also solar storms which include [00:27] things like solar particle events and [00:28] coronal mass ejections [00:31] so as astronauts are traveling to mars",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [00:52]",
+      "content": "[00:33] they're going to be enduring the space [00:34] weather and it's harmful to the body in [00:36] a couple different ways there's an [00:37] in-flight risk from things like solar [00:39] storms and those really present acute [00:41] radiation sickness type issues that [00:42] would have to be dealt with [00:43] operationally in real time and then [00:45] there's also long-term late effects like [00:47] cancer cardiovascular disease and [00:49] possible central nervous system effects [00:52] those are more possibly late-term",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [01:17]",
+      "content": "[00:54] effects that would come into play after [00:55] the mission [00:58] just like the early explorers nasa's [01:00] mission is to bring all of the [01:01] astronauts home safely [01:02] and to do that we're investing and [01:05] looking into these shield design [01:06] strategies that include ways that [01:08] mitigate exposure from all forms of [01:10] space weather so we look at habitat [01:13] design and overall vehicle optimization [01:15] to reduce the in-flight risk from solar [01:17] storms but then we're also looking at",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [01:17]",
+      "content": "[01:19] material design [01:21] and other vehicle optimization [01:22] strategies to reduce the risk from [01:25] long-term exposure to galactic cosmic [01:26] rays [01:29] [Music]",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [00:31]",
+      "content": "[00:09] just as early explorers had to endure [00:11] weather as they traveled to new lands [00:12] and explore new areas astronauts when [00:15] they go on space travel outside the [00:17] earth's magnetic field will have to [00:19] endure space weather the space weather [00:21] would include things like galactic [00:22] cosmic rays which are remnants from [00:24] supernova [00:25] and also solar storms which include [00:27] things like solar particle events and [00:28] coronal mass ejections [00:31] so as astronauts are traveling to mars",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [00:52]",
+      "content": "[00:33] they're going to be enduring the space [00:34] weather and it's harmful to the body in [00:36] a couple different ways there's an [00:37] in-flight risk from things like solar [00:39] storms and those really present acute [00:41] radiation sickness type issues that [00:42] would have to be dealt with [00:43] operationally in real time and then [00:45] there's also long-term late effects like [00:47] cancer cardiovascular disease and [00:49] possible central nervous system effects [00:52] those are more possibly late-term",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [01:17]",
+      "content": "[00:54] effects that would come into play after [00:55] the mission [00:58] just like the early explorers nasa's [01:00] mission is to bring all of the [01:01] astronauts home safely [01:02] and to do that we're investing and [01:05] looking into these shield design [01:06] strategies that include ways that [01:08] mitigate exposure from all forms of [01:10] space weather so we look at habitat [01:13] design and overall vehicle optimization [01:15] to reduce the in-flight risk from solar [01:17] storms but then we're also looking at",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [01:17]",
+      "content": "[01:19] material design [01:21] and other vehicle optimization [01:22] strategies to reduce the risk from [01:25] long-term exposure to galactic cosmic [01:26] rays [01:29] [Music]",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "file": "NASA-Video-yVZ2i1pg1pI",
+      "page": "Time [00:33]",
+      "content": "[00:02] [Music] [00:08] one of our biggest challenges on a [00:10] mission to mars is protecting the crew [00:12] from radiation you can't see it you [00:15] can't feel it you don't know that you're [00:16] getting bombarded by radiation but we do [00:20] have operational dosimetry and crew [00:22] personal dosimeters that we can measure [00:24] it [00:25] space radiation comes from three major [00:28] sources one is there are radiation [00:32] particles trapped around the earth and [00:33] they're called the van allen radiation",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-yVZ2i1pg1pI"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "file": "NASA-Video-yVZ2i1pg1pI",
+      "page": "Time [01:02]",
+      "content": "[00:35] belts the second source of radiation is [00:38] from the sun during times of intense [00:40] solar activity there can be solar storms [00:43] and high fluxes of radiation [00:46] protons in particular can reach earth [00:48] the third source of radiation in space [00:51] is called galactic cosmic radiation and [00:53] that's the one that's of most concern [00:55] for emission to mars the galactic cosmic [00:58] rays come from exploding stars that we [01:01] call supernovas [01:02] so i think one of the common",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-yVZ2i1pg1pI"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "file": "NASA-Video-yVZ2i1pg1pI",
+      "page": "Time [01:20]",
+      "content": "[01:03] misconceptions about space radiation is [01:05] just how different it is [01:07] from the type of radiation we have here [01:08] on earth so here on earth when you think [01:10] about sitting down in a dentist chair [01:11] they put [01:12] some kind of lead blanket on your chest [01:14] to protect you could protect you against [01:15] x-rays [01:16] in space [01:18] it actually is very different we don't [01:19] want heavy materials because it makes [01:20] the exposure worse we want things like",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-yVZ2i1pg1pI"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "file": "NASA-Video-yVZ2i1pg1pI",
+      "page": "Time [01:43]",
+      "content": "[01:22] hydrogen things like water and [01:24] polyethylene the primary reason for that [01:26] is in space we have particle radiation [01:28] instead of electromagnetic radiation [01:30] particle irradiation is as basically [01:32] everything on the periodic table [01:34] hydrogen all the way up through nickel [01:36] and uranium but moving at speeds that [01:38] are close to the speed of light [01:40] so thinking about the differences [01:41] between earth-based radiation and space [01:43] radiation we have a long history and a",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-yVZ2i1pg1pI"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "file": "NASA-Video-yVZ2i1pg1pI",
+      "page": "Time [01:43]",
+      "content": "[01:46] decent amount of data [01:47] about the biological consequences of [01:50] exposure to terrestrial radiation where [01:52] we lack data and we have a large amount [01:54] of uncertainty is the biological [01:56] consequences of space radiation uh and [01:59] so really the next steps are and and the [02:01] ongoing steps are to try to understand [02:04] those exposures better and the [02:05] biological consequences that follow them [02:31] you",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-yVZ2i1pg1pI"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "file": "NASA-Video-uujpLFMCp-A",
+      "page": "Time [00:26]",
+      "content": "[00:01] [Music] [00:07] so of all the things that the human [00:09] research program is investigating the [00:11] biological consequences of radiation [00:13] exposure is one of the major ones some [00:15] of the reasons for that is that the [00:16] health consequences following radiation [00:18] exposure are very complex processes it's [00:21] difficult to quantify exactly how the [00:23] radiation is interacting with tissue and [00:25] then it's even more complicated to try [00:26] to quantify and determine what the",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-uujpLFMCp-A"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "file": "NASA-Video-uujpLFMCp-A",
+      "page": "Time [00:52]",
+      "content": "[00:28] long-term outcomes are going to be in [00:30] terms of things like carcinogenesis [00:32] central nervous system effects and [00:34] detriment to the central nervous system [00:36] the primary means by which radiation [00:38] affects cells is by damaging their DNA [00:41] you can get breaks in the strands and [00:42] the double helix you can knock bases out [00:46] and the cell will make an attempt to [00:47] repair that damage sometimes it's [00:50] effective sometimes it's not and [00:52] sometimes it'll actually get repaired",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-uujpLFMCp-A"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "file": "NASA-Video-uujpLFMCp-A",
+      "page": "Time [01:16]",
+      "content": "[00:54] but in an eror prone fashion so it's [00:56] what we call [00:57] misrepaired so anything that sets in [01:00] into the genome in that way is a [01:01] mutation and the accumulation of [01:03] mutations can potentially lead to to [01:05] cancer and take a noncancerous cell a [01:08] normal cell and make it transformed into [01:10] a cancerous one so that's a big [01:12] concern so on Earth there's a couple [01:15] characteristic things that are different [01:16] from space one of them is that the type",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-uujpLFMCp-A"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "file": "NASA-Video-uujpLFMCp-A",
+      "page": "Time [01:37]",
+      "content": "[01:18] of radiation we experience on Earth is [01:20] generally what we refer to as low let [01:22] radiation things like gamma rays and [01:24] x-rays we also have the protective [01:26] shielding of the Earth's magnetic field [01:27] and the atmosphere which Shields a great [01:29] deal of the radiation and then finally [01:31] we have things like radiation protection [01:33] Concepts such as time shielding and [01:35] distance so we can reduce the time of [01:37] exposure on Earth we can reduce the",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-uujpLFMCp-A"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "file": "NASA-Video-uujpLFMCp-A",
+      "page": "Time [01:58]",
+      "content": "[01:39] distance from the radiation sources and [01:41] we can reduce the exposure through [01:43] shielding in space a lot of those things [01:45] are very different so we have a very [01:47] complex radiation field that includes [01:49] things like protons and all the [01:51] particles on the periodic table of [01:52] elements they're coming in at energies [01:54] that are approaching the speed of light [01:56] and they're difficult to Shield against [01:58] and they're always there so the concept",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-uujpLFMCp-A"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "file": "NASA-Video-uujpLFMCp-A",
+      "page": "Time [01:58]",
+      "content": "[02:00] of time really doesn't make sense [02:01] because you can't reduce the exposure in [02:04] space except perhaps getting to Mars [02:06] faster you can't really reduce the [02:08] distance at all because the radiation is [02:09] everywhere and shielding concepts for [02:11] Galactic cosmic rays are very difficult [02:13] because of the energies involved [02:16] [Music] [02:21] [Music]",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-uujpLFMCp-A"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "file": "NASA-Video-Dtp9zjvNWw8",
+      "page": "Time [00:25]",
+      "content": "[00:03] the two schools have thought are you [00:04] either bring the samples up to the [00:05] radiation in space or you bring the [00:08] radiation from space down to earth and [00:10] that's fundamentally what a particle [00:11] accelerator does the entire particle [00:14] accelerator complex at Brook Hava [00:16] National Laboratory serves as the input [00:20] to the NASA space radiation laboratory [00:22] itself with some terrific upgrades that [00:25] took place along the the lifespan of the",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-Dtp9zjvNWw8"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "file": "NASA-Video-Dtp9zjvNWw8",
+      "page": "Time [00:54]",
+      "content": "[00:28] nsrl facility itself but espe esally in [00:30] 2016 with the Advent of the galactic [00:32] Cosmic race simulator um it's now much [00:35] easier and more practical and realistic [00:37] to deliver a more space like exposure [00:41] which involves changing those ion [00:43] species and energies and dose rates on [00:45] the Fly because that's the situation [00:47] that happens in space a heavier particle [00:50] has the potential to cause more [00:52] biological damage than a lighter [00:54] particle even at the exact same dose",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-Dtp9zjvNWw8"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "file": "NASA-Video-Dtp9zjvNWw8",
+      "page": "Time [01:22]",
+      "content": "[00:57] analogy I can use is it's like the pound [00:59] of feathers versus pound of lead [01:01] argument they're both a pound but if I [01:03] drop the pound of feathers on your foot [01:05] you might barely feel it but if I drop [01:07] the pound of lead on your foot it might [01:08] break a few toes this for the same [01:11] radiation dose uh what what is the [01:14] resulting biological outcome because [01:17] different types of radiation have [01:19] different relative abilities to cause [01:22] damage and cause negative effects in",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-Dtp9zjvNWw8"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 23,
+      "file": "NASA-Video-Dtp9zjvNWw8",
+      "page": "Time [01:48]",
+      "content": "[01:24] living systems the Brook Haven National [01:27] Laboratory particle accelerator complex [01:29] and the space radiation laboratory [01:31] that's an offshoot of that uh is the [01:34] only facility in the United States [01:36] capable of delivering CH particle [01:38] radiation species the upgrades to the [01:41] NASA space radiation laboratory complex [01:43] as a whole are very important to try to [01:46] assess risk assessment and get a much [01:48] more realistic space exposure scenario",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-Dtp9zjvNWw8"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "file": "NASA-Video-Dtp9zjvNWw8",
+      "page": "Time [01:48]",
+      "content": "[01:51] when you talk about emission to Mars for [01:53] example that would take 2 to 3 years [01:56] instead of trying to take a leap of [01:57] faith and piece different segments of [01:59] data together to try to see what the [02:01] overall situation would be during actual [02:03] space travel we can now perform those [02:06] experiments directly",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-Dtp9zjvNWw8"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "file": "NASA-Video-leIL6UebGsU",
+      "page": "Time [00:33]",
+      "content": "[00:02] [Music] [00:08] the nasa space radiation laboratory is [00:10] an outgrowth of brookhaven national [00:12] laboratory's particle accelerator it [00:14] utilizes the heavy charged particle [00:17] radiation beam [00:18] from various components already existing [00:20] at brookhaven lab [00:22] to then deliver specific doses ions and [00:25] energies of radiation to the actual nasa [00:28] space radiation lab itself with the goal [00:30] to determine the potential risks to [00:33] human beings from exposure to radiation",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-leIL6UebGsU"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "file": "NASA-Video-leIL6UebGsU",
+      "page": "Time [01:00]",
+      "content": "[00:35] during space travel [00:38] the bulk of the radio biology data that [00:40] we've collected from the nasa space [00:41] radiation research laboratory has really [00:44] helped us establish our space [00:46] permissible exposure limits [00:48] nasa has a set of limits that helps [00:52] protect the astronauts not only from the [00:53] short-term effects of radiation but also [00:55] the long-term health effects in order to [00:58] establish what those limits should be we [01:00] have to understand how space radiation",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-leIL6UebGsU"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "file": "NASA-Video-leIL6UebGsU",
+      "page": "Time [01:27]",
+      "content": "[01:02] is different than terrestrial radiation [01:05] and the experiments at nsrl has helped [01:07] us establish our permissible exposure [01:10] limits in terms of protecting the crew [01:12] from the risk of radiation [01:14] carcinogenesis and also setting [01:16] non-cancer career limits to the brain [01:19] for central nervous system effects and [01:21] also to the heart for cardiovascular [01:23] disease [01:25] the primary difference with trying to [01:27] compare what type of radiation dose an",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-leIL6UebGsU"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "file": "NASA-Video-leIL6UebGsU",
+      "page": "Time [01:52]",
+      "content": "[01:29] astronaut would get on a mission to mars [01:31] versus what a person could expect in [01:33] their day-to-day life over over time is [01:35] that time factor [01:37] now a mission to mars depending on when [01:39] you go and how the planets are aligned [01:41] and such you're still looking at [01:43] approximately a two to three year [01:45] mission and while that seems like a long [01:47] time it's very different than the amount [01:49] of time that say a a non-astronaut just [01:52] a regular",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-leIL6UebGsU"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "file": "NASA-Video-leIL6UebGsU",
+      "page": "Time [02:18]",
+      "content": "[01:53] person that has nothing to do with space [01:54] travel gets over say a 70 80 year [01:57] lifespan from say some radon gas in the [01:59] home or from medical tests that are [02:02] administered where you get a certain [02:04] amount of dose from [02:05] ct scans or pet scans and x-rays through [02:09] the course of life [02:11] so you're delivering a certain amount of [02:13] radiation dose in a more compressed [02:15] period of time than you would to the [02:16] person that [02:18] has never been a space traveler and such",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-leIL6UebGsU"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "file": "NASA-Video-leIL6UebGsU",
+      "page": "Time [02:18]",
+      "content": "[02:20] and that's one of the trickiest aspects [02:22] to trying to determine radiation dose [02:25] the same amount of radiation below those [02:26] delivered in a day is very different [02:28] than that same dose delivered in three [02:30] years even though well it's the same [02:32] dose it's not that simple and that has [02:34] to be evaluated when you try to [02:36] determine the potential risks of [02:39] absorbing that kind of a dose [02:41] [Music] [02:56] [Music] [03:03] you",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-leIL6UebGsU"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "file": "NASA-Video-cz5tSegU16E",
+      "page": "Time [00:34]",
+      "content": "[00:02] [Music] [00:07] for the journey to mars the human [00:08] research program works to project assess [00:12] and solve the problems that astronauts [00:14] have in space specifically for radiation [00:18] research the human research program [00:20] works to predict and mitigate [00:23] the health effects of space radiation on [00:26] astronauts [00:27] i think one of the most challenging [00:29] parts for the journey to mars in terms [00:31] of the humans and not necessarily the [00:34] technology to get there",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-cz5tSegU16E"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "file": "NASA-Video-cz5tSegU16E",
+      "page": "Time [00:58]",
+      "content": "[00:36] is the risk of radiation exposure and [00:38] the in-flight consequences of the [00:40] exposure to radiation as well as the [00:43] long-term health consequences of [00:45] exposure [00:46] there's two parts of radiation we have [00:48] to protect the crew from one is a solar [00:50] particle event where there's a solar [00:52] storm and these energetic particles [00:54] stream out [00:55] unfortunately we know how to protect the [00:56] crew from that we put them into a [00:58] shelter that's shielded by lots of water",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-cz5tSegU16E"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 33,
+      "file": "NASA-Video-cz5tSegU16E",
+      "page": "Time [01:24]",
+      "content": "[01:00] and actually they're very short duration [01:03] hours to days at most they can come out [01:06] and continue with their journey that's [01:08] the one aspect of radiation we know how [01:10] to protect against the other which we [01:12] really don't have a firm handle on is [01:14] galactic cosmic rays these are highly [01:16] energetic particles that come from all [01:19] over the galaxy towards the solar system [01:22] and earth you can't shield against these [01:24] they're so energetic they rip right",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-cz5tSegU16E"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 34,
+      "file": "NASA-Video-cz5tSegU16E",
+      "page": "Time [01:49]",
+      "content": "[01:26] through all metals all plastic all water [01:29] and all cellular material and as they [01:31] rip through the materials little [01:33] electrons and protons pull off of them [01:36] and you end up getting a cascade effect [01:38] of radiation throughout the materials [01:40] and sometimes going through certain [01:42] materials causes a worst radiation [01:44] environment for the crew that hadn't [01:45] gone through other materials so we try [01:47] to design the spacecraft out of [01:49] materials that shield the crew from",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-cz5tSegU16E"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 35,
+      "file": "NASA-Video-cz5tSegU16E",
+      "page": "Time [02:17]",
+      "content": "[01:51] these but also do not produce more [01:53] hazardous particles as a function of [01:55] being impacted with it [01:58] so a lot of people think that radiation [02:02] will keep nasa from sending people to [02:04] mars and that's not [02:06] what the current situation is we have [02:08] techniques we've discussed ways of [02:10] getting there faster [02:11] we know that we add these various [02:13] mitigations up [02:15] that we can have a successful mars [02:17] mission a healthy crew and have them",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-cz5tSegU16E"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 36,
+      "file": "NASA-Video-cz5tSegU16E",
+      "page": "Time [02:17]",
+      "content": "[02:19] live a very long and productive life [02:21] after the return to earth [02:25] [Music] [02:33] [Music] [02:48] you",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-cz5tSegU16E"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "file": "NASA-Video-ryHNj_SLwlE",
+      "page": "Time [00:25]",
+      "content": "[00:00] What are the dangers of going to space? [00:03] We Asked a NASA Scientist. [00:05] What are the dangers of going into space? [00:08] For human spaceflight, [00:09] the first thing I think about [00:11] is the astronauts [00:12] actually strapping themselves to a rocket. [00:15] And if that isn't dangerous enough, [00:18] once they launch [00:19] and they're out into space in deep exploration, [00:22] we have to worry about radiation. [00:25] Radiation is coming at them from all directions.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-ryHNj_SLwlE"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 38,
+      "file": "NASA-Video-ryHNj_SLwlE",
+      "page": "Time [00:52]",
+      "content": "[00:28] From the Sun, we have solar particles. [00:30] We have galactic cosmic rays [00:32] that are all over in the universe. [00:34] And those cause damage to DNA. [00:37] On Earth here, [00:38] we use sunscreen to protect us from DNA damage. [00:42] Our astronauts are protected from the shielding [00:44] that's around them in the space vehicles. [00:47] We also have to worry about microgravity. [00:49] So what happens there? [00:51] We see a lot of bone [00:52] and muscle loss in our astronauts.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-ryHNj_SLwlE"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 39,
+      "file": "NASA-Video-ryHNj_SLwlE",
+      "page": "Time [01:17]",
+      "content": "[00:54] And so to prevent this, [00:56] we actually have the astronauts [00:57] exercising for hours every day. [01:01] And of course we don't want to run out of food [01:03] on a space exploration mission. [01:05] So we want to make sure [01:06] that we have everything [01:08] that the astronauts need to take with them [01:10] to make sure that we can sustain them. [01:12] There are many risks associated [01:14] with human space exploration. [01:16] NASA has been planning [01:17] for these missions",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-ryHNj_SLwlE"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "file": "NASA-Video-ryHNj_SLwlE",
+      "page": "Time [01:17]",
+      "content": "[01:18] to make our astronauts return home safely. [01:23] We Asked a NASA Scientist. [01:25] NASA. A NASA 360 Production.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-ryHNj_SLwlE"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 41,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [00:31]",
+      "content": "[00:09] just as early explorers had to endure [00:11] weather as they traveled to new lands [00:12] and explore new areas astronauts when [00:15] they go on space travel outside the [00:17] earth's magnetic field will have to [00:19] endure space weather the space weather [00:21] would include things like galactic [00:22] cosmic rays which are remnants from [00:24] supernova [00:25] and also solar storms which include [00:27] things like solar particle events and [00:28] coronal mass ejections [00:31] so as astronauts are traveling to mars",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [00:52]",
+      "content": "[00:33] they're going to be enduring the space [00:34] weather and it's harmful to the body in [00:36] a couple different ways there's an [00:37] in-flight risk from things like solar [00:39] storms and those really present acute [00:41] radiation sickness type issues that [00:42] would have to be dealt with [00:43] operationally in real time and then [00:45] there's also long-term late effects like [00:47] cancer cardiovascular disease and [00:49] possible central nervous system effects [00:52] those are more possibly late-term",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 43,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [01:17]",
+      "content": "[00:54] effects that would come into play after [00:55] the mission [00:58] just like the early explorers nasa's [01:00] mission is to bring all of the [01:01] astronauts home safely [01:02] and to do that we're investing and [01:05] looking into these shield design [01:06] strategies that include ways that [01:08] mitigate exposure from all forms of [01:10] space weather so we look at habitat [01:13] design and overall vehicle optimization [01:15] to reduce the in-flight risk from solar [01:17] storms but then we're also looking at",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 44,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [01:17]",
+      "content": "[01:19] material design [01:21] and other vehicle optimization [01:22] strategies to reduce the risk from [01:25] long-term exposure to galactic cosmic [01:26] rays [01:29] [Music]",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 45,
+      "file": "NASA-Video-sK-IDNBPIM4",
+      "page": "Time [INFO 1]",
+      "content": "Space Radiation: NASA Protects Its Superheroes From Space Weather - Related Story: https://www.nasa.gov/feature/nasa-protects-its-super-heroes-from-space-weather\nIt\u2019s not a bird or a plane but it might be a solar storm. We like to think of astronauts as our superheroes, but the reality is astronauts are not built like Superman who gains strength from the sun. In fact, much of the energy radiating from the sun is harmful to us mere mortals. Outside Earth\u2019s protective magnetic field and atmosphere, the ionizing radiation in space will pose a serious risk to astronauts as they travel to Mars. High-energy galactic cosmic rays (GCRs) which are remnants from supernovas and solar storms like solar particle events (SPEs) and coronal mass ejections (CMEs) from the sun can cause harm to the body and spacecraft. These are all components of space weather.\nWhen astronauts travel in space they can\u2019t see or even feel radiation. However, NASA\u2019s Human Research Program (HRP) is studying the effects radiation plays on the human body and developing ways to monitor and protect against this silent hazard. \nLearn how astronauts will endure space weather beyond low Earth orbit at https://www.nasa.gov/hrp/",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-sK-IDNBPIM4"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 46,
+      "file": "NASA-Video-FPinASEKA_I",
+      "page": "Time [INFO 1]",
+      "content": "Hazards of Human Spaceflight | Hazard 2: Isolation & Confinement - Exploration to the Moon and Mars will expose astronauts to five known hazards of spaceflight, including radiation. To learn more, and find out what NASA\u2019s Human Research Program is doing to protect humans in space, explore the resources below. Visit NASA\u2019s Space Radiation website at https://www.nasa.gov/hrp/hazards",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-FPinASEKA_I"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 47,
+      "file": "NASA-Video-0_pbs8dG1oM",
+      "page": "Time [00:00]",
+      "content": "[00:01] [Music]",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-0_pbs8dG1oM"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 48,
+      "file": "NASA-Video-0_pbs8dG1oM",
+      "page": "Time [INFO 1]",
+      "content": "Hazards of Human Spaceflight | Hazard 3: Distance From Earth - Exploration to the Moon and Mars will expose astronauts to five known hazards of spaceflight, including distance from Earth. To learn more, and find out what NASA\u2019s Human Research Program is doing to protect humans in space, explore the resources below. Visit NASA\u2019s Space Radiation website at https://www.nasa.gov/hrp/hazards",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-0_pbs8dG1oM"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 49,
+      "file": "NASA-Video-f3-96ZbY5NA",
+      "page": "Time [INFO 1]",
+      "content": "Hazards of Human Spaceflight | Hazard 4: Gravity Fields - Exploration to the Moon and Mars will expose astronauts to five known hazards of spaceflight, including gravity fields. To learn more, and find out what NASA\u2019s Human Research Program is doing to protect humans in space, explore the resources below. Visit NASA\u2019s Space Radiation website at https://www.nasa.gov/hrp/hazards",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-f3-96ZbY5NA"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 50,
+      "file": "NASA-Video-LgGt03MjHfA",
+      "page": "Time [00:00]",
+      "content": "[00:24] [Music] [00:37] [Applause] [00:37] [Music] [01:16] so [01:29] so [01:42] so [01:46] [Music] [02:20] [Applause] [02:22] [Music] [03:03] you",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-LgGt03MjHfA"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 51,
+      "file": "NASA-Video-LgGt03MjHfA",
+      "page": "Time [INFO 1]",
+      "content": "Hazards of Human Spaceflight | Hazard 5: Hostile Closed Environments - Exploration to the Moon and Mars will expose astronauts to five known hazards of spaceflight, including hostile and closed environments. To learn more, and find out what NASA\u2019s Human Research Program is doing to protect humans in space, explore the resources below. Visit NASA\u2019s Space Radiation website at https://www.nasa.gov/hrp/hazards",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-VIDEO-LgGt03MjHfA"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic",
+          "cardiac",
+          "brain"
+        ]
+      }
+    },
+    {
+      "id": 52,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #1",
+      "content": "NASA Human Research Program Official Risk: Risk of Altered Immune System Responses. Core Mechanism: The stresses of spaceflight can awaken inactive viruses inside the bodies of astronauts, leading to rashes and other symptoms. Ongoing work seeks to further understand changes in the immune system to better protect astronaut health.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-RESPONSES"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "spleen"
+        ],
+        "system": "lymphatic",
+        "risk_title": "Risk of Altered Immune System Responses"
+      }
+    },
+    {
+      "id": 53,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #2",
+      "content": "NASA Human Research Program Official Risk: Risk of Altered Sensorimotor and Vestibular Function. Core Mechanism: Astronauts can experience motion sickness, issues with hand-eye or gait coordination, and dizziness during gravitational changes, making it difficult to walk or operate a vehicle. Ongoing research seeks to help astronauts recover faster from these changes so they can perform tasks inside and outside spacecraft.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-FUNCTION"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "risk_title": "Risk of Altered Sensorimotor and Vestibular Function"
+      }
+    },
+    {
+      "id": 54,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #3",
+      "content": "NASA Human Research Program Official Risk: Risk of Cardiovascular Adaptations. Core Mechanism: Weightlessness alters blood circulation and how the heart and blood vessels function, potentially increasing the risk of cardiovascular events. Research focuses on minimizing these unhealthy changes.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-ADAPTATIONS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "heart"
+        ],
+        "system": "cardiac",
+        "risk_title": "Risk of Cardiovascular Adaptations"
+      }
+    },
+    {
+      "id": 55,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #4",
+      "content": "NASA Human Research Program Official Risk: Risk of Decompression Sickness. Core Mechanism: Transitioning from a pressurized spacecraft to a lower-pressure spacesuit can cause health and mission complications when dissolved nitrogen starts to bubble within body tissues. Research focuses on developing better prevention and faster treatment options.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-SICKNESS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "lungs"
+        ],
+        "system": "respiratory",
+        "risk_title": "Risk of Decompression Sickness"
+      }
+    },
+    {
+      "id": 56,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #5",
+      "content": "NASA Human Research Program Official Risk: Risk of Host-Microorganism Interactions. Core Mechanism: Skin and gut microbiomes can change in space, potentially increasing the risk of crew members getting sick. To help keep crews healthy, researchers are exploring these microbial ecosystems and how they evolve in space.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-INTERACTIONS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "stomach"
+        ],
+        "system": "digestive",
+        "risk_title": "Risk of Host-Microorganism Interactions"
+      }
+    },
+    {
+      "id": 57,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #6",
+      "content": "NASA Human Research Program Official Risk: Risk of Hypoxia. Core Mechanism: Astronauts on future deep space missions will take steps to avoid \u201cthe bends\u201d during spacewalks, but following those steps also\u00a0elevates the risk of mild hypoxia \u2014 a condition that occurs when oxygen levels in body tissues become lower than normal.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-HYPOXIA"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "lungs"
+        ],
+        "system": "respiratory",
+        "risk_title": "Risk of Hypoxia"
+      }
+    },
+    {
+      "id": 58,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #7",
+      "content": "NASA Human Research Program Official Risk: Risk of Inadequate Food and Nutrition. Core Mechanism: A healthy, balanced diet is an essential element of crew health and performance. Ongoing research focuses on designing enjoyable, long-lasting, and nutritious meals for deep space missions and understanding the consequences of inadequate nutrition.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-NUTRITION"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "liver"
+        ],
+        "system": "digestive",
+        "risk_title": "Risk of Inadequate Food and Nutrition"
+      }
+    },
+    {
+      "id": 59,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #8",
+      "content": "NASA Human Research Program Official Risk: Risk of Injury and Compromised Performance from Spacewalks. Core Mechanism: Working in a spacesuit is challenging. In addition to cognitive fatigue and injury, crew members must also manage risks in the spacewalk environment, including decompression sickness, and low oxygen and high carbon dioxide levels. Research focuses on characterizing human performance in spacesuits and balancing pressure and oxygen levels.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-SPACEWALKS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "soleus"
+        ],
+        "system": "muscular",
+        "risk_title": "Risk of Injury and Compromised Performance from Spacewalks"
+      }
+    },
+    {
+      "id": 60,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #9",
+      "content": "NASA Human Research Program Official Risk: Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness. Core Mechanism: All astronauts perform exercise during their mission to counteract losses in bone density, muscle strength, and heart and blood vessel performance. Researchers are studying what types of exercise will best protect their health and their ability to perform spacewalks.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-FITNESS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "soleus"
+        ],
+        "system": "muscular",
+        "risk_title": "Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness"
+      }
+    },
+    {
+      "id": 61,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #10",
+      "content": "NASA Human Research Program Official Risk: Risk of Spaceflight Associated Neuro-ocular Syndrome (SANS). Core Mechanism: The structure of the eyes and brain can change with spaceflight.\u00a0 Research focuses on understanding the long-term health consequences of these changes and preventing them from occurring.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-(SANS)"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic nerve"
+        ],
+        "system": "sensory",
+        "risk_title": "Risk of Spaceflight Associated Neuro-ocular Syndrome (SANS)"
+      }
+    },
+    {
+      "id": 62,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #11",
+      "content": "NASA Human Research Program Official Risk: Risk of Spaceflight-Induced Bone Changes. Core Mechanism: Without gravity, bones break down and become more brittle, boosting the chances of painful breaks. Ongoing research seeks to better understand and quantify these losses, and help preserve bone strength through diet, exercise, and medication.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-CHANGES"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "lumbar"
+        ],
+        "system": "skeletal",
+        "risk_title": "Risk of Spaceflight-Induced Bone Changes"
+      }
+    },
+    {
+      "id": 63,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #12",
+      "content": "NASA Human Research Program Official Risk: Risk of Behavioral Changes and Psychiatric Disorders. Core Mechanism: Isolation, radiation, distance from Earth, and other intense space stressors may all take a toll on the mental health of the crew. Ongoing research seeks to better understand and quantify these psychological risks.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-DISORDERS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "risk_title": "Risk of Behavioral Changes and Psychiatric Disorders"
+      }
+    },
+    {
+      "id": 64,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #13",
+      "content": "NASA Human Research Program Official Risk: Risk of Inadequate Teamwork. Core Mechanism: Selecting a crew that works well together is essential for mission success and safety. Researchers are studying how to help teams in prolonged isolation and confinement function efficiently and quickly recover after setbacks occur. They\u2019re also mapping the myriad risks from miscommunications and related team tensions.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-TEAMWORK"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "risk_title": "Risk of Inadequate Teamwork"
+      }
+    },
+    {
+      "id": 65,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #14",
+      "content": "NASA Human Research Program Official Risk: Risk of Inadequate Sleep and Irregular Schedules. Core Mechanism: Space crews experience multiple hazards simultaneously. Stressors include chronic sleep loss, constant work demands, and irregularities in their internal biological clocks. Understanding how to reduce the effects of these stressors on crew health and safety is an ongoing area of research.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-SCHEDULES"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "risk_title": "Risk of Inadequate Sleep and Irregular Schedules"
+      }
+    },
+    {
+      "id": 66,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #15",
+      "content": "NASA Human Research Program Official Risk: Risk of Inadequate Systems Operations Support. Core Mechanism: Future crews on deep space missions must be able to live and work in an environment where they may face unexpected problems with software, vehicles, or other systems. Research focuses on understanding when crews need information, the types and timing of required training, or other support options.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-SUPPORT"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "risk_title": "Risk of Inadequate Systems Operations Support"
+      }
+    },
+    {
+      "id": 67,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #16",
+      "content": "NASA Human Research Program Official Risk: Risk of Injury from Dynamic Loads. Core Mechanism: During landing activities, crews risk getting injured. Understanding the likelihood of such injuries and how to better prevent them are areas of ongoing research.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-LOADS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "lumbar"
+        ],
+        "system": "skeletal",
+        "risk_title": "Risk of Injury from Dynamic Loads"
+      }
+    },
+    {
+      "id": 68,
+      "file": "NASA-HRP-RISK-PORTFOLIO",
+      "page": "HRP Risk #17",
+      "content": "NASA Human Research Program Official Risk: Risk of Radiation-Induced Cancers. Core Mechanism: Crews exposed to radiation from space may be more likely to develop cancer. Identifying the best ways to mitigate this risk and understand what interventions may help are ongoing research priorities.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-CANCERS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "risk_title": "Risk of Radiation-Induced Cancers"
+      }
+    },
+    {
+      "id": 69,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Immune Biomarkers",
+      "content": "NASA HRP Active Investigation: Immune Biomarkers (Immune Surveillance). Description: Scientists analyzed blood and saliva samples from Artemis II crew members to see how deep space changes the immune system.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-IMMUNE"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "spleen"
+        ],
+        "system": "lymphatic",
+        "category": "Immune Surveillance",
+        "study_title": "Immune Biomarkers"
+      }
+    },
+    {
+      "id": 70,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Artemis II Standard Measures",
+      "content": "NASA HRP Active Investigation: Artemis II Standard Measures (Deep Space Baseline). Description: Crews supplied a consistent set of health information to a data bank so that future researchers can learn more about astronaut health.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-ARTEMIS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "category": "Deep Space Baseline",
+        "study_title": "Artemis II Standard Measures"
+      }
+    },
+    {
+      "id": 71,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: B-Complex",
+      "content": "NASA HRP Active Investigation: B-Complex (SANS Metabolic Countermeasure). Description: Investigating if a daily B vitamin supplement can prevent or mitigate brain and eye changes that may affect some humans in space",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-B-COMPLEX"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "optic nerve"
+        ],
+        "system": "sensory",
+        "category": "SANS Metabolic Countermeasure",
+        "study_title": "B-Complex"
+      }
+    },
+    {
+      "id": 72,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Brain Fluid Pressure",
+      "content": "NASA HRP Active Investigation: Brain Fluid Pressure (Intracranial ICP Dynamics). Description: Examining the relationship between fluid pressure inside the skull and changes to the eyes and brain of astronauts",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-BRAIN"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "category": "Intracranial ICP Dynamics",
+        "study_title": "Brain Fluid Pressure"
+      }
+    },
+    {
+      "id": 73,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: CIPHER",
+      "content": "NASA HRP Active Investigation: CIPHER (Integrated Human Multi-System Protocol). Description: Providing a better understand of how the human body changes while orbiting the Earth via a suite of studies examining multiple body systems",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-CIPHER"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "heart"
+        ],
+        "system": "cardiac",
+        "category": "Integrated Human Multi-System Protocol",
+        "study_title": "CIPHER"
+      }
+    },
+    {
+      "id": 74,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Simulating Manual Piloting for Moon Landings",
+      "content": "NASA HRP Active Investigation: Simulating Manual Piloting for Moon Landings (Sensorimotor Adaptation). Description: Assessing how gravity transitions may affect the piloting capabilities of astronauts for future Moon landings",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-SIMULATING"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "category": "Sensorimotor Adaptation",
+        "study_title": "Simulating Manual Piloting for Moon Landings"
+      }
+    },
+    {
+      "id": 75,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Spacecraft Occupant Protection",
+      "content": "NASA HRP Active Investigation: Spacecraft Occupant Protection (Dynamic Load Attenuation). Description: Surveying crew members&#039; potential discomfort during re-entry to Earth and combining it with sensor data on spacecraft",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-SPACECRAFT"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "lumbar"
+        ],
+        "system": "skeletal",
+        "category": "Dynamic Load Attenuation",
+        "study_title": "Spacecraft Occupant Protection"
+      }
+    },
+    {
+      "id": 76,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Spinal Fluid Biomarkers",
+      "content": "NASA HRP Active Investigation: Spinal Fluid Biomarkers (Neuro-Axonal Biomarkers). Description: Detecting substances in the spinal fluid of astronauts associated with space-related brain and eye changes",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-SPINAL"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "category": "Neuro-Axonal Biomarkers",
+        "study_title": "Spinal Fluid Biomarkers"
+      }
+    },
+    {
+      "id": 77,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Standard Measures",
+      "content": "NASA HRP Active Investigation: Standard Measures (Physiological Setpoints). Description: Collecting a consistent set of physiological and psychological measurements to better understand how spaceflight affects the bodies and minds of crew members",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-STANDARD"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "heart"
+        ],
+        "system": "cardiac",
+        "category": "Physiological Setpoints",
+        "study_title": "Standard Measures"
+      }
+    },
+    {
+      "id": 78,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Thigh Cuff",
+      "content": "NASA HRP Active Investigation: Thigh Cuff (Cephalad Venous Occlusion Countermeasure). Description: Testing if wearing tight thigh cuffs could keep more bodily fluids in the legs to help determine if future strategies can avert the eye disorders that can develop in space",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-THIGH"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "soleus"
+        ],
+        "system": "venous",
+        "category": "Cephalad Venous Occlusion Countermeasure",
+        "study_title": "Thigh Cuff"
+      }
+    },
+    {
+      "id": 79,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Venous Haemostasis",
+      "content": "NASA HRP Active Investigation: Venous Haemostasis (Thrombosis & Stasis Monitoring). Description: Examining physical differences in astronauts that may contribute to blood flow and blood coagulation changes in space",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-VENOUS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "internal jugular vein"
+        ],
+        "system": "venous",
+        "category": "Thrombosis & Stasis Monitoring",
+        "study_title": "Venous Haemostasis"
+      }
+    },
+    {
+      "id": 80,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Zero T2",
+      "content": "NASA HRP Active Investigation: Zero T2 (Compact Deep-Space Resistive Exercise). Description: Examining how exercise in space without a treadmill affects human health and performance ahead of deep space missions",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-ZERO"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "soleus"
+        ],
+        "system": "muscular",
+        "category": "Compact Deep-Space Resistive Exercise",
+        "study_title": "Zero T2"
+      }
+    },
+    {
+      "id": 81,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Altered Immunity",
+      "content": "NASA HRP Active Investigation: Altered Immunity (Cytokine & Viral Profiling). Description: Analyzing blood, saliva, and urine\u00a0samples\u00a0to investigate how spaceflight alters the immune system",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-ALTERED"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "spleen"
+        ],
+        "system": "lymphatic",
+        "category": "Cytokine & Viral Profiling",
+        "study_title": "Altered Immunity"
+      }
+    },
+    {
+      "id": 82,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Food Acceptability",
+      "content": "NASA HRP Active Investigation: Food Acceptability (Nutritional Satiety). Description: Assessing how long-term spaceflight affects food appeal\u202fto improve current and future space food systems",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-FOOD"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "stomach"
+        ],
+        "system": "digestive",
+        "category": "Nutritional Satiety",
+        "study_title": "Food Acceptability"
+      }
+    },
+    {
+      "id": 83,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Food Physiology",
+      "content": "NASA HRP Active Investigation: Food Physiology (Metabolic Optimization). Description: Determining\u00a0whether\u00a0an enhanced spaceflight diet\u00a0could\u00a0help astronauts better adapt to space",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-FOOD"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "liver"
+        ],
+        "system": "digestive",
+        "category": "Metabolic Optimization",
+        "study_title": "Food Physiology"
+      }
+    },
+    {
+      "id": 84,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Omics Archive",
+      "content": "NASA HRP Active Investigation: Omics Archive (GeneLab Multi-Omics). Description: Collecting astronauts\u2019 blood, urine, saliva, feces, and cells to document how long-duration spaceflight influences human health and performance and changes the body at the molecular level",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-OMICS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "blood"
+        ],
+        "system": "arterial",
+        "category": "GeneLab Multi-Omics",
+        "study_title": "Omics Archive"
+      }
+    },
+    {
+      "id": 85,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Space Gardening",
+      "content": "NASA HRP Active Investigation: Space Gardening (Biophilic Psychological Countermeasure). Description: Surveying whether growing fresh vegetables in space can ease astronauts\u2019 sense of isolation and confinement",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-SPACE"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "category": "Biophilic Psychological Countermeasure",
+        "study_title": "Space Gardening"
+      }
+    },
+    {
+      "id": 86,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Spinal Health",
+      "content": "NASA HRP Active Investigation: Spinal Health (Paraspinal Morphometry & Disc Protection). Description: Scrutinizing scans of astronauts\u2019 spines to inform strategies that counter bone and muscle loss in space",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-SPINAL"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "lumbar"
+        ],
+        "system": "skeletal",
+        "category": "Paraspinal Morphometry & Disc Protection",
+        "study_title": "Spinal Health"
+      }
+    },
+    {
+      "id": 87,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Tempus Pro",
+      "content": "NASA HRP Active Investigation: Tempus Pro (ExMC Autonomous Clinical Telemedicine). Description: Test-driving a commercial telemedicine device used to collect and integrate health data, potentially enabling remote, near real-time diagnoses",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-TEMPUS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "category": "ExMC Autonomous Clinical Telemedicine",
+        "study_title": "Tempus Pro"
+      }
+    },
+    {
+      "id": 88,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Veggie Monitoring",
+      "content": "NASA HRP Active Investigation: Veggie Monitoring (HRP Clinical Investigation). Description: Monitoring\u00a0microbial growth\u00a0on hardware that stores\u00a0crops\u00a0in space\u00a0to develop\u00a0a\u00a0better\u00a0plant production system and\u00a0ensure crew safety",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-VEGGIE"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "category": "HRP Clinical Investigation",
+        "study_title": "Veggie Monitoring"
+      }
+    },
+    {
+      "id": 89,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: Human Research Roadmap",
+      "content": "NASA HRP Active Investigation: Human Research Roadmap (HRP Clinical Investigation). Description: The Human Research Roadmap provides an overview of the risks and knowledge gaps that HRP associates with human spaceflight.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-HUMAN"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "category": "HRP Clinical Investigation",
+        "study_title": "Human Research Roadmap"
+      }
+    },
+    {
+      "id": 90,
+      "file": "NASA-HRP-ONGOING-RESEARCH",
+      "page": "HRP Study: National Aeronautics and Space Administration",
+      "content": "NASA HRP Active Investigation: National Aeronautics and Space Administration (HRP Clinical Investigation). Description: NASA explores the unknown in air and space, innovates for the benefit of humanity, and inspires the world through discovery.",
+      "clinicalMetadata": {
+        "standards": [
+          "NASA-HRP-EXP-NATIONAL"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "category": "HRP Clinical Investigation",
+        "study_title": "National Aeronautics and Space Administration"
+      }
+    },
+    {
+      "id": 91,
+      "file": "CSA-CANS-RADIATION-2026",
+      "page": "CSA CANS Section #1",
+      "content": "Canadian Space Agency (CSA) CANS (Canadian Active Neutron Spectrometer) Operational Mission: Compact, autonomous instrument developed with Bubble Technology Industries to measure high-risk neutron radiation exposure in deep space missions to the Moon and Mars.",
+      "clinicalMetadata": {
+        "standards": [
+          "CSA-CANS-2026",
+          "ISS-RADI-N2",
+          "MOSFET-EVARM"
+        ],
+        "thresholds": [
+          "~30% total ISS radiation is secondary neutrons"
+        ],
+        "anatomy": [
+          "brain",
+          "heart"
+        ],
+        "system": "nervous",
+        "topic": "Autonomous Active Neutron Dosimetry"
+      }
+    },
+    {
+      "id": 92,
+      "file": "CSA-CANS-RADIATION-2026",
+      "page": "CSA CANS Section #2",
+      "content": "Secondary Neutron Radiotoxicity in Spaceflight: Neutron radiation contributes to approximately 30% of total astronaut radiation dose inside space habitats. High-energy GCR particles collide with spacecraft aluminum shielding, creating high-LET secondary neutron cascades that cause severe biological tissue damage and double-strand DNA breaks requiring continuous autonomous monitoring.",
+      "clinicalMetadata": {
+        "standards": [
+          "CSA-NEUTRON-DOSIMETRY"
+        ],
+        "thresholds": [
+          "30% neutron fraction"
+        ],
+        "anatomy": [
+          "brain",
+          "heart",
+          "bone"
+        ],
+        "system": "nervous",
+        "topic": "Secondary Neutron Particle Cascade"
+      }
+    },
+    {
+      "id": 93,
+      "file": "CSA-CANS-RADIATION-2026",
+      "page": "CSA CANS Section #3",
+      "content": "Canadian Active Neutron Spectrometer (CANS) Autonomous Capabilities: Successor to Canadian bubble detectors, MOSFET, EVARM, and Radi-N/Radi-N2 experiments. Unlike passive bubble detectors requiring manual post-EVA bubble counting, CANS operates continuously and autonomously on spacecraft hulls, streaming real-time neutron energy spectra into astronaut clinical monitoring systems.",
+      "clinicalMetadata": {
+        "standards": [
+          "CSA-CANS-AUTONOMOUS-SPEC"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "topic": "Continuous Autonomous Dosimetry"
+      }
+    },
+    {
+      "id": 94,
+      "file": "CSA-WHY-DO-WE-CONDUCT-SCIENCE-2026",
+      "page": "CSA Science Theory #1",
+      "content": "CSA Accelerated Aging Model of Microgravity: Weightlessness changes the human body in ways directly analogous to accelerated physiological aging and extreme sedentary decubitus. Spaceflight accelerates arterial stiffening, insulin resistance, bone mineral density loss (osteopenia), and vestibular balance impairment, providing a compressed clinical model for terrestrial degenerative disease.",
+      "clinicalMetadata": {
+        "standards": [
+          "CSA-ACCELERATED-AGING-MODEL"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "heart",
+          "bone",
+          "brain"
+        ],
+        "system": "cardiac",
+        "topic": "Microgravity Accelerated Aging Analogy"
+      }
+    },
+    {
+      "id": 95,
+      "file": "CSA-WHY-DO-WE-CONDUCT-SCIENCE-2026",
+      "page": "CSA Science Theory #2",
+      "content": "Deep-Space Exploration Multi-Stress Risk Matrix: Moon and Mars transit profiles induce compounded hazards: (1) prolonged microgravity, (2) elevated unshielded galactic cosmic ray/neutron exposure, (3) extreme isolation and psychological confinement, (4) two-way communication latency (5 to 22 minutes each way), and (5) total inability to evacuate or receive Earth medical resupply, mandating fully autonomous edge AI medical monitoring.",
+      "clinicalMetadata": {
+        "standards": [
+          "CSA-DEEP-SPACE-RISK-MATRIX",
+          "EXMC-AUTONOMOUS-TIER"
+        ],
+        "thresholds": [
+          "5 to 22 min communication latency"
+        ],
+        "anatomy": [
+          "brain"
+        ],
+        "system": "nervous",
+        "topic": "Deep Space Medical Independence Mandate"
+      }
+    },
+    {
+      "id": 96,
+      "file": "CSA-WHY-DO-WE-CONDUCT-SCIENCE-2026",
+      "page": "CSA Science Theory #3",
+      "content": "Canadian ISS Multi-Organ Physiological Investigations: Target organ systems scrutinized by CSA clinical studies include: (1) Bones (trabecular demineralization and osteoporotic microarchitecture loss), (2) Cardiovascular (arterial wall remodeling, endothelial vascular stiffness), and (3) Brain and Vestibular (post-flight balance recovery and neuro-vestibular reweighting).",
+      "clinicalMetadata": {
+        "standards": [
+          "CSA-ISS-ORGAN-TARGETS"
+        ],
+        "thresholds": [],
+        "anatomy": [
+          "bone",
+          "heart",
+          "brain"
+        ],
+        "system": "skeletal",
+        "topic": "CSA Targeted Organ Vulnerabilities"
+      }
+    }
+  ]
+}

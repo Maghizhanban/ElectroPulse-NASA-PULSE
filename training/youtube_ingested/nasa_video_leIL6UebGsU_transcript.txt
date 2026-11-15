@@ -1,0 +1,22 @@
+NASA Video ID: leIL6UebGsU
+Source URL: https://youtu.be/leIL6UebGsU
+Ingestion Timestamp: {
+  "standards": [],
+  "thresholds": [],
+  "conditions": [
+    "cardiovascular_deconditioning",
+    "acute_radiation_sickness"
+  ]
+}
+
+[00:02] [Music] [00:08] the nasa space radiation laboratory is [00:10] an outgrowth of brookhaven national [00:12] laboratory's particle accelerator it [00:14] utilizes the heavy charged particle [00:17] radiation beam [00:18] from various components already existing [00:20] at brookhaven lab [00:22] to then deliver specific doses ions and [00:25] energies of radiation to the actual nasa [00:28] space radiation lab itself with the goal [00:30] to determine the potential risks to [00:33] human beings from exposure to radiation
+
+[00:35] during space travel [00:38] the bulk of the radio biology data that [00:40] we've collected from the nasa space [00:41] radiation research laboratory has really [00:44] helped us establish our space [00:46] permissible exposure limits [00:48] nasa has a set of limits that helps [00:52] protect the astronauts not only from the [00:53] short-term effects of radiation but also [00:55] the long-term health effects in order to [00:58] establish what those limits should be we [01:00] have to understand how space radiation
+
+[01:02] is different than terrestrial radiation [01:05] and the experiments at nsrl has helped [01:07] us establish our permissible exposure [01:10] limits in terms of protecting the crew [01:12] from the risk of radiation [01:14] carcinogenesis and also setting [01:16] non-cancer career limits to the brain [01:19] for central nervous system effects and [01:21] also to the heart for cardiovascular [01:23] disease [01:25] the primary difference with trying to [01:27] compare what type of radiation dose an
+
+[01:29] astronaut would get on a mission to mars [01:31] versus what a person could expect in [01:33] their day-to-day life over over time is [01:35] that time factor [01:37] now a mission to mars depending on when [01:39] you go and how the planets are aligned [01:41] and such you're still looking at [01:43] approximately a two to three year [01:45] mission and while that seems like a long [01:47] time it's very different than the amount [01:49] of time that say a a non-astronaut just [01:52] a regular
+
+[01:53] person that has nothing to do with space [01:54] travel gets over say a 70 80 year [01:57] lifespan from say some radon gas in the [01:59] home or from medical tests that are [02:02] administered where you get a certain [02:04] amount of dose from [02:05] ct scans or pet scans and x-rays through [02:09] the course of life [02:11] so you're delivering a certain amount of [02:13] radiation dose in a more compressed [02:15] period of time than you would to the [02:16] person that [02:18] has never been a space traveler and such
+
+[02:20] and that's one of the trickiest aspects [02:22] to trying to determine radiation dose [02:25] the same amount of radiation below those [02:26] delivered in a day is very different [02:28] than that same dose delivered in three [02:30] years even though well it's the same [02:32] dose it's not that simple and that has [02:34] to be evaluated when you try to [02:36] determine the potential risks of [02:39] absorbing that kind of a dose [02:41] [Music] [02:56] [Music] [03:03] you

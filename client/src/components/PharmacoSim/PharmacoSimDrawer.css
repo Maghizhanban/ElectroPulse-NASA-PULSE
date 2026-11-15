@@ -1,0 +1,292 @@
+.pharmacosim-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 17, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 1200;
+  display: flex;
+  justify-content: flex-end;
+  animation: fade-in 0.25s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pharmacosim-drawer-card {
+  width: 520px;
+  max-width: 95vw;
+  height: 100vh;
+  background: rgba(11, 19, 41, 0.96);
+  backdrop-filter: blur(16px);
+  border-left: 1.5px solid rgba(0, 242, 254, 0.35);
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.7);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+  animation: slide-in-right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.drawer-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.drawer-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sim-badge {
+  font-size: 10px;
+  font-weight: 800;
+  color: #00f2fe;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.drawer-title-group h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.4px;
+}
+
+.drawer-close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.drawer-close-btn:hover {
+  color: #ffffff;
+}
+
+/* Drug Tabs */
+.drug-tabs-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.drug-tab-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.drug-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.drug-tab-btn.active {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2) 0%, rgba(2, 132, 199, 0.2) 100%);
+  border-color: #00f2fe;
+  color: #00f2fe;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+}
+
+/* Dose Control */
+.dose-control-card {
+  background: rgba(5, 8, 17, 0.7);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dose-label-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dose-label-group span {
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.dose-label-group strong {
+  color: #00f2fe;
+}
+
+.dose-label-group small {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.dose-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 6px;
+  background: #1e293b;
+  outline: none;
+}
+
+.dose-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00f2fe;
+  cursor: pointer;
+  box-shadow: 0 0 8px #00f2fe;
+}
+
+/* Canvas Area */
+.canvas-wrapper-box {
+  background: #070a12;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.canvas-legend {
+  display: flex;
+  gap: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  flex-wrap: wrap;
+}
+
+.canvas-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.canvas-legend .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.canvas-legend .dot.cyan {
+  background: #00f2fe;
+  box-shadow: 0 0 6px #00f2fe;
+}
+
+.canvas-legend .dot.amber {
+  background: #f59e0b;
+}
+
+.canvas-legend .band {
+  width: 12px;
+  height: 6px;
+  background: rgba(0, 242, 254, 0.15);
+  border: 1px dashed rgba(0, 242, 254, 0.4);
+}
+
+.canvas-container {
+  width: 100%;
+  height: 200px;
+}
+
+.canvas-container canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Metrics Grid */
+.recovery-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.metric-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-box.highlight {
+  background: rgba(0, 242, 254, 0.08);
+  border-color: rgba(0, 242, 254, 0.35);
+}
+
+.m-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.m-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.metric-box.highlight .m-val {
+  color: #00f2fe;
+}
+
+.m-val small {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* Footer Actions */
+.drawer-footer-actions {
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.confirm-prescription-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #00f2fe 0%, #0284c7 100%);
+  color: #070a12;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.confirm-prescription-btn:hover {
+  transform: scale(1.02);
+}

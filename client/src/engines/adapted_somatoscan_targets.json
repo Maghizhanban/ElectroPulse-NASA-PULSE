@@ -1,0 +1,19 @@
+{
+  "radiation_acute": {
+    "primaryTarget": "prefrontal cortex",
+    "secondaryTarget": "hippocampus",
+    "tertiaryTarget": "heart",
+    "xrayRevealSystem": "nervous",
+    "explanation": "NASA HRP finding: High-LET heavy ion tracks cause microlesions in prefrontal cortical circuits and endothelial inflammation in myocardium."
+  },
+  "sans_fluid_shift": {
+    "primaryTarget": "optic sheath",
+    "secondaryTarget": "internal jugular vein",
+    "xrayRevealSystem": "sensory"
+  },
+  "bone_demineralization": {
+    "primaryTarget": "lumbar spine",
+    "secondaryTarget": "femur",
+    "xrayRevealSystem": "skeletal"
+  }
+}

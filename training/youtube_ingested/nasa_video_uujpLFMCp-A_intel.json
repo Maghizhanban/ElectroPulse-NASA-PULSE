@@ -1,0 +1,49 @@
+{
+  "video_id": "uujpLFMCp-A",
+  "url": "https://youtu.be/uujpLFMCp-A",
+  "clinical_intelligence": {
+    "standards": [],
+    "thresholds": [],
+    "conditions": [
+      "acute_radiation_sickness"
+    ]
+  },
+  "chunks": [
+    {
+      "video_id": "uujpLFMCp-A",
+      "timestamp_start": 0.0,
+      "timestamp_formatted": "[00:26]",
+      "content": "[00:01] [Music] [00:07] so of all the things that the human [00:09] research program is investigating the [00:11] biological consequences of radiation [00:13] exposure is one of the major ones some [00:15] of the reasons for that is that the [00:16] health consequences following radiation [00:18] exposure are very complex processes it's [00:21] difficult to quantify exactly how the [00:23] radiation is interacting with tissue and [00:25] then it's even more complicated to try [00:26] to quantify and determine what the"
+    },
+    {
+      "video_id": "uujpLFMCp-A",
+      "timestamp_start": 26.96,
+      "timestamp_formatted": "[00:52]",
+      "content": "[00:28] long-term outcomes are going to be in [00:30] terms of things like carcinogenesis [00:32] central nervous system effects and [00:34] detriment to the central nervous system [00:36] the primary means by which radiation [00:38] affects cells is by damaging their DNA [00:41] you can get breaks in the strands and [00:42] the double helix you can knock bases out [00:46] and the cell will make an attempt to [00:47] repair that damage sometimes it's [00:50] effective sometimes it's not and [00:52] sometimes it'll actually get repaired"
+    },
+    {
+      "video_id": "uujpLFMCp-A",
+      "timestamp_start": 52.6,
+      "timestamp_formatted": "[01:16]",
+      "content": "[00:54] but in an eror prone fashion so it's [00:56] what we call [00:57] misrepaired so anything that sets in [01:00] into the genome in that way is a [01:01] mutation and the accumulation of [01:03] mutations can potentially lead to to [01:05] cancer and take a noncancerous cell a [01:08] normal cell and make it transformed into [01:10] a cancerous one so that's a big [01:12] concern so on Earth there's a couple [01:15] characteristic things that are different [01:16] from space one of them is that the type"
+    },
+    {
+      "video_id": "uujpLFMCp-A",
+      "timestamp_start": 76.68,
+      "timestamp_formatted": "[01:37]",
+      "content": "[01:18] of radiation we experience on Earth is [01:20] generally what we refer to as low let [01:22] radiation things like gamma rays and [01:24] x-rays we also have the protective [01:26] shielding of the Earth's magnetic field [01:27] and the atmosphere which Shields a great [01:29] deal of the radiation and then finally [01:31] we have things like radiation protection [01:33] Concepts such as time shielding and [01:35] distance so we can reduce the time of [01:37] exposure on Earth we can reduce the"
+    },
+    {
+      "video_id": "uujpLFMCp-A",
+      "timestamp_start": 97.6,
+      "timestamp_formatted": "[01:58]",
+      "content": "[01:39] distance from the radiation sources and [01:41] we can reduce the exposure through [01:43] shielding in space a lot of those things [01:45] are very different so we have a very [01:47] complex radiation field that includes [01:49] things like protons and all the [01:51] particles on the periodic table of [01:52] elements they're coming in at energies [01:54] that are approaching the speed of light [01:56] and they're difficult to Shield against [01:58] and they're always there so the concept"
+    },
+    {
+      "video_id": "uujpLFMCp-A",
+      "timestamp_start": 118.479,
+      "timestamp_formatted": "[01:58]",
+      "content": "[02:00] of time really doesn't make sense [02:01] because you can't reduce the exposure in [02:04] space except perhaps getting to Mars [02:06] faster you can't really reduce the [02:08] distance at all because the radiation is [02:09] everywhere and shielding concepts for [02:11] Galactic cosmic rays are very difficult [02:13] because of the energies involved [02:16] [Music] [02:21] [Music]"
+    }
+  ]
+}

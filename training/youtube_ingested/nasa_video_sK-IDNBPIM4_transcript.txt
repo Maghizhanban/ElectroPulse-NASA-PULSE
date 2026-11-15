@@ -1,0 +1,23 @@
+NASA Video ID: sK-IDNBPIM4
+Source URL: https://youtu.be/sK-IDNBPIM4
+Ingestion Timestamp: {
+  "standards": [],
+  "thresholds": [],
+  "conditions": [
+    "cardiovascular_deconditioning",
+    "acute_radiation_sickness"
+  ]
+}
+
+[00:09] just as early explorers had to endure [00:11] weather as they traveled to new lands [00:12] and explore new areas astronauts when [00:15] they go on space travel outside the [00:17] earth's magnetic field will have to [00:19] endure space weather the space weather [00:21] would include things like galactic [00:22] cosmic rays which are remnants from [00:24] supernova [00:25] and also solar storms which include [00:27] things like solar particle events and [00:28] coronal mass ejections [00:31] so as astronauts are traveling to mars
+
+[00:33] they're going to be enduring the space [00:34] weather and it's harmful to the body in [00:36] a couple different ways there's an [00:37] in-flight risk from things like solar [00:39] storms and those really present acute [00:41] radiation sickness type issues that [00:42] would have to be dealt with [00:43] operationally in real time and then [00:45] there's also long-term late effects like [00:47] cancer cardiovascular disease and [00:49] possible central nervous system effects [00:52] those are more possibly late-term
+
+[00:54] effects that would come into play after [00:55] the mission [00:58] just like the early explorers nasa's [01:00] mission is to bring all of the [01:01] astronauts home safely [01:02] and to do that we're investing and [01:05] looking into these shield design [01:06] strategies that include ways that [01:08] mitigate exposure from all forms of [01:10] space weather so we look at habitat [01:13] design and overall vehicle optimization [01:15] to reduce the in-flight risk from solar [01:17] storms but then we're also looking at
+
+[01:19] material design [01:21] and other vehicle optimization [01:22] strategies to reduce the risk from [01:25] long-term exposure to galactic cosmic [01:26] rays [01:29] [Music]
+
+[METADATA] Related Story: https://www.nasa.gov/feature/nasa-protects-its-super-heroes-from-space-weather
+It’s not a bird or a plane but it might be a solar storm. We like to think of astronauts as our superheroes, but the reality is astronauts are not built like Superman who gains strength from the sun. In fact, much of the energy radiating from the sun is harmful to us mere mortals. Outside Earth’s protective magnetic field and atmosphere, the ionizing radiation in space will pose a serious risk to astronauts as they travel to Mars. High-energy galactic cosmic rays (GCRs) which are remnants from supernovas and solar storms like solar particle events (SPEs) and coronal mass ejections (CMEs) from the sun can cause harm to the body and spacecraft. These are all components of space weather.
+When astronauts travel in space they can’t see or even feel radiation. However, NASA’s Human Research Program (HRP) is studying the effects radiation plays on the human body and developing ways to monitor and protect against this silent hazard. 
+Learn how astronauts will endure space weather beyond low Earth orbit at https://www.nasa.gov/hrp/

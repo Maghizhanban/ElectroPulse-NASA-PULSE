@@ -1,0 +1,19 @@
+NASA Video ID: Dtp9zjvNWw8
+Source URL: https://youtu.be/Dtp9zjvNWw8
+Ingestion Timestamp: {
+  "standards": [],
+  "thresholds": [],
+  "conditions": [
+    "acute_radiation_sickness"
+  ]
+}
+
+[00:03] the two schools have thought are you [00:04] either bring the samples up to the [00:05] radiation in space or you bring the [00:08] radiation from space down to earth and [00:10] that's fundamentally what a particle [00:11] accelerator does the entire particle [00:14] accelerator complex at Brook Hava [00:16] National Laboratory serves as the input [00:20] to the NASA space radiation laboratory [00:22] itself with some terrific upgrades that [00:25] took place along the the lifespan of the
+
+[00:28] nsrl facility itself but espe esally in [00:30] 2016 with the Advent of the galactic [00:32] Cosmic race simulator um it's now much [00:35] easier and more practical and realistic [00:37] to deliver a more space like exposure [00:41] which involves changing those ion [00:43] species and energies and dose rates on [00:45] the Fly because that's the situation [00:47] that happens in space a heavier particle [00:50] has the potential to cause more [00:52] biological damage than a lighter [00:54] particle even at the exact same dose
+
+[00:57] analogy I can use is it's like the pound [00:59] of feathers versus pound of lead [01:01] argument they're both a pound but if I [01:03] drop the pound of feathers on your foot [01:05] you might barely feel it but if I drop [01:07] the pound of lead on your foot it might [01:08] break a few toes this for the same [01:11] radiation dose uh what what is the [01:14] resulting biological outcome because [01:17] different types of radiation have [01:19] different relative abilities to cause [01:22] damage and cause negative effects in
+
+[01:24] living systems the Brook Haven National [01:27] Laboratory particle accelerator complex [01:29] and the space radiation laboratory [01:31] that's an offshoot of that uh is the [01:34] only facility in the United States [01:36] capable of delivering CH particle [01:38] radiation species the upgrades to the [01:41] NASA space radiation laboratory complex [01:43] as a whole are very important to try to [01:46] assess risk assessment and get a much [01:48] more realistic space exposure scenario
+
+[01:51] when you talk about emission to Mars for [01:53] example that would take 2 to 3 years [01:56] instead of trying to take a leap of [01:57] faith and piece different segments of [01:59] data together to try to see what the [02:01] overall situation would be during actual [02:03] space travel we can now perform those [02:06] experiments directly

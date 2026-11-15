@@ -1,0 +1,37 @@
+{
+  "video_id": "ryHNj_SLwlE",
+  "url": "https://youtu.be/ryHNj_SLwlE",
+  "clinical_intelligence": {
+    "standards": [],
+    "thresholds": [],
+    "conditions": [
+      "acute_radiation_sickness"
+    ]
+  },
+  "chunks": [
+    {
+      "video_id": "ryHNj_SLwlE",
+      "timestamp_start": 0.0,
+      "timestamp_formatted": "[00:25]",
+      "content": "[00:00] What are the dangers of going to space? [00:03] We Asked a NASA Scientist. [00:05] What are the dangers of going into space? [00:08] For human spaceflight, [00:09] the first thing I think about [00:11] is the astronauts [00:12] actually strapping themselves to a rocket. [00:15] And if that isn't dangerous enough, [00:18] once they launch [00:19] and they're out into space in deep exploration, [00:22] we have to worry about radiation. [00:25] Radiation is coming at them from all directions."
+    },
+    {
+      "video_id": "ryHNj_SLwlE",
+      "timestamp_start": 25.291,
+      "timestamp_formatted": "[00:52]",
+      "content": "[00:28] From the Sun, we have solar particles. [00:30] We have galactic cosmic rays [00:32] that are all over in the universe. [00:34] And those cause damage to DNA. [00:37] On Earth here, [00:38] we use sunscreen to protect us from DNA damage. [00:42] Our astronauts are protected from the shielding [00:44] that's around them in the space vehicles. [00:47] We also have to worry about microgravity. [00:49] So what happens there? [00:51] We see a lot of bone [00:52] and muscle loss in our astronauts."
+    },
+    {
+      "video_id": "ryHNj_SLwlE",
+      "timestamp_start": 52.552,
+      "timestamp_formatted": "[01:17]",
+      "content": "[00:54] And so to prevent this, [00:56] we actually have the astronauts [00:57] exercising for hours every day. [01:01] And of course we don't want to run out of food [01:03] on a space exploration mission. [01:05] So we want to make sure [01:06] that we have everything [01:08] that the astronauts need to take with them [01:10] to make sure that we can sustain them. [01:12] There are many risks associated [01:14] with human space exploration. [01:16] NASA has been planning [01:17] for these missions"
+    },
+    {
+      "video_id": "ryHNj_SLwlE",
+      "timestamp_start": 77.377,
+      "timestamp_formatted": "[01:17]",
+      "content": "[01:18] to make our astronauts return home safely. [01:23] We Asked a NASA Scientist. [01:25] NASA. A NASA 360 Production."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "metadata": {
+    "adaptationLevel": "HZE Dose-Rate Drift Calibrated",
+    "anomalyThreshold": 1.25,
+    "driftWindowHours": 72
+  },
+  "weights": {
+    "cardiacRhythmSensitivity": 1.35,
+    "cnsKeystrokeEntropySensitivity": 1.4,
+    "radiationDosimeterTrackingWeight": 2.1
+  }
+}

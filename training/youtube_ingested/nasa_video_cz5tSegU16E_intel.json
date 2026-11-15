@@ -1,0 +1,49 @@
+{
+  "video_id": "cz5tSegU16E",
+  "url": "https://youtu.be/cz5tSegU16E",
+  "clinical_intelligence": {
+    "standards": [],
+    "thresholds": [],
+    "conditions": [
+      "acute_radiation_sickness"
+    ]
+  },
+  "chunks": [
+    {
+      "video_id": "cz5tSegU16E",
+      "timestamp_start": 0.0,
+      "timestamp_formatted": "[00:34]",
+      "content": "[00:02] [Music] [00:07] for the journey to mars the human [00:08] research program works to project assess [00:12] and solve the problems that astronauts [00:14] have in space specifically for radiation [00:18] research the human research program [00:20] works to predict and mitigate [00:23] the health effects of space radiation on [00:26] astronauts [00:27] i think one of the most challenging [00:29] parts for the journey to mars in terms [00:31] of the humans and not necessarily the [00:34] technology to get there"
+    },
+    {
+      "video_id": "cz5tSegU16E",
+      "timestamp_start": 34.16,
+      "timestamp_formatted": "[00:58]",
+      "content": "[00:36] is the risk of radiation exposure and [00:38] the in-flight consequences of the [00:40] exposure to radiation as well as the [00:43] long-term health consequences of [00:45] exposure [00:46] there's two parts of radiation we have [00:48] to protect the crew from one is a solar [00:50] particle event where there's a solar [00:52] storm and these energetic particles [00:54] stream out [00:55] unfortunately we know how to protect the [00:56] crew from that we put them into a [00:58] shelter that's shielded by lots of water"
+    },
+    {
+      "video_id": "cz5tSegU16E",
+      "timestamp_start": 58.239,
+      "timestamp_formatted": "[01:24]",
+      "content": "[01:00] and actually they're very short duration [01:03] hours to days at most they can come out [01:06] and continue with their journey that's [01:08] the one aspect of radiation we know how [01:10] to protect against the other which we [01:12] really don't have a firm handle on is [01:14] galactic cosmic rays these are highly [01:16] energetic particles that come from all [01:19] over the galaxy towards the solar system [01:22] and earth you can't shield against these [01:24] they're so energetic they rip right"
+    },
+    {
+      "video_id": "cz5tSegU16E",
+      "timestamp_start": 84.32,
+      "timestamp_formatted": "[01:49]",
+      "content": "[01:26] through all metals all plastic all water [01:29] and all cellular material and as they [01:31] rip through the materials little [01:33] electrons and protons pull off of them [01:36] and you end up getting a cascade effect [01:38] of radiation throughout the materials [01:40] and sometimes going through certain [01:42] materials causes a worst radiation [01:44] environment for the crew that hadn't [01:45] gone through other materials so we try [01:47] to design the spacecraft out of [01:49] materials that shield the crew from"
+    },
+    {
+      "video_id": "cz5tSegU16E",
+      "timestamp_start": 109.28,
+      "timestamp_formatted": "[02:17]",
+      "content": "[01:51] these but also do not produce more [01:53] hazardous particles as a function of [01:55] being impacted with it [01:58] so a lot of people think that radiation [02:02] will keep nasa from sending people to [02:04] mars and that's not [02:06] what the current situation is we have [02:08] techniques we've discussed ways of [02:10] getting there faster [02:11] we know that we add these various [02:13] mitigations up [02:15] that we can have a successful mars [02:17] mission a healthy crew and have them"
+    },
+    {
+      "video_id": "cz5tSegU16E",
+      "timestamp_start": 137.44,
+      "timestamp_formatted": "[02:17]",
+      "content": "[02:19] live a very long and productive life [02:21] after the return to earth [02:25] [Music] [02:33] [Music] [02:48] you"
+    }
+  ]
+}

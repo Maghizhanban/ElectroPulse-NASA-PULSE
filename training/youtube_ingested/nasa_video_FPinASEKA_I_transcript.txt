@@ -1,0 +1,11 @@
+NASA Video ID: FPinASEKA_I
+Source URL: https://youtu.be/FPinASEKA_I
+Ingestion Timestamp: {
+  "standards": [],
+  "thresholds": [],
+  "conditions": [
+    "acute_radiation_sickness"
+  ]
+}
+
+[METADATA] Exploration to the Moon and Mars will expose astronauts to five known hazards of spaceflight, including radiation. To learn more, and find out what NASA’s Human Research Program is doing to protect humans in space, explore the resources below. Visit NASA’s Space Radiation website at https://www.nasa.gov/hrp/hazards

@@ -1,0 +1,591 @@
+.jarvis-guardian-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* Status Ribbon */
+.jarvis-status-ribbon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(11, 19, 41, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: 18px;
+  padding: 10px 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.guardian-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.jarvis-core-orb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00f2fe 0%, #0369a1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+  position: relative;
+}
+
+.jarvis-core-orb.speaking {
+  animation: orb-speak-pulse 1.2s infinite;
+}
+
+@keyframes orb-speak-pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 8px #00f2fe; }
+  50% { transform: scale(1.2); box-shadow: 0 0 24px #00f2fe, 0 0 40px rgba(0, 242, 254, 0.4); }
+  100% { transform: scale(0.95); box-shadow: 0 0 8px #00f2fe; }
+}
+
+.core-inner-glow {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.guardian-title-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.guardian-brand {
+  font-size: 13px;
+  font-weight: 800;
+  color: #00f2fe;
+  letter-spacing: 0.8px;
+}
+
+.guardian-sub {
+  font-size: 10px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* Crew Selector Pills */
+.crew-selector-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(5, 8, 17, 0.6);
+  padding: 4px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.crew-pill-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 5px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.crew-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.crew-pill-btn.active {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: rgba(0, 242, 254, 0.4);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+
+.crew-avatar-mini {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #00f2fe;
+}
+
+.crew-pill-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.15;
+}
+
+.crew-pill-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.crew-pill-risk {
+  font-size: 9px;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+/* Right Controls */
+.guardian-right-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.voice-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.voice-toggle-btn.active {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: #00f2fe;
+  color: #00f2fe;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.25);
+}
+
+.sim-intercept-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #070a12;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+  transition: transform 0.2s ease;
+}
+
+.sim-intercept-btn:hover {
+  transform: scale(1.03);
+}
+
+/* PROACTIVE JARVIS INTERCEPT POPUP */
+.jarvis-proactive-popup {
+  position: relative;
+  background: rgba(11, 19, 41, 0.95);
+  backdrop-filter: blur(18px);
+  border: 1.5px solid #00f2fe;
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 0 32px rgba(0, 242, 254, 0.35), 0 12px 40px rgba(0, 0, 0, 0.7);
+  animation: pop-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes pop-in {
+  from { transform: translateY(-20px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.popup-glow-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b 0%, #00f2fe 50%, #f59e0b 100%);
+  animation: scan-glow 3s infinite linear;
+}
+
+@keyframes scan-glow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.popup-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #f59e0b;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+}
+
+.pulsing-beacon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 8px #f59e0b;
+  animation: beacon-pulse 1.2s infinite;
+}
+
+@keyframes beacon-pulse {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0.6; }
+}
+
+.popup-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.crew-target {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.crew-target strong {
+  color: #ffffff;
+}
+
+.dismiss-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.dismiss-btn:hover {
+  color: #ffffff;
+}
+
+.popup-voice-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(5, 8, 17, 0.7);
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+.voice-canvas {
+  height: 28px;
+  display: block;
+}
+
+.speech-status {
+  font-size: 10px;
+  font-weight: 800;
+  color: #00f2fe;
+  letter-spacing: 0.8px;
+}
+
+.popup-headline {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.popup-vitals-strip {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.vital-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #cbd5e1;
+}
+
+.vital-tag.highlight {
+  background: rgba(0, 242, 254, 0.12);
+  border-color: rgba(0, 242, 254, 0.35);
+  color: #00f2fe;
+}
+
+.popup-speech-text {
+  font-size: 13px;
+  color: #e2e8f0;
+  line-height: 1.5;
+  font-style: italic;
+  background: rgba(0, 242, 254, 0.06);
+  border-left: 3px solid #00f2fe;
+  padding: 10px 14px;
+  border-radius: 0 10px 10px 0;
+  margin: 0;
+}
+
+.popup-pathology,
+.popup-countermeasure {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pathology-label,
+.cm-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+}
+
+.pathology-text {
+  font-size: 12px;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.cm-text {
+  font-size: 12px;
+  color: #38bdf8;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.popup-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.action-execute-btn {
+  background: linear-gradient(135deg, #00f2fe 0%, #0284c7 100%);
+  color: #070a12;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.action-execute-btn:hover {
+  transform: scale(1.02);
+}
+
+.action-explain-btn {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #f59e0b;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.action-snooze-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Command Strip */
+.jarvis-command-strip {
+  display: flex;
+  align-items: center;
+  background: rgba(11, 19, 41, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: 14px;
+  padding: 4px 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.command-lead {
+  padding: 0 8px;
+}
+
+.command-prompt {
+  font-size: 12px;
+  font-weight: 800;
+  color: #00f2fe;
+  font-family: monospace;
+}
+
+.command-form {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.command-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 8px;
+}
+
+.command-input::placeholder {
+  color: #64748b;
+}
+
+.command-send-btn {
+  background: rgba(0, 242, 254, 0.15);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: #00f2fe;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.command-send-btn:hover {
+  background: #00f2fe;
+  color: #070a12;
+}
+
+/* Dialogue Stream */
+.jarvis-chat-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(5, 8, 17, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 8px 14px;
+}
+
+.stream-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.stream-item.jarvis .stream-author {
+  color: #00f2fe;
+  font-weight: 800;
+}
+
+.stream-item.jarvis .stream-text {
+  color: #e2e8f0;
+}
+
+.stream-item.crew .stream-author {
+  color: #f59e0b;
+  font-weight: 800;
+}
+
+.stream-item.crew .stream-text {
+  color: #94a3b8;
+}
+
+/* NASA Flight Quick Commands */
+.jarvis-quick-commands {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0 8px 0;
+}
+
+.quick-cmd-btn {
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: monospace;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+}
+
+.quick-cmd-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.2);
+}
+
+.quick-cmd-btn.cyan {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: rgba(6, 182, 212, 0.4);
+  color: #67e8f9;
+}
+
+.quick-cmd-btn.amber {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fcd34d;
+}
+
+.quick-cmd-btn.blue {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #93c5fd;
+}
+
+.quick-cmd-btn.purple {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #d8b4fe;
+}
+
+.quick-cmd-btn.emerald {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #6ee7b7;
+}
+
+.quick-cmd-btn.teal {
+  background: rgba(20, 184, 166, 0.15);
+  border-color: rgba(20, 184, 166, 0.4);
+  color: #5eead4;
+}
+

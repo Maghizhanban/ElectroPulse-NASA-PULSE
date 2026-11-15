@@ -1,0 +1,25 @@
+{
+  "video_id": "LgGt03MjHfA",
+  "url": "https://youtu.be/LgGt03MjHfA",
+  "clinical_intelligence": {
+    "standards": [],
+    "thresholds": [],
+    "conditions": [
+      "acute_radiation_sickness"
+    ]
+  },
+  "chunks": [
+    {
+      "video_id": "LgGt03MjHfA",
+      "timestamp_start": 0.0,
+      "timestamp_formatted": "[00:00]",
+      "content": "[00:24] [Music] [00:37] [Applause] [00:37] [Music] [01:16] so [01:29] so [01:42] so [01:46] [Music] [02:20] [Applause] [02:22] [Music] [03:03] you"
+    },
+    {
+      "video_id": "LgGt03MjHfA",
+      "timestamp_start": 0.0,
+      "timestamp_formatted": "[INFO 1]",
+      "content": "Hazards of Human Spaceflight | Hazard 5: Hostile Closed Environments - Exploration to the Moon and Mars will expose astronauts to five known hazards of spaceflight, including hostile and closed environments. To learn more, and find out what NASA\u2019s Human Research Program is doing to protect humans in space, explore the resources below. Visit NASA\u2019s Space Radiation website at https://www.nasa.gov/hrp/hazards"
+    }
+  ]
+}

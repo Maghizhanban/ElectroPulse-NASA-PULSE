@@ -1,0 +1,251 @@
+.health-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Vitals Row */
+.vitals-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.vital-mini-card {
+  background: #0b1120;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 242, 254, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.vital-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vital-badge {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vital-badge.green {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.vital-badge.blue {
+  background: rgba(0, 242, 254, 0.2);
+  color: #00f2fe;
+  border: 1px solid rgba(0, 242, 254, 0.4);
+}
+
+.vital-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.vital-main {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.vital-number {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.vital-number small {
+  font-size: 15px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.vital-unit {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.mini-waveform {
+  width: 100%;
+  height: 24px;
+  overflow: visible;
+  margin-top: 4px;
+}
+
+/* Heartrate Card with 3D Organ */
+.heartrate-card {
+  background: #0b1120;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 242, 254, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.heartrate-text {
+  flex: 1;
+}
+
+.card-sub {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #00f2fe;
+}
+
+.heartrate-text h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 3px 0 6px 0;
+}
+
+.hr-number {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.hr-number strong {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.hr-number span {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.hr-desc {
+  font-size: 11px;
+  color: #64748b;
+  margin: 6px 0 0 0;
+  line-height: 1.35;
+}
+
+.heartrate-icon-wrapper {
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 242, 254, 0.08);
+  border-radius: 18px;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+.heartrate-organ-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.3));
+}
+
+/* Organ Systems Progress List */
+.organ-status-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.organ-card {
+  background: #0b1120;
+  border-radius: 18px;
+  padding: 14px 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.organ-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.organ-mini-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.organ-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  display: block;
+}
+
+.organ-sub {
+  font-size: 10px;
+  color: #94a3b8;
+  display: block;
+  margin-top: 2px;
+}
+
+.organ-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 100px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: #1e293b;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 6px;
+}
+
+.progress-fill.green {
+  background: #10b981;
+}
+
+.progress-fill.yellow {
+  background: #f59e0b;
+}
+
+.progress-fill.orange {
+  background: #00f2fe;
+}
+
+.progress-val {
+  font-size: 11px;
+  font-weight: 800;
+  color: #00f2fe;
+  width: 32px;
+  text-align: right;
+}

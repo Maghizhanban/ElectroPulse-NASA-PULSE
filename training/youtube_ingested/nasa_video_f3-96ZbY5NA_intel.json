@@ -1,0 +1,19 @@
+{
+  "video_id": "f3-96ZbY5NA",
+  "url": "https://youtu.be/f3-96ZbY5NA",
+  "clinical_intelligence": {
+    "standards": [],
+    "thresholds": [],
+    "conditions": [
+      "acute_radiation_sickness"
+    ]
+  },
+  "chunks": [
+    {
+      "video_id": "f3-96ZbY5NA",
+      "timestamp_start": 0.0,
+      "timestamp_formatted": "[INFO 1]",
+      "content": "Hazards of Human Spaceflight | Hazard 4: Gravity Fields - Exploration to the Moon and Mars will expose astronauts to five known hazards of spaceflight, including gravity fields. To learn more, and find out what NASA\u2019s Human Research Program is doing to protect humans in space, explore the resources below. Visit NASA\u2019s Space Radiation website at https://www.nasa.gov/hrp/hazards"
+    }
+  ]
+}

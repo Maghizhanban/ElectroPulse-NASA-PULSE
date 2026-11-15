@@ -1,0 +1,105 @@
+.activity-feed-card {
+  background: #0b1120;
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 242, 254, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.activity-header h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.activity-sub {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.legend-pills {
+  display: flex;
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.legend-item .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.legend-item .dot.blue {
+  background: #00f2fe;
+  box-shadow: 0 0 6px #00f2fe;
+}
+
+.legend-item .dot.green {
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.chart-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 130px;
+  padding: 0 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chart-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.bar-pair {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 105px;
+}
+
+.activity-bar {
+  width: 12px;
+  border-radius: 6px 6px 2px 2px;
+  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.activity-bar.ared {
+  background: linear-gradient(180deg, #00f2fe 0%, #0369a1 100%);
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
+}
+
+.activity-bar.pvt {
+  background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+.day-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+}

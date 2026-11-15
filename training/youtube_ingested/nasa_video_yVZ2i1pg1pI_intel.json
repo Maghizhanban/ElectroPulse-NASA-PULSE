@@ -1,0 +1,43 @@
+{
+  "video_id": "yVZ2i1pg1pI",
+  "url": "https://youtu.be/yVZ2i1pg1pI",
+  "clinical_intelligence": {
+    "standards": [],
+    "thresholds": [],
+    "conditions": [
+      "acute_radiation_sickness"
+    ]
+  },
+  "chunks": [
+    {
+      "video_id": "yVZ2i1pg1pI",
+      "timestamp_start": 0.0,
+      "timestamp_formatted": "[00:33]",
+      "content": "[00:02] [Music] [00:08] one of our biggest challenges on a [00:10] mission to mars is protecting the crew [00:12] from radiation you can't see it you [00:15] can't feel it you don't know that you're [00:16] getting bombarded by radiation but we do [00:20] have operational dosimetry and crew [00:22] personal dosimeters that we can measure [00:24] it [00:25] space radiation comes from three major [00:28] sources one is there are radiation [00:32] particles trapped around the earth and [00:33] they're called the van allen radiation"
+    },
+    {
+      "video_id": "yVZ2i1pg1pI",
+      "timestamp_start": 33.92,
+      "timestamp_formatted": "[01:02]",
+      "content": "[00:35] belts the second source of radiation is [00:38] from the sun during times of intense [00:40] solar activity there can be solar storms [00:43] and high fluxes of radiation [00:46] protons in particular can reach earth [00:48] the third source of radiation in space [00:51] is called galactic cosmic radiation and [00:53] that's the one that's of most concern [00:55] for emission to mars the galactic cosmic [00:58] rays come from exploding stars that we [01:01] call supernovas [01:02] so i think one of the common"
+    },
+    {
+      "video_id": "yVZ2i1pg1pI",
+      "timestamp_start": 62.8,
+      "timestamp_formatted": "[01:20]",
+      "content": "[01:03] misconceptions about space radiation is [01:05] just how different it is [01:07] from the type of radiation we have here [01:08] on earth so here on earth when you think [01:10] about sitting down in a dentist chair [01:11] they put [01:12] some kind of lead blanket on your chest [01:14] to protect you could protect you against [01:15] x-rays [01:16] in space [01:18] it actually is very different we don't [01:19] want heavy materials because it makes [01:20] the exposure worse we want things like"
+    },
+    {
+      "video_id": "yVZ2i1pg1pI",
+      "timestamp_start": 80.64,
+      "timestamp_formatted": "[01:43]",
+      "content": "[01:22] hydrogen things like water and [01:24] polyethylene the primary reason for that [01:26] is in space we have particle radiation [01:28] instead of electromagnetic radiation [01:30] particle irradiation is as basically [01:32] everything on the periodic table [01:34] hydrogen all the way up through nickel [01:36] and uranium but moving at speeds that [01:38] are close to the speed of light [01:40] so thinking about the differences [01:41] between earth-based radiation and space [01:43] radiation we have a long history and a"
+    },
+    {
+      "video_id": "yVZ2i1pg1pI",
+      "timestamp_start": 103.68,
+      "timestamp_formatted": "[01:43]",
+      "content": "[01:46] decent amount of data [01:47] about the biological consequences of [01:50] exposure to terrestrial radiation where [01:52] we lack data and we have a large amount [01:54] of uncertainty is the biological [01:56] consequences of space radiation uh and [01:59] so really the next steps are and and the [02:01] ongoing steps are to try to understand [02:04] those exposures better and the [02:05] biological consequences that follow them [02:31] you"
+    }
+  ]
+}

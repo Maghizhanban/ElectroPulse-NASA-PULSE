@@ -1,0 +1,34 @@
+:root {
+  /* SpaceX Deep Space Cockpit Palette */
+  --sidebar-bg: #070a12;
+  --main-bg: #050811;
+  --card-bg: #0b1120;
+  --card-border: rgba(0, 242, 254, 0.18);
+  --search-bg: #0f172a;
+
+  /* Typography */
+  --text-dark: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-bright: #ffffff;
+
+  /* Flight Avionics Neon Accents */
+  --primary-blue: #00f2fe;
+  --light-blue: #38bdf8;
+  --accent-cyan: #00f2fe;
+  --accent-green: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+
+  /* Telemetry Status */
+  --status-nominal: #10b981;
+  --status-caution: #f59e0b;
+  --status-warning: #ef4444;
+
+  /* Shadows & Glass */
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  --hud-glow: 0 0 16px rgba(0, 242, 254, 0.25);
+  --radius: 18px;
+
+  /* Font */
+  --font-primary: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+}

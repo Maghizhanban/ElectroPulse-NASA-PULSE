@@ -1,0 +1,27 @@
+.dashboard-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.dashboard-left, .dashboard-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* 2-column workstation layout */
+.dashboard-grid-layout {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
